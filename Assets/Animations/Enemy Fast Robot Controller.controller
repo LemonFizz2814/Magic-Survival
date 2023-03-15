@@ -21,7 +21,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 6720303635017113406, guid: bef1236c28b756c4cb4353d97f0b5fe3, type: 3}
+  m_Motion: {fileID: 6720303635017113406, guid: 159f97bb31997af41945ccd2acbb6516, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -55,7 +55,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EnemyFastController
+  m_Name: Enemy Fast Robot Controller
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Attack
@@ -181,7 +181,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -4630339522487117836, guid: bef1236c28b756c4cb4353d97f0b5fe3, type: 3}
+  m_Motion: {fileID: 4348485665485846014, guid: 159f97bb31997af41945ccd2acbb6516, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -209,7 +209,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 1827226128182048838, guid: bef1236c28b756c4cb4353d97f0b5fe3, type: 3}
+  m_Motion: {fileID: 2667949614841947897, guid: 159f97bb31997af41945ccd2acbb6516, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
