@@ -33,6 +33,7 @@ public class PlayerScript : MonoBehaviour
 
     public ParticleSystem playerHurtVFX;
     public ParticleSystem absorbVFX;
+    public ParticleSystem lightningVFX;
 
     public int xpToLevelUp;
     public float xpIncr;
@@ -334,7 +335,10 @@ public class PlayerScript : MonoBehaviour
             {
                 int randomEnemy = Random.Range(0, activeEnemies.Count);
 
-                StartCoroutine(activeEnemies[randomEnemy].GetComponent<EnemyScript>().LightningStrike(upgradableStats.lightningDamage));
+                Vector3 pos = activeEnemies[randomEnemy].transform.position;
+                pos = new Vector3(pos.x, 0.1f, pos.z);
+                Destroy(Instantiate(lightningVFX, pos, Quaternion.identity), 5);
+                activeEnemies[randomEnemy].GetComponent<EnemyScript>().DamageEnemy(upgradableStats.lightningDamage, true);
             }
         }
 
@@ -481,13 +485,9 @@ public class PlayerScript : MonoBehaviour
         menuUI.UpdateHighScoreText(PlayerPrefs.GetInt("HighScore"));
         menuUI.GameOver(coins);
 
-        SetPaused(true);
+        enemySpawner.GameOver();
 
-        /*GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach(GameObject enemy in enemies)
-        {
-            Destroy(enemy);
-        }*/
+        SetPaused(true);
         //Time.timeScale = 0;
     }
 

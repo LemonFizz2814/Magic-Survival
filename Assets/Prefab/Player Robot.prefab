@@ -91,6 +91,7 @@ MonoBehaviour:
   customizeMenuManager: {fileID: 0}
   playerHurtVFX: {fileID: 1813017041805030184}
   absorbVFX: {fileID: 183710196359591340}
+  lightningVFX: {fileID: 9206525116602585049, guid: db986b1f93cbdde42859daf1d27fe36f, type: 3}
   xpToLevelUp: 4
   xpIncr: 1.16
   maxHealthLevelUp: 2
@@ -2512,9 +2513,33 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6991704501214005552, guid: 33ffe24ad0891d240b86d0a54105a189, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6991704501214005552, guid: 33ffe24ad0891d240b86d0a54105a189, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6991704501214005552, guid: 33ffe24ad0891d240b86d0a54105a189, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7696723674854531871, guid: 33ffe24ad0891d240b86d0a54105a189, type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7696723674854531871, guid: 33ffe24ad0891d240b86d0a54105a189, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7696723674854531871, guid: 33ffe24ad0891d240b86d0a54105a189, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7696723674854531871, guid: 33ffe24ad0891d240b86d0a54105a189, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7696723674854531871, guid: 33ffe24ad0891d240b86d0a54105a189, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2885,6 +2910,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2020516808283076937}
     m_Modifications:
+    - target: {fileID: 1312006491850169339, guid: 6ddf3082fb7bbd6439c739370be827e6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1312006491850169339, guid: 6ddf3082fb7bbd6439c739370be827e6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1312006491850169339, guid: 6ddf3082fb7bbd6439c739370be827e6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2398568153653268938, guid: 6ddf3082fb7bbd6439c739370be827e6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2398568153653268938, guid: 6ddf3082fb7bbd6439c739370be827e6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2398568153653268938, guid: 6ddf3082fb7bbd6439c739370be827e6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4163294204543773323, guid: 6ddf3082fb7bbd6439c739370be827e6, type: 3}
       propertyPath: playOnAwake
       value: 0
@@ -2900,6 +2949,18 @@ PrefabInstance:
     - target: {fileID: 6354875448271671518, guid: 6ddf3082fb7bbd6439c739370be827e6, type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6354875448271671518, guid: 6ddf3082fb7bbd6439c739370be827e6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6354875448271671518, guid: 6ddf3082fb7bbd6439c739370be827e6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6354875448271671518, guid: 6ddf3082fb7bbd6439c739370be827e6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6354875448271671518, guid: 6ddf3082fb7bbd6439c739370be827e6, type: 3}
       propertyPath: m_LocalPosition.x

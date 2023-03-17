@@ -33,7 +33,6 @@ public class EnemyScript : MonoBehaviour
     public GameObject xpPellet;
     public GameObject criticalText;
     public GameObject impactVFX;
-    public GameObject lightningVFX;
 
     [Header("Audio")]
     public AudioSource SFX_Destroy;
@@ -42,7 +41,8 @@ public class EnemyScript : MonoBehaviour
     {
         Walk,
         Attack,
-        Die
+        Die,
+        Injured,
     }
 
     private void Start()
@@ -62,7 +62,6 @@ public class EnemyScript : MonoBehaviour
         t = attackWait;
         health = maxHealth;
         isDead = false;
-        lightningVFX.SetActive(false);
 
         GetComponent<BoxCollider>().enabled = true;
         GetComponent<Rigidbody>().isKinematic = false;
@@ -209,6 +208,10 @@ public class EnemyScript : MonoBehaviour
         {
             EnemyDied();
         }
+        else
+        {
+            PlayAnimation(ANIMATIONS.Injured);
+        }
     }
 
     void EnemyDied()
@@ -233,14 +236,6 @@ public class EnemyScript : MonoBehaviour
         StartCoroutine(DepsawnWait(despawnWait));
     }
 
-    public IEnumerator LightningStrike(float _damage)
-    {
-        lightningVFX.SetActive(true);
-        DamageEnemy(_damage, true);
-        yield return new WaitForSeconds(1);
-        lightningVFX.SetActive(false);
-    }
-
     IEnumerator DepsawnWait(float _delay)
     {
         enemySpawner.RemoveEnemy(gameObject);
@@ -258,6 +253,10 @@ public class EnemyScript : MonoBehaviour
 
             case ANIMATIONS.Die:
                 enemyAnimator.SetBool("isDead", true);
+                break;
+
+            case ANIMATIONS.Injured:
+                enemyAnimator.SetTrigger("Injured");
                 break;
         }
     }

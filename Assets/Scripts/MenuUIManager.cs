@@ -28,6 +28,7 @@ public class MenuUIManager : MonoBehaviour
 
     public Animator cameraAnimator;
     public Animator fadeAnimator;
+    public Animator gameOverAnimator;
     public AdvertisingScript advertisingScript;
 
     public int coinsToPurchase;
@@ -115,7 +116,8 @@ public class MenuUIManager : MonoBehaviour
         watchAdPrompt.SetActive(Random.Range(0, 100) < advertisingScript.chanceToShowWatchAd);
         prizePrompt.SetActive(PlayerPrefs.GetInt("Day", 0) != System.DateTime.Today.Day);
         UpdateCoinTexts();
-        fadeAnimator.SetTrigger("Fade");
+        //fadeAnimator.SetTrigger("Fade");
+        gameOverAnimator.SetTrigger("Play");
 
         if (Random.Range(0, 100) < advertisingScript.chanceForAd)
         {
