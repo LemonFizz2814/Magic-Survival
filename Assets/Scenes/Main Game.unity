@@ -6046,7 +6046,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollbar: {fileID: 1177959900}
   characterSelect: {fileID: 6586234027863712516, guid: 17e40ef234a33db48ba2c918a2bfd443, type: 3}
-  player: {fileID: 0}
+  player: {fileID: 497442344}
   content: {fileID: 1934320491}
   startingPos: {fileID: 1591278194}
   spacing: 250
