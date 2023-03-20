@@ -2269,7 +2269,7 @@ MonoBehaviour:
   spawnChance: 0.2
   ObstacleObj: {fileID: 6958959889192200106, guid: 1c6f8dd09a3c15b4ab12260f9d7c6c44, type: 3}
   poolingManager: {fileID: 1859885232}
-  player: {fileID: 0}
+  player: {fileID: 2052016867398748488}
 --- !u!4 &423949916
 Transform:
   m_ObjectHideFlags: 0
@@ -2746,7 +2746,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
   m_PrefabInstance: {fileID: 2052016867398748487}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2052016867398748488}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7045e5beac082e04fa5baea2a2f2b7c6, type: 3}
@@ -2757,7 +2757,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1276238983344249789, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
   m_PrefabInstance: {fileID: 2052016867398748487}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2052016867398748488}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23772b76d853430469907fd55c1128bc, type: 3}
@@ -13868,7 +13868,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22.95
+  m_fontSize: 25
   m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -22483,6 +22483,11 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 2053473483, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+--- !u!1 &2052016867398748488 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9738705223228784, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+  m_PrefabInstance: {fileID: 2052016867398748487}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6586234026024672734
 PrefabInstance:
   m_ObjectHideFlags: 0

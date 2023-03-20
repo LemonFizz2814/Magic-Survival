@@ -230,7 +230,7 @@ public class PlayerScript : MonoBehaviour
         }
         if (playingOnPhone && aimingJoystick.Direction.magnitude != 0)
         {
-            playerModel.transform.localEulerAngles = new Vector3(0, Angle(aimingJoystick.Direction) - 45, 0);
+            playerModel.transform.localEulerAngles = new Vector3(0, Angle(aimingJoystick.Direction), 0);
         }
 
         ParticleSystem tempBullet = projectile.GetComponent<ParticleSystem>();
