@@ -15058,16 +15058,16 @@ MonoBehaviour:
     IntialToSpawn: 30
   - name: 3
     gameObjectToSpawn: {fileID: 3695207320916402668, guid: 246596bd2a14ea34f943f08f5b8d96e5, type: 3}
-    IntialToSpawn: 30
+    IntialToSpawn: 50
   - name: 4
     gameObjectToSpawn: {fileID: 3142985646036551723, guid: 89928a7169e8bc44aaa6f567e720d151, type: 3}
-    IntialToSpawn: 30
+    IntialToSpawn: 50
   - name: 5
     gameObjectToSpawn: {fileID: 1878159797469750284, guid: a06d4d6059c7e394183da0c8f5472347, type: 3}
-    IntialToSpawn: 30
+    IntialToSpawn: 50
   - name: 6
     gameObjectToSpawn: {fileID: 7773604508285660450, guid: 147a77e4327cb4c458741a4437aa1e98, type: 3}
-    IntialToSpawn: 30
+    IntialToSpawn: 50
   - name: 7
     gameObjectToSpawn: {fileID: 6958959889192200106, guid: 1c6f8dd09a3c15b4ab12260f9d7c6c44, type: 3}
     IntialToSpawn: 1000
