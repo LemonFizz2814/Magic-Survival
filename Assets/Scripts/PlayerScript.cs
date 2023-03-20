@@ -430,6 +430,23 @@ public class PlayerScript : MonoBehaviour
             //Destroy(other.gameObject);
         }
     }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("xp"))
+        {
+            IncreaseXP(other.GetComponent<XPScript>().GetXPGain());
+            absorbVFX.Play();
+            poolingManager.DespawnObject(other.gameObject);
+            //Destroy(other.gameObject);
+        }
+        if (other.CompareTag("Coin"))
+        {
+            IncreaseCoins(1);
+            poolingManager.DespawnObject(other.gameObject);
+            absorbVFX.Play();
+            //Destroy(other.gameObject);
+        }
+    }
 
     public void SetPaused(bool _pause)
     {
@@ -616,7 +633,7 @@ public class PlayerScript : MonoBehaviour
 
     void AddSpinningSaw()
     {
-        GameObject sawObj = Instantiate(spinningSawObject, transform.position, Quaternion.identity);
+        GameObject sawObj = Instantiate(spinningSawObject, new Vector3(transform.position.x, 0.5f, transform.position.z), Quaternion.identity);
         sawObj.transform.parent = gameObject.transform;
         spinningSaws.Add(sawObj);
 
@@ -630,7 +647,7 @@ public class PlayerScript : MonoBehaviour
     }
     void AddSentry()
     {
-        GameObject sentryObj = Instantiate(sentryObject, transform.position, Quaternion.identity);
+        GameObject sentryObj = Instantiate(sentryObject, new Vector3(transform.position.x, 0.5f, transform.position.z), Quaternion.identity);
         sentryObj.transform.parent = gameObject.transform;
         sentries.Add(sentryObj);
 
@@ -751,7 +768,7 @@ public class PlayerScript : MonoBehaviour
                 upgradableStats.lazerRate += _positiveUpgrade;
                 break;
             case UPGRADES.grenadeThrow:
-                upgradableStats.lazerRate += _positiveUpgrade;
+                upgradableStats.grenadeRate += _positiveUpgrade;
                 break;
             case UPGRADES.chainLightning:
                 upgradableStats.lightningRate += _positiveUpgrade;

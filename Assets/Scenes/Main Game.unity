@@ -7776,7 +7776,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1348700913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14181,8 +14181,8 @@ MonoBehaviour:
   upgradeIcons:
   - {fileID: 21300000, guid: 61080230e75360e4892a117b92f0764f, type: 3}
   - {fileID: 21300000, guid: d80893ce05633024f9042df625d8093a, type: 3}
-  - {fileID: 21300000, guid: 579e33982df8429408d236fa7e788851, type: 3}
   - {fileID: 21300000, guid: d1485ee15a4e80d499fadfdd15311363, type: 3}
+  - {fileID: 21300000, guid: 61080230e75360e4892a117b92f0764f, type: 3}
   - {fileID: 21300000, guid: 1a9129a06b2a31c419975a947cc8e0cf, type: 3}
   - {fileID: 21300000, guid: 83123e101d545d9408cc54d2783c5831, type: 3}
   - {fileID: 21300000, guid: db93221ad03f56148b3762c44477c220, type: 3}
@@ -14200,11 +14200,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 70d6a8fb2891caa4c8ce053f808917ea, type: 3}
   - {fileID: 21300000, guid: 151e50e857346104bb61114b4c37c36f, type: 3}
   - {fileID: 21300000, guid: 710dd2e9adfffd14698b815c589b5d04, type: 3}
+  - {fileID: 21300000, guid: 282120fd103270544ba92aa1e87db1f7, type: 3}
   - {fileID: 21300000, guid: 197a7a2c70120884e8e16e86a166080b, type: 3}
   - {fileID: 21300000, guid: d19a9cb676490aa40bd1446de7c27d7c, type: 3}
   - {fileID: 21300000, guid: 98eeea92907ba9b4a89523e4a9949d10, type: 3}
   - {fileID: 21300000, guid: 67d9834ba93c0ee43a80ebd4a3c028f3, type: 3}
-  - {fileID: 21300000, guid: 77c615ab000887542b66a11d8e853d55, type: 3}
   upgradeDescriptionText:
   - {fileID: 0}
   - {fileID: 0}
