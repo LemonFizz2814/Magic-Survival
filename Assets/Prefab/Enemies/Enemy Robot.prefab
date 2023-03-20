@@ -367,7 +367,6 @@ MonoBehaviour:
   xpPellet: {fileID: 2274703710575224948, guid: ed3741fae5aa7c64ab1f96d545359f2d, type: 3}
   criticalText: {fileID: 363805296615410397, guid: 8ba59f6d77ddbc3408106ff33991cd17, type: 3}
   impactVFX: {fileID: 5481399442741325673, guid: 770a45e0ecbbff546a2dde9ade6a984b, type: 3}
-  lightningVFX: {fileID: 0}
   SFX_Destroy: {fileID: 3695207320916402669}
 --- !u!82 &3695207320916402669
 AudioSource:
@@ -693,7 +692,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 3359892477155793002, guid: b01529dfc0aa14644992d26844c891b2, type: 3}
+  m_Mesh: {fileID: 3359892477155793002, guid: 39bb62c92715a0848a67206d22d03bc3, type: 3}
   m_Bones:
   - {fileID: 6192942034083390065}
   - {fileID: 296824658865342610}
@@ -762,7 +761,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: e84dc6e02b7f0024ca7ab98f7a8fb093, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 2
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
