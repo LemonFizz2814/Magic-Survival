@@ -60,7 +60,8 @@ public class PlayerScript : MonoBehaviour
     bool playingOnComputer = false;
     bool playingOnPhone = false;
 
-    int groundLayerMask = 1 << 0;
+    //int groundLayerMask = 1 << 0;
+    public LayerMask groundLayerMask;
 
     List<GameObject> spinningSaws = new List<GameObject>();
     List<GameObject> sentries = new List<GameObject>();
@@ -222,6 +223,7 @@ public class PlayerScript : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             RaycastHit hit;
+
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayerMask))
             {
                 playerModel.transform.LookAt(hit.point);
