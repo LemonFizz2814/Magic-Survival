@@ -349,7 +349,7 @@ public class PlayerScript : MonoBehaviour
         {
             chainLightningTimer = 10 - upgradableStats.chainLightningRate;
 
-            poolingManager.SpawnObject(PoolingManager.PoolingEnum.ChainLightning, transform.position, Quaternion.identity);
+            poolingManager.SpawnObject(PoolingManager.PoolingEnum.ChainLightning, new Vector3(transform.position.x, 0.5f, transform.position.z), Quaternion.identity);
         }
 
         //Spawning pulse lightning
@@ -773,10 +773,13 @@ public class PlayerScript : MonoBehaviour
                 upgradableStats.grenadeRate += _positiveUpgrade;
                 break;
             case UPGRADES.chainLightning:
-                upgradableStats.lightningRate += _positiveUpgrade;
+                upgradableStats.chainLightningRate += _positiveUpgrade;
                 break;
             case UPGRADES.electricPulse:
                 upgradableStats.electricPulseRate += _positiveUpgrade;
+                break;
+            case UPGRADES.electricField:
+                upgradableStats.electricFieldRate += _positiveUpgrade;
                 break;
         }
 
