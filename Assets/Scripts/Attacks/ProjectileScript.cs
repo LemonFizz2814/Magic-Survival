@@ -27,6 +27,7 @@ public class ProjectileScript : MonoBehaviour
     Transform closestEnemy;
     Rigidbody rb;
     PlayerScript player;
+    Transform PlayerTransform;
 
     //Particle system
     [SerializeField]private ParticleSystem particle;
@@ -47,7 +48,8 @@ public class ProjectileScript : MonoBehaviour
             particle = gameObject.GetComponent<ParticleSystem>();
             collisionEvents = new List<ParticleCollisionEvent>();
         }
-            player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
+        PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     public void FireProjectile(ProjectileStats _projectileStats, bool _isParticle = false)
@@ -93,9 +95,12 @@ public class ProjectileScript : MonoBehaviour
             //Setting the range
             main.startLifetime = _projectileStats.range;
 
-            main.loop = true;
+            //main.loop = true;
 
-            particle.Play();
+            if (!particle.isPlaying)
+            {
+                particle.Play();
+            }
             //ParticleSystem.EmissionModule emission = particle.emission;
             //emission.rateOverTime = _fireRate;
         }
@@ -130,8 +135,9 @@ public class ProjectileScript : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //transform.position = new Vector3(PlayerTransform.position.x, 0.5f, PlayerTransform.position.z);
         //transform.position += transform.forward * Time.deltaTime * projectileSpeed;
-        if (rb != null) rb.velocity = transform.forward * projectileSpeed;
+        //if (rb != null) rb.velocity = transform.forward * projectileSpeed;
 
         //if (homing && closestEnemy != null)
         //{

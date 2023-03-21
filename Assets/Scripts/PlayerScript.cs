@@ -250,12 +250,12 @@ public class PlayerScript : MonoBehaviour
                     for (int i = 0; i < amount; i++)
                     {
                         angle += new Vector3(0, (i * newAngle) + (-angleRange / 2), 0);
-                        FireProjectile(angle, transform.position);
+                        FireProjectile(angle, new Vector3(transform.position.x, 0.5f, transform.position.z));
                     }
                 }
                 else if (tempBullet != null)
                 {
-                    FireProjectile(angle, transform.position);
+                    FireProjectile(angle, new Vector3(transform.position.x, 0.5f, transform.position.z));
                 }
 
                 //Debug.Log("Pool amount: " + poolingManager.GetPoolAmount(PoolingManager.PoolingEnum.Bullet));
@@ -284,7 +284,8 @@ public class PlayerScript : MonoBehaviour
             if (poolingManager.GetPoolAmount(PoolingManager.PoolingEnum.Bullet) > 0)
             {
                 ParticleSystem.MainModule main = tempBullet.main;
-                main.loop = false;
+                //main.loop = false;
+                tempBullet.Stop();
             }
         }
 
@@ -318,10 +319,11 @@ public class PlayerScript : MonoBehaviour
                 for (int i = 0; i < sentries.Count; i++)
                 {
                     Vector3 newAngle = new Vector3(
-                        sentries[i].transform.localEulerAngles.x,
-                        sentries[i].transform.localEulerAngles.y + 45,
+                        sentries[i].transform.localEulerAngles.x + 45,
+                        sentries[i].transform.localEulerAngles.y,
                         sentries[i].transform.localEulerAngles.z);
                     FireProjectile(newAngle, sentries[i].transform.GetChild(0).position);
+                    //print(sentries[i].transform.GetChild(0).position);
                 }
             }
         }
