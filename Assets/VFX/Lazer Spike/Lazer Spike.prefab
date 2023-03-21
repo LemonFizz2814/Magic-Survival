@@ -4890,6 +4890,7 @@ GameObject:
   - component: {fileID: 6203482953333961541}
   - component: {fileID: 6203482953333961543}
   - component: {fileID: 6203482953333961540}
+  - component: {fileID: 5788145582087075859}
   m_Layer: 0
   m_Name: Lazer Spike
   m_TagString: Untagged
@@ -5163,7 +5164,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 30
+      scalar: 0.3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -5322,7 +5323,7 @@ ParticleSystem:
     startRotationX:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -1.5707963
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -5481,7 +5482,7 @@ ParticleSystem:
     randomizeRotationDirection: 0
     maxNumParticles: 1000
     size3D: 0
-    rotation3D: 1
+    rotation3D: 0
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
@@ -8547,9 +8548,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 4
-    type: 0
+    type: 1
     collisionMode: 0
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
@@ -8612,7 +8613,7 @@ ParticleSystem:
     m_Bounce:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -8724,7 +8725,7 @@ ParticleSystem:
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
@@ -9736,11 +9737,24 @@ ParticleSystemRenderer:
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
   m_VertexStreams: 00010304
-  m_Mesh: {fileID: 3613567641014311022, guid: 24060099503d9ac4da3833d9b1fe2665, type: 3}
+  m_Mesh: {fileID: -2432090755550338912, guid: a8d0fca9846deac4aaefa7793524cd60, type: 3}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &5788145582087075859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6203482953333961542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ac39941e0054a4439415ae3008f5795, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpikeHitbox: {fileID: 8843206394499513653, guid: e9238e46f9d4a9d4d87976015e912ecf, type: 3}
 --- !u!1 &8757489119657500496
 GameObject:
   m_ObjectHideFlags: 0

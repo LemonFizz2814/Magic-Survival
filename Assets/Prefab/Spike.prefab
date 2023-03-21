@@ -4929,6 +4929,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 6958959889192200107}
     m_Modifications:
     - target: {fileID: 6203482952669351258, guid: b2a8abd384c775043b0109277a8dca1b, type: 3}
+      propertyPath: CollisionModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6203482952669351258, guid: b2a8abd384c775043b0109277a8dca1b, type: 3}
       propertyPath: CollisionModule.collisionMessages
       value: 0
       objectReference: {fileID: 0}
@@ -4998,7 +5002,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6203482953333961543, guid: b2a8abd384c775043b0109277a8dca1b, type: 3}
       propertyPath: CollisionModule.radiusScale
-      value: 0.02
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6203482953333961543, guid: b2a8abd384c775043b0109277a8dca1b, type: 3}
       propertyPath: ShapeModule.radiusThickness
