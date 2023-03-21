@@ -366,7 +366,7 @@ MonoBehaviour:
   enemyAnimator: {fileID: 5196890786003501141}
   xpPellet: {fileID: 2274703710575224948, guid: ed3741fae5aa7c64ab1f96d545359f2d, type: 3}
   criticalText: {fileID: 363805296615410397, guid: 8ba59f6d77ddbc3408106ff33991cd17, type: 3}
-  impactVFX: {fileID: 5481399442741325673, guid: 770a45e0ecbbff546a2dde9ade6a984b, type: 3}
+  impactVFX: {fileID: 5409256975591889839, guid: 8d81eb83214d527438e263b3c49ae5eb, type: 3}
   SFX_Destroy: {fileID: 3695207320916402669}
 --- !u!82 &3695207320916402669
 AudioSource:
