@@ -85,7 +85,7 @@ MonoBehaviour:
   scoreIncrease: 3
   xp: 1
   enemyAnimator: {fileID: 643573840896091546}
-  xpPellet: {fileID: 2274703710575224948, guid: ed3741fae5aa7c64ab1f96d545359f2d, type: 3}
+  xpPellet: {fileID: 1290611361406305766, guid: c0557932ed8b6d442974d45332888a8e, type: 3}
   criticalText: {fileID: 363805296615410397, guid: 8ba59f6d77ddbc3408106ff33991cd17, type: 3}
   impactVFX: {fileID: 5481399442741325673, guid: 770a45e0ecbbff546a2dde9ade6a984b, type: 3}
   SFX_Destroy: {fileID: 752487734366445905}
