@@ -20,7 +20,7 @@ public class EnemyScript : MonoBehaviour
 
     int layerMask = 1 << 8;
 
-    float t;
+    public float t;
     float health;
 
     GameObject player;
@@ -80,9 +80,13 @@ public class EnemyScript : MonoBehaviour
 
             rb.AddForce(transform.forward * Time.deltaTime * speed, ForceMode.Force);
 
-            t -= Time.deltaTime;
+            if (t > 0)
+            {
+                t -= Time.deltaTime;
+            }
 
-            if (t <= 0)
+            //Hit detection is only restricted in a straightline
+            /*if (t <= 0)
             {
                 RaycastHit hit;
                 Debug.DrawRay(transform.position, transform.forward, Color.green, 1);
@@ -93,11 +97,25 @@ public class EnemyScript : MonoBehaviour
                     {
                         PlayAnimation(ANIMATIONS.Attack);
                         playerScript.UpdateHealth(damage);
+
+                        t = attackWait + Random.Range(0.00f, 0.15f);
                     }
                 }
 
-                t = attackWait + Random.Range(0.00f, 0.15f);
-            }
+                
+            }*/
+        }
+    }
+
+    private void OnCollisionStay(Collision col)
+    {
+        //Hits player when the enemy touches them
+        if (col.transform.CompareTag("Player") && t <= 0)
+        {
+            PlayAnimation(ANIMATIONS.Attack);
+            playerScript.UpdateHealth(damage);
+
+            t = attackWait + Random.Range(0.00f, 0.15f);
         }
     }
 

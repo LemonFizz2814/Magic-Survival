@@ -927,7 +927,7 @@ MonoBehaviour:
   damage: -3
   speed: 2200
   range: 1.8
-  attackWait: 0.25
+  attackWait: 0.15
   despawnWait: 1
   scoreIncrease: 1
   xp: 1

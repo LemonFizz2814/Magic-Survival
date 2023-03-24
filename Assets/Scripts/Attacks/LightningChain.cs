@@ -137,7 +137,7 @@ public class LightningChain : MonoBehaviour
     //Handling the movement of the lightning chain if it is chasing
     private void FixedUpdate()
     {
-        if (currentState == chainLightningState.CHASE)
+        if (currentState == chainLightningState.CHASE && (target != null && targetFound))
         {
             Vector3 direction = (target.transform.position - transform.position).normalized;
             direction.y = 0.5f;

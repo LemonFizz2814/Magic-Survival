@@ -419,36 +419,43 @@ public class PlayerScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("xp"))
+        //XP is getting picked up through electric fields and electric pulses
+        if (gameObject.tag == "Player")
         {
-            IncreaseXP(other.GetComponent<XPScript>().GetXPGain());
-            absorbVFX.Play();
-            poolingManager.DespawnObject(other.gameObject);
-            //Destroy(other.gameObject);
-        }
-        if (other.CompareTag("Coin"))
-        {
-            IncreaseCoins(1);
-            poolingManager.DespawnObject(other.gameObject);
-            absorbVFX.Play();
-            //Destroy(other.gameObject);
+            if (other.CompareTag("xp"))
+            {
+                IncreaseXP(other.GetComponent<XPScript>().GetXPGain());
+                absorbVFX.Play();
+                poolingManager.DespawnObject(other.gameObject);
+                //Destroy(other.gameObject);
+            }
+            if (other.CompareTag("Coin"))
+            {
+                IncreaseCoins(1);
+                poolingManager.DespawnObject(other.gameObject);
+                absorbVFX.Play();
+                //Destroy(other.gameObject);
+            }
         }
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("xp"))
+        if (gameObject.tag == "Player")
         {
-            IncreaseXP(other.GetComponent<XPScript>().GetXPGain());
-            absorbVFX.Play();
-            poolingManager.DespawnObject(other.gameObject);
-            //Destroy(other.gameObject);
-        }
-        if (other.CompareTag("Coin"))
-        {
-            IncreaseCoins(1);
-            poolingManager.DespawnObject(other.gameObject);
-            absorbVFX.Play();
-            //Destroy(other.gameObject);
+            if (other.CompareTag("xp"))
+            {
+                IncreaseXP(other.GetComponent<XPScript>().GetXPGain());
+                absorbVFX.Play();
+                poolingManager.DespawnObject(other.gameObject);
+                //Destroy(other.gameObject);
+            }
+            if (other.CompareTag("Coin"))
+            {
+                IncreaseCoins(1);
+                poolingManager.DespawnObject(other.gameObject);
+                absorbVFX.Play();
+                //Destroy(other.gameObject);
+            }
         }
     }
 

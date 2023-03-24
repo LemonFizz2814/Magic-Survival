@@ -358,11 +358,12 @@ MonoBehaviour:
   maxHealth: 10
   damage: -10
   speed: 1500
-  range: 1.83
+  range: 5
   attackWait: 0.5
   despawnWait: 1
   scoreIncrease: 1
   xp: 1
+  t: 0
   enemyAnimator: {fileID: 5196890786003501141}
   xpPellet: {fileID: 1290611361406305766, guid: c0557932ed8b6d442974d45332888a8e, type: 3}
   criticalText: {fileID: 363805296615410397, guid: 8ba59f6d77ddbc3408106ff33991cd17, type: 3}
