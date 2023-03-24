@@ -16263,7 +16263,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 949cacd14c2337c4e914644e106f80bc, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1.5
   Loop: 1
   Mute: 0
@@ -23228,6 +23228,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Robot
       objectReference: {fileID: 0}
+    - target: {fileID: 161059873779513541, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 684880086372776187, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 687285032174704715, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: field of view
       value: 30
@@ -23267,6 +23275,14 @@ PrefabInstance:
     - target: {fileID: 2008011360404087070, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4422367855720157841, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4422367855720157844, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4422367855720157847, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: WorldChunks.Array.data[0]

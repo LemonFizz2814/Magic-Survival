@@ -19,7 +19,12 @@ public class LazerStrike : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (ps == null && gameObject.name == "Lazer Strike" && pschild == null)
+
+        if (ps == null)
+        {
+            ps = GetComponent<ParticleSystem>();
+        }
+        /*if (ps == null && gameObject.name == "Lazer Strike" && pschild == null)
         {
             ps = GetComponent<ParticleSystem>();
             pschild = GetComponent<ParticleSystem>().transform.GetChild(7).GetComponent<ParticleSystem>();
@@ -27,7 +32,7 @@ public class LazerStrike : MonoBehaviour
         else 
         {
             ps = GetComponent<ParticleSystem>();
-        }
+        }*/
 
     }
 
@@ -45,7 +50,19 @@ public class LazerStrike : MonoBehaviour
             collider.SetActive(false);
         }
 
-        if (gameObject.name == "Lazer Strike")
+        if (!ps.isPlaying)
+        {
+            if (ObjectInPool)
+            {
+                pool.DespawnObject(gameObject);
+            }
+            else
+            {
+                gameObject.SetActive(false);
+            }
+        }
+
+        /*if (gameObject.name == "Lazer Strike")
         {
             if (!ps.isPlaying && !pschild.isPlaying)
             {
@@ -72,7 +89,7 @@ public class LazerStrike : MonoBehaviour
                     gameObject.SetActive(false);
                 }
             }
-        }
+        }*/
     }
 
     private void OnEnable()
