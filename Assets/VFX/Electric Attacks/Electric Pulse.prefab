@@ -4933,5 +4933,6 @@ MonoBehaviour:
   ps: {fileID: 4594488848935380263}
   minAttackTime: 0
   maxAttackTime: 0.5
-  collider: {fileID: 222598849268398368}
+  particleDuration: 0
+  childCollider: {fileID: 222598849268398368}
   ObjectInPool: 0

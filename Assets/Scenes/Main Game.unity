@@ -3734,7 +3734,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 79, y: 428.4}
+  m_AnchoredPosition: {x: 79, y: 428.40002}
   m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &709172868
@@ -5758,7 +5758,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 2.1527977, y: 81.100006}
+  m_AnchoredPosition: {x: 2.1527977, y: 81.099976}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1043708659
@@ -6098,7 +6098,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -61.399994}
+  m_AnchoredPosition: {x: 0, y: -61.400024}
   m_SizeDelta: {x: 409.6348, y: 141.35718}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1099083849
@@ -8700,7 +8700,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 127.74509}
+  m_AnchoredPosition: {x: 0, y: 127.74512}
   m_SizeDelta: {x: 0, y: -255.48985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1461941304
@@ -23012,7 +23012,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0.025115967, y: -75.399994}
+  m_AnchoredPosition: {x: -0.025115967, y: -75.400024}
   m_SizeDelta: {x: 519.0765, y: 127.711914}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2141003794
@@ -23228,14 +23228,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Robot
       objectReference: {fileID: 0}
-    - target: {fileID: 161059873779513541, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 684880086372776187, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 687285032174704715, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: field of view
       value: 30
@@ -23272,17 +23264,9 @@ PrefabInstance:
       propertyPath: customizeMenuManager
       value: 
       objectReference: {fileID: 1103714597}
-    - target: {fileID: 2008011360404087070, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4422367855720157841, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4422367855720157844, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
-      propertyPath: m_Enabled
-      value: 1
+    - target: {fileID: 1276238983344249789, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradableStats.lazerRate
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4422367855720157847, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: WorldChunks.Array.data[0]
@@ -23324,10 +23308,6 @@ PrefabInstance:
       propertyPath: movementJoystick
       value: 
       objectReference: {fileID: 1408427784}
-    - target: {fileID: 9168272557226981994, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
 --- !u!1 &2052016867398748488 stripped

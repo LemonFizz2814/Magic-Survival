@@ -425,7 +425,7 @@ public class PlayerScript : MonoBehaviour
             absorbVFX.Play();
             poolingManager.DespawnObject(other.gameObject);
             //Destroy(other.gameObject);
-            Debug.Log(gameObject.transform.name);
+            //Debug.Log(gameObject.transform.name);
         }
         if (other.CompareTag("Coin"))
         {
@@ -435,6 +435,7 @@ public class PlayerScript : MonoBehaviour
             //Destroy(other.gameObject);
         }
     }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("xp"))

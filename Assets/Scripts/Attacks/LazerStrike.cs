@@ -8,32 +8,28 @@ public class LazerStrike : MonoBehaviour
 {
     [Header("Particle stuff")]
     [SerializeField] private ParticleSystem ps;
-    [SerializeField] private ParticleSystem pschild;
     public float minAttackTime = 0.0f, maxAttackTime = 3.0f;
+    [SerializeField] private float particleDuration = 0.0f;
+    private float particleTimer = 0.0f;
 
     [Header("Other stuff")]
-    [SerializeField] private GameObject collider;
+    [SerializeField] private GameObject childCollider;
     public bool ObjectInPool = true;
     private PoolingManager pool;
 
     // Start is called before the first frame update
     void Start()
     {
-
         if (ps == null)
         {
             ps = GetComponent<ParticleSystem>();
         }
-        /*if (ps == null && gameObject.name == "Lazer Strike" && pschild == null)
-        {
-            ps = GetComponent<ParticleSystem>();
-            pschild = GetComponent<ParticleSystem>().transform.GetChild(7).GetComponent<ParticleSystem>();
-        }
-        else 
-        {
-            ps = GetComponent<ParticleSystem>();
-        }*/
 
+        if (particleDuration == 0.0f)
+        {
+            particleDuration = ps.main.duration;
+        }
+        pool = FindObjectOfType<PoolingManager>();
     }
 
     // Update is called once per frame
@@ -41,16 +37,19 @@ public class LazerStrike : MonoBehaviour
     {
         if (pool == null) pool = FindObjectOfType<PoolingManager>();
 
+        particleTimer += Time.deltaTime;
+
         if (ps.time >= minAttackTime && ps.time < maxAttackTime)
         {
-            collider.SetActive(true);
+            childCollider.SetActive(true);
         }
-        else if (collider.activeSelf == true && ps.time >= maxAttackTime)
+        else if (childCollider.activeSelf == true && ps.time >= maxAttackTime)
         {
-            collider.SetActive(false);
+            childCollider.SetActive(false);
         }
 
-        if (!ps.isPlaying)
+
+        if (particleTimer >= particleDuration)
         {
             if (ObjectInPool)
             {
@@ -61,39 +60,11 @@ public class LazerStrike : MonoBehaviour
                 gameObject.SetActive(false);
             }
         }
-
-        /*if (gameObject.name == "Lazer Strike")
-        {
-            if (!ps.isPlaying && !pschild.isPlaying)
-            {
-                if (ObjectInPool)
-                {
-                    pool.DespawnObject(gameObject);
-                }
-                else
-                {
-                    gameObject.SetActive(false);
-                }
-            }
-        }
-        else
-        {
-            if (!ps.isPlaying)
-            {
-                if (ObjectInPool)
-                {
-                    pool.DespawnObject(gameObject);
-                }
-                else
-                {
-                    gameObject.SetActive(false);
-                }
-            }
-        }*/
     }
 
     private void OnEnable()
     {
+        particleTimer = 0.0f;
         ps.Play();
     }
 }

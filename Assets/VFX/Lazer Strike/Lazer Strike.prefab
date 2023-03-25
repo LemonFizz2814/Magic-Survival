@@ -29283,10 +29283,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ps: {fileID: 7199636506920004024}
-  pschild: {fileID: 9149627835674905234}
   minAttackTime: 1
   maxAttackTime: 2
-  collider: {fileID: 6383428918530641940}
+  particleDuration: 4
+  childCollider: {fileID: 6383428918530641940}
   ObjectInPool: 1
 --- !u!1 &6383428918530641940
 GameObject:
