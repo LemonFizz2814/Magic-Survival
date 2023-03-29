@@ -6,9 +6,10 @@ public class EnemySpawner : MonoBehaviour
 {
     public float radius;
 
-    float spawnTimer = 0;
     public int wave;
     public bool dontSpawn;
+
+    int killedAmount;
 
     public PoolingManager poolingManager;
 
@@ -22,9 +23,9 @@ public class EnemySpawner : MonoBehaviour
     [System.Serializable]
     public struct EnemySpawnWaves
     {
-        public float duration;
-        public float spawnRate;
-        public int amountToSpawn;
+        public float killAmount;
+        public int totalActivePerWave;
+        public int groupSpawnSize;
         public PoolingManager.PoolingEnum[] enemiesToSpawn;
     }
 
@@ -34,7 +35,6 @@ public class EnemySpawner : MonoBehaviour
     public void Awake()
     {
         gameOver = false;
-        spawnTimer = enemySpawnWaves[wave].duration;
     }
 
     public void StartPressed()
@@ -42,31 +42,9 @@ public class EnemySpawner : MonoBehaviour
         //Matthew: returning the function if the enemy is not supposed to spawn
         if (dontSpawn) return;
 
-        StartCoroutine(WaitToSpawn());
         player = GameObject.FindGameObjectWithTag("Player");
         started = true;
-    }
-
-    private void Update()
-    {
-        //Matthew: returning the function if the started bool has been disabled
-        if (!started) return;
-
-        spawnTimer -= Time.deltaTime;
-
-        if (spawnTimer <= 0)
-        {
-            NextWave();
-        }
-
-    }
-
-    private IEnumerator WaitToSpawn()
-    {
-        yield return new WaitForSeconds(enemySpawnWaves[wave].spawnRate);
-        SpawnEnemy(enemySpawnWaves[wave].amountToSpawn);
-
-        StartCoroutine(WaitToSpawn());
+        SpawnEnemy(enemySpawnWaves[wave].groupSpawnSize);
     }
 
     public void GameOver()
@@ -99,7 +77,30 @@ public class EnemySpawner : MonoBehaviour
 
     public void RemoveEnemy(GameObject _enemy)
     {
+        CheckKillAmount();
         activeEnemies.Remove(_enemy);
+    }
+
+    void CheckKillAmount()
+    {
+        killedAmount++;
+
+        // spawn enemies in groups after a certain amount have been killed already
+        if(killedAmount % enemySpawnWaves[wave].groupSpawnSize == 0)
+        {
+            Debug.Log($"SPAWNING, killedAmount {killedAmount}, groupSpawnSize {enemySpawnWaves[wave].groupSpawnSize}");
+            do
+            {
+                SpawnEnemy(enemySpawnWaves[wave].groupSpawnSize);
+            } while (activeEnemies.Count < enemySpawnWaves[wave].totalActivePerWave); // loop until total active per wave is reached
+        }
+
+        // once kill amount is reached then move to next wave
+        if (killedAmount >= enemySpawnWaves[wave].killAmount)
+        {
+            Debug.Log($"NextWave");
+            NextWave();
+        }
     }
 
     public List<GameObject> GetActiveEnemies()
@@ -109,8 +110,10 @@ public class EnemySpawner : MonoBehaviour
 
     void NextWave()
     {
-        if (wave + 1 <= enemySpawnWaves.Length)
+        killedAmount = 0;
+        if (wave + 1 < enemySpawnWaves.Length)
             wave++;
-        spawnTimer = enemySpawnWaves[wave].duration;
+
+        SpawnEnemy(enemySpawnWaves[wave].groupSpawnSize);
     }
 }

@@ -676,97 +676,76 @@ public class PlayerScript : MonoBehaviour
             case UPGRADES.playerSpeed:
                 upgradableStats.playerSpeed += _positiveUpgrade;
                 break;
-
             case UPGRADES.maxHealth:
                 upgradableStats.maxHealth += (int)_positiveUpgrade;
                 upgradableStats.playerSpeed /= _negativeUpgrade;
                 break;
-
             case UPGRADES.projectileSpeed:
                 upgradableStats.projectileSpeed += (int)_positiveUpgrade;
                 break;
-
             case UPGRADES.fireRate:
                 upgradableStats.fireRate += _positiveUpgrade;
                 break;
-
             case UPGRADES.piercing:
                 upgradableStats.projectilePierce += (int)_positiveUpgrade;
                 break;
-
             case UPGRADES.spread:
                 upgradableStats.accuracy += _positiveUpgrade;
                 upgradableStats.bulletDamage *= _negativeUpgrade;
                 break;
-
             case UPGRADES.magnet:
                 upgradableStats.magnetStrength += _positiveUpgrade;
                 break;
-
             case UPGRADES.knockback:
                 upgradableStats.bulletKnockback += _positiveUpgrade;
                 break;
-
             case UPGRADES.glassCannon:
                 upgradableStats.bulletDamage *= _positiveUpgrade;
                 upgradableStats.maxHealth /= _negativeUpgrade;
                 break;
-
             case UPGRADES.homing:
                 upgradableStats.homingStrength += _positiveUpgrade;
                 break;
-
             case UPGRADES.critical:
                 upgradableStats.criticalChance += (int)_positiveUpgrade;
                 break;
-
             case UPGRADES.sniper:
                 upgradableStats.bulletRange += _positiveUpgrade;
                 upgradableStats.fireRate += _negativeUpgrade;
                 break;
-
             case UPGRADES.extraProjectile:
                 upgradableStats.projectiles += (int)_positiveUpgrade;
                 upgradableStats.bulletDamage += _negativeUpgrade;
                 break;
-
             case UPGRADES.submachineGun:
                 upgradableStats.fireRate /= _positiveUpgrade;
                 upgradableStats.bulletRange *= _negativeUpgrade;
                 break;
-
             case UPGRADES.regeneration:
                 upgradableStats.regeneration += _positiveUpgrade;
                 break;
-
             case UPGRADES.explosion:
                 upgradableStats.explosionSize += 1 + (_positiveUpgrade * 0.5f);
                 break;
-
             case UPGRADES.spinningSaw:
                 upgradableStats.sawSpinSpeed += _positiveUpgrade;
                 AddSpinningSaw();
                 break;
-
             case UPGRADES.sentry:
                 upgradableStats.sentrySpinSpeed += _positiveUpgrade;
                 AddSentry();
                 break;
-
             case UPGRADES.jackOfAllTrades:
                 upgradableStats.maxHealth *= _positiveUpgrade;
                 upgradableStats.playerSpeed *= _positiveUpgrade;
                 upgradableStats.bulletDamage *= _positiveUpgrade;
                 break;
-
             case UPGRADES.distanceDamage:
                 upgradableStats.damageDistance += _positiveUpgrade;
                 break;
-
             case UPGRADES.lightningStrike:
                 upgradableStats.lightningRate += _positiveUpgrade;
                 break;
-
             case UPGRADES.spike:
                 upgradableStats.spikeSpawnRate += _positiveUpgrade;
                 break;

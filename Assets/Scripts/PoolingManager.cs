@@ -80,8 +80,6 @@ public class PoolingManager : MonoBehaviour
     {
         _object.SetActive(false);
         _object.transform.position = new Vector3(0, 0, 0);
-
-
     }
 
     GameObject FindFreeObject(Transform _parent)
@@ -101,17 +99,7 @@ public class PoolingManager : MonoBehaviour
     //Check how many items in the pool is currently active
     public int GetPoolAmount(PoolingEnum _poolEnum)
     {
-        int activeAmount = 0;
-
-        foreach (Transform child in parentPools[(int)_poolEnum].transform)
-        {
-            if (child.gameObject.activeSelf)
-            {
-                activeAmount++;
-            }
-        }
-
-        return activeAmount;
+        return parentPools[(int)_poolEnum].transform.childCount;
     }
 
     /*PoolingSystems FindPoolingSystem(PoolingEnum _poolingEnum)
