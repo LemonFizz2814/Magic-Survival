@@ -88,7 +88,7 @@ public class EnemySpawner : MonoBehaviour
         // spawn enemies in groups after a certain amount have been killed already
         if(killedAmount % enemySpawnWaves[wave].groupSpawnSize == 0)
         {
-            Debug.Log($"SPAWNING, killedAmount {killedAmount}, groupSpawnSize {enemySpawnWaves[wave].groupSpawnSize}");
+            //Debug.Log($"SPAWNING, killedAmount {killedAmount}, groupSpawnSize {enemySpawnWaves[wave].groupSpawnSize}");
             do
             {
                 SpawnEnemy(enemySpawnWaves[wave].groupSpawnSize);

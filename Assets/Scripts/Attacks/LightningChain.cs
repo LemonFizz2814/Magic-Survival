@@ -75,6 +75,7 @@ public class LightningChain : MonoBehaviour
                     if (!target.gameObject.activeSelf)
                     {
                         currentState = chainLightningState.SEARCH;
+                        Debug.Log("Searching for new target");
 
                         //Reset the timer so that it is given enough time for a search
                         timer = 0;
@@ -118,13 +119,17 @@ public class LightningChain : MonoBehaviour
                     //solution
                     if (target == null || !targetFound)
                     {
+                        Debug.Log("Searching for new target in chase state");
                         currentState = chainLightningState.SEARCH;
                         return;
                     }
+                    
                     //Creating another if statement in case the nearest target was already within the target's 
                     //collider (It causes the object to stay in the chase state)
-                    else if (Vector3.Distance(target.transform.position, transform.position) <= 0.5f)
+                    if (Vector3.Distance(target.transform.position, transform.position) <= 1.0f)
                     {
+                        Debug.Log("Already within target collider");
+                        targetFound = true;
                         currentState = chainLightningState.ATTACK;
                         timer = 0;
                         return;
@@ -140,9 +145,10 @@ public class LightningChain : MonoBehaviour
         if (currentState == chainLightningState.CHASE && (target != null && targetFound))
         {
             Vector3 direction = (target.transform.position - transform.position).normalized;
-            direction.y = 0.5f;
+            Vector3 newPos = transform.position + ((direction * moveSpeed) * Time.fixedDeltaTime);
+            newPos.y = 0.5f;
 
-            transform.position += (direction * moveSpeed) * Time.fixedDeltaTime;
+            transform.position = newPos;
         }
 
 
@@ -167,10 +173,10 @@ public class LightningChain : MonoBehaviour
                 targetFound = true;
                 closestDistance = currentDistance;
                 target = currentEnemy;
+                CurrentState = chainLightningState.CHASE;
             }
         }
 
-        CurrentState = chainLightningState.CHASE;
         timer = 0;
     }
 
