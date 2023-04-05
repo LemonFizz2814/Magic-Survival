@@ -15887,7 +15887,7 @@ MonoBehaviour:
     gameObjectToSpawn: {fileID: 3142985646036551723, guid: 89928a7169e8bc44aaa6f567e720d151, type: 3}
     IntialToSpawn: 50
   - name: 5
-    gameObjectToSpawn: {fileID: 1878159797469750284, guid: a06d4d6059c7e394183da0c8f5472347, type: 3}
+    gameObjectToSpawn: {fileID: 3307682299226455739, guid: e21dc518db94b6d4184c92406ed02ab6, type: 3}
     IntialToSpawn: 50
   - name: 6
     gameObjectToSpawn: {fileID: 7773604508285660450, guid: 147a77e4327cb4c458741a4437aa1e98, type: 3}
@@ -23425,6 +23425,10 @@ PrefabInstance:
       propertyPath: customizeMenuManager
       value: 
       objectReference: {fileID: 1103714597}
+    - target: {fileID: 4255277103545298072, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: MinDistance
+      value: 1.002965
+      objectReference: {fileID: 0}
     - target: {fileID: 4422367855720157847, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: WorldChunks.Array.data[0]
       value: 

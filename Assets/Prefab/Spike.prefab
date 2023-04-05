@@ -4997,12 +4997,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6203482953333961543, guid: b2a8abd384c775043b0109277a8dca1b, type: 3}
+      propertyPath: InitialModule.rotation3D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6203482953333961543, guid: b2a8abd384c775043b0109277a8dca1b, type: 3}
       propertyPath: CollisionModule.radiusScale
-      value: 1.5
+      value: 0.0001
       objectReference: {fileID: 0}
     - target: {fileID: 6203482953333961543, guid: b2a8abd384c775043b0109277a8dca1b, type: 3}
       propertyPath: ShapeModule.radiusThickness
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6203482953333961543, guid: b2a8abd384c775043b0109277a8dca1b, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6203482953333961543, guid: b2a8abd384c775043b0109277a8dca1b, type: 3}
       propertyPath: CollisionModule.m_Bounce.scalar
@@ -5019,6 +5027,10 @@ PrefabInstance:
     - target: {fileID: 6203482953333961543, guid: b2a8abd384c775043b0109277a8dca1b, type: 3}
       propertyPath: CollisionModule.collidesWithDynamic
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6203482953333961543, guid: b2a8abd384c775043b0109277a8dca1b, type: 3}
+      propertyPath: InitialModule.startRotationX.scalar
+      value: -1.5707963
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3121812060955585452, guid: b2a8abd384c775043b0109277a8dca1b, type: 3}
