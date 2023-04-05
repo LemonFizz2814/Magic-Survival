@@ -1,28 +1,45 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class BaseAttack : MonoBehaviour
+[CreateAssetMenu(fileName = "Attack Stats", menuName = "New Attack")]
+public class BaseAttack : ScriptableObject
 {
-    //Maybe create a serializable script that hosts max/min speed, damage, fire rate, size, range, crit chance/dmg
-    //Everything else can be a value from here as they're unique values that are likely not going to be used
-    //anywhere else
+    //public enum ATTACKSTAT
+    //{
+    //    DAMAGE,
+    //    SPEED,
+    //    FIRERATE,
+    //    DURATION,
+    //    RANGE
+    //}
 
-    [Header("Object values")]
-    [SerializeField] private float spawnTimer = 0.0f;
+    [Header("UI Stuff")]
+    public Sprite icon;
+    public string description;
 
+    [Header("Base values")]
+    public float currentDMG = 0.0f;
+    public float currentSpeed, currentFireRate, currentDuration, currentRange;
+    private float spawnTimer = 0.0f;
 
-    // Start is called before the first frame update
-    void Start()
+    [Header("Min/Max values")]
+    [SerializeField] private float minDMG;
+    [SerializeField]
+    private float maxDMG = 1000.0f,
+    minSpeed, maxSpeed,
+    minFireRate, maxFireRate,
+    minDuration, maxDuration,
+    minRange, maxRange;
+
+    public void InitValues()
     {
-        
+        currentDMG = minDMG;
+        currentSpeed = minSpeed;
+        currentFireRate = maxFireRate;
+        currentDuration = minDuration;
+        currentRange = minRange;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    //public virtual void Spawn
 }
