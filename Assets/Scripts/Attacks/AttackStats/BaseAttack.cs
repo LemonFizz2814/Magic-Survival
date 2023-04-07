@@ -46,7 +46,7 @@ public class BaseAttack : ScriptableObject
     [Header("Base values")]
     public float currentDMG = 0.0f;
     [SerializeField] private List<ATTRIBUTE> bonusEffects;
-    public float currentSpeed, currentFireRate, currentDuration, currentRange;
+    [SerializeField] float currentSpeed, currentFireRate, currentDuration, currentRange;
 
     [Header("Min/Max values")]
     [SerializeField] private float minDMG;
@@ -77,5 +77,11 @@ public class BaseAttack : ScriptableObject
 
         spawnTimer = 0;
         return true;
+    }
+
+    public float fireRate
+    {
+        get { return currentFireRate; }
+        set { }
     }
 }
