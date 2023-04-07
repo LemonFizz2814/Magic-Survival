@@ -135,6 +135,10 @@ MonoBehaviour:
     electricPulseDMG: 6
     electricFieldRate: 0
     electricFieldDMG: 7
+  allAttacks:
+  - {fileID: 11400000, guid: ceb189871d9d2ad40bacfb601a1fd39c, type: 2}
+  - {fileID: 11400000, guid: 1ad48fa2564dbe742a786fa5f3cdb40d, type: 2}
+  - {fileID: 11400000, guid: 8fb835188a4b85549ac32e2c2adb38cf, type: 2}
   SFX_Collect: {fileID: 8300000, guid: 9e3f8e6caa6387747b59e20a5526b07b, type: 3}
   SFX_Death: {fileID: 8300000, guid: 77cce344e3b9b25458ff662faabb3556, type: 3}
   SFX_Menu_Pop_up: {fileID: 8300000, guid: d341ff51a587f9242898d1e5a84dd9a5, type: 3}

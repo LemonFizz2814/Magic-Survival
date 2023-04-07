@@ -118,6 +118,7 @@ public class PlayerScript : MonoBehaviour
     }
 
     [SerializeField] private UpgradableStats upgradableStats;
+    [SerializeField] private BaseAttack[] allAttacks;
 
     public enum UPGRADES
     {
@@ -178,6 +179,14 @@ public class PlayerScript : MonoBehaviour
         lazerStrikeTimer = upgradableStats.lazerRate;
         chainLightningTimer = upgradableStats.chainLightningRate;
         electricPulseTimer = upgradableStats.electricPulseRate;
+
+        if (allAttacks.Length > 0)
+        {
+            foreach (BaseAttack attack in allAttacks)
+            {
+                attack.InitValues();
+            }
+        }
 
         //update UI
         inGameUI.UpdateHealthBar(health, upgradableStats.maxHealth);
@@ -355,20 +364,47 @@ public class PlayerScript : MonoBehaviour
         }
 
         //Spawning pulse lightning
-        if (upgradableStats.electricPulseRate > 0 && electricPulseTimer <= 0)
-        {
-            electricPulseTimer = 8 - upgradableStats.electricPulseRate;
+        //if (upgradableStats.electricPulseRate > 0 && electricPulseTimer <= 0)
+        //{
+        //    electricPulseTimer = 8 - upgradableStats.electricPulseRate;
 
-            if (!electricPulse.activeSelf)
+        //    if (!electricPulse.activeSelf)
+        //    {
+        //        electricPulse.SetActive(true);
+        //    }
+        //}
+
+        ////Spawning electric field
+        //if (upgradableStats.electricFieldRate && !electricField.activeSelf)
+        //{
+        //    electricField.SetActive(true);
+        //}
+
+        foreach (BaseAttack attack in allAttacks)
+        {
+            if (!attack.SpawnCheck()) continue;
+
+            if (attack.spawnSource == BaseAttack.SPAWNTYPE.PLAYER)
             {
-                electricPulse.SetActive(true);
-            }
-        }
+                GameObject playerVFX = electricField;   //Assigning it Electric field to prevent errors
+                bool playerVFXFound = true;
+                switch (attack.name)
+                {
+                    case "Electric Pulse":
+                        playerVFX = electricPulse;
+                        break;
+                    case "Grenade":
+                        playerVFX = grenadeThrow;
+                        break;
+                    default:
+                        playerVFXFound = false;
+                        Debug.LogError(attack.name + " does not spawn any attacks on the player. " +
+                            "Please double check the name (Matthew)");
+                        break;
+                }
 
-        //Spawning electric field
-        if (upgradableStats.electricFieldRate > 0 && !electricField.activeSelf)
-        {
-            electricField.SetActive(true);
+                if (playerVFXFound && !playerVFX.activeSelf) playerVFX.SetActive(true);
+            }
         }
 
         if (upgradableStats.spikeSpawnRate > 0 && spikeSpawnTimer <= 0)
@@ -378,14 +414,14 @@ public class PlayerScript : MonoBehaviour
         }
 
         //Spawning grenades
-        if (upgradableStats.grenadeRate > 0)
-        {
-            if (!grenadeThrow.activeSelf)
-            {
-                grenadeThrow.SetActive(true);
+        //if (upgradableStats.grenadeRate > 0)
+        //{
+        //    if (!grenadeThrow.activeSelf)
+        //    {
+        //        grenadeThrow.SetActive(true);
                 
-            }
-        }
+        //    }
+        //}
 
 
         //Spawning Lazer Strikes
@@ -671,6 +707,7 @@ public class PlayerScript : MonoBehaviour
         SetPaused(false);
         Time.timeScale = 1;
 
+        BaseAttack attack;
         switch (_upgrade)
         {
             case UPGRADES.playerSpeed:
@@ -753,16 +790,19 @@ public class PlayerScript : MonoBehaviour
                 upgradableStats.lazerRate += _positiveUpgrade;
                 break;
             case UPGRADES.grenadeThrow:
-                upgradableStats.grenadeRate += _positiveUpgrade;
+                attack = GetAttackByName("Grenade Throw");
+                attack.currentFireRate -= _positiveUpgrade;
                 break;
             case UPGRADES.chainLightning:
                 upgradableStats.chainLightningRate += _positiveUpgrade;
                 break;
             case UPGRADES.electricPulse:
-                upgradableStats.electricPulseRate += _positiveUpgrade;
+                attack = GetAttackByName("Electric Pulse");
+                attack.currentFireRate -= _positiveUpgrade;
                 break;
             case UPGRADES.electricField:
-                upgradableStats.electricFieldRate += _positiveUpgrade;
+                attack = GetAttackByName("Electric Field");
+                attack.currentFireRate -= _positiveUpgrade;
                 break;
         }
 
@@ -802,6 +842,17 @@ public class PlayerScript : MonoBehaviour
     public PoolingManager GetPoolingManager()
     {
         return poolingManager;
+    }
+
+    public BaseAttack GetAttackByName(string _name)
+    {
+        foreach(BaseAttack attack in allAttacks)
+        {
+            if (attack.name == _name) return attack;
+        }
+
+        Debug.LogError("Attack name not found, this may cause certain attacks to not function");
+        return null;
     }
 
     void UpdateStats()
