@@ -151,7 +151,8 @@ public class EnemyScript : MonoBehaviour
         {
             //Matthew: If anyone is curious, the electric pulse VFX prefab is using the lazer strike script
             //because they are similar to each other so it didn't take much for me to tweak the code for this
-            DamageEnemy(playerScript.GetUpgradableStats().electricPulseDMG, true);
+            BaseAttack attack = playerScript.GetAttackByName("Electric Pulse");
+            DamageEnemy(attack.currentDMG, true);
 
         }
 
@@ -176,23 +177,27 @@ public class EnemyScript : MonoBehaviour
 
     public void HitByBullet(GameObject _bullet, Vector3 _pos)
     {
-        ProjectileScript projectile = _bullet.GetComponent<ProjectileScript>();
-        projectile.StartExplosion(transform.position);
-        DamageEnemy(projectile.GetDamage(), false);
+        //ProjectileScript projectile = _bullet.GetComponent<ProjectileScript>();
+        //projectile.StartExplosion(transform.position);
+        ProjParticles proj = _bullet.GetComponent<ProjParticles>();
+        BaseAttack bulletStats = proj.bulletStats;
+
+
+        DamageEnemy(bulletStats.currentDMG, false);
         Knockback();
 
         Vector3 direction = transform.position - _pos;
         Destroy(Instantiate(impactVFX, _pos, Quaternion.LookRotation(-direction)), impactVFX.GetComponent<ParticleSystem>().main.duration);
 
-        if (projectile.GetPiercing() <= 0)
-        {
-            poolingManager.DespawnObject(_bullet);
-            //Destroy(_bullet);
-        }
-        else
-        {
-            projectile.SetPiercing();
-        }
+        //if (projectile.GetPiercing() <= 0)
+        //{
+        //    poolingManager.DespawnObject(_bullet);
+        //    //Destroy(_bullet);
+        //}
+        //else
+        //{
+        //    projectile.SetPiercing();
+        //}
     }
 
     void Knockback()

@@ -10,28 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8caa6eb81e36ddd49b89b2b95a924548, type: 3}
-  m_Name: Electric Pulse
+  m_Name: Chain Lightning
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
   description: 
   enableSpawn: 0
-  spawnSource: 0
-  poolType: 2
-  currentDMG: 6
+  spawnSource: 1
+  poolType: 9
+  currentDMG: 5
   bonusEffects: 
   currentSpeed: 0
-  currentFireRate: 3
+  currentFireRate: 7
   currentDuration: 0
   currentRange: 0
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  minDMG: 6
+  minDMG: 5
   maxDMG: 1000
   minSpeed: 0
   maxSpeed: 0
   minFireRate: 0
-  maxFireRate: 3
+  maxFireRate: 7
   minDuration: 0
   maxDuration: 0
   minRange: 0

@@ -181,16 +181,16 @@ public class ProjectileScript : MonoBehaviour
         //Destroy(gameObject);
     }
 
-    private void OnParticleCollision(GameObject other)
-    {
-        if (other.transform.tag == "Enemy")
-        {
-            EnemyScript enemy = other.GetComponent<EnemyScript>();
+    //private void OnParticleCollision(GameObject other)
+    //{
+    //    if (other.transform.tag == "Enemy")
+    //    {
+    //        EnemyScript enemy = other.GetComponent<EnemyScript>();
 
-            //Get particle collision location
-            int eventNum = particle.GetCollisionEvents(other, collisionEvents);
+    //        //Get particle collision location
+    //        int eventNum = particle.GetCollisionEvents(other, collisionEvents);
 
-            enemy.HitByBullet(gameObject, collisionEvents[0].intersection);
-        }
-    }
+    //        enemy.HitByBullet(gameObject, collisionEvents[0].intersection);
+    //    }
+    //}
 }
