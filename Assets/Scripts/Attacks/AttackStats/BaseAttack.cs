@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "Attack Stats", menuName = "New Attack")]
 public class BaseAttack : ScriptableObject
@@ -16,13 +17,16 @@ public class BaseAttack : ScriptableObject
     //    RANGE
     //}
 
+    //Use this enum to attach special attributes for arttribute upgrades
+    //(e.g: Increase all electricity dmg) or smth like that
     public enum ATTRIBUTE
     {
         ELECTRICITY,
         PROJECTILE,
         ORBITAL_STRIKE
     }
-
+    
+    //Use this to find out how to spawn the object
     public enum SPAWNTYPE
     {
         PLAYER,
@@ -46,7 +50,8 @@ public class BaseAttack : ScriptableObject
     [Header("Base values")]
     public float currentDMG = 0.0f;
     [SerializeField] private List<ATTRIBUTE> bonusEffects;
-    [SerializeField] float currentSpeed, currentFireRate, currentDuration, currentRange;
+    [SerializeField] private float currentSpeed, currentFireRate, currentDuration, currentRange;
+    public UnityEvent<float, string> onValueChanged = new UnityEvent<float, string>();
 
     [Header("Min/Max values")]
     [SerializeField] private float minDMG;
@@ -59,6 +64,7 @@ public class BaseAttack : ScriptableObject
 
     public void InitValues()
     {
+        //onValueChanged.RemoveAllListeners();
         currentDMG = minDMG;
         currentSpeed = minSpeed;
         currentFireRate = maxFireRate;
@@ -67,6 +73,7 @@ public class BaseAttack : ScriptableObject
         enableSpawn = false;
     }
 
+    //Check if object spawn timer has reached the fire rate
     public bool SpawnCheck()
     {
         if (!enableSpawn) return false;
@@ -79,9 +86,27 @@ public class BaseAttack : ScriptableObject
         return true;
     }
 
-    public float fireRate
+    public float FireRate
     {
         get { return currentFireRate; }
-        set { }
+        set { 
+            if (currentFireRate != value)
+            {
+                currentFireRate = value;
+                onValueChanged.Invoke(currentFireRate, "Fire Rate");
+            }
+        }
+    }
+
+    public float Range
+    {
+        get { return currentRange; }
+        set {
+            if (currentRange != value)
+            {
+                currentRange = value;
+                onValueChanged.Invoke(currentRange, "Range");
+            }
+        }
     }
 }

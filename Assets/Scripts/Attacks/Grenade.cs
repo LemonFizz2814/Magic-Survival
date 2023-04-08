@@ -5,12 +5,14 @@ using UnityEngine;
 public class Grenade : MonoBehaviour
 {
     PlayerScript player;
+    [SerializeField] private BaseAttack grenadeStats;
+
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
-
+        grenadeStats = player.GetAttackByName("Grenade Throw");
     }
 
     // Update is called once per frame
@@ -25,7 +27,7 @@ public class Grenade : MonoBehaviour
         {
             EnemyScript enemy = other.GetComponent<EnemyScript>();
             //Debug.Log("Grenade works");
-            enemy.DamageEnemy(player.GetUpgradableStats().grenadeDMG, true);
+            enemy.DamageEnemy(grenadeStats.currentDMG, true);
         }
     }
 }

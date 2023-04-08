@@ -20,10 +20,13 @@ MonoBehaviour:
   currentDMG: 8
   bonusEffects: 
   currentSpeed: 0
-  currentFireRate: 0
+  currentFireRate: 1
   currentDuration: 0
   currentRange: 0
-  minDMG: 0
+  onValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  minDMG: 8
   maxDMG: 1000
   minSpeed: 0
   maxSpeed: 0

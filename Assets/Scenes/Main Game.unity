@@ -23425,6 +23425,18 @@ PrefabInstance:
       propertyPath: customizeMenuManager
       value: 
       objectReference: {fileID: 1103714597}
+    - target: {fileID: 1276238983344249789, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: allAttacks.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1276238983344249789, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: allAttacks.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 66cdc8c9b722c3846a4f9dcea5e79316, type: 2}
+    - target: {fileID: 1276238983344249789, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: allAttacks.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3cdbf2ec1ca53aa4a93bc31538b379cc, type: 2}
     - target: {fileID: 4255277103545298072, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: MinDistance
       value: 1.002965

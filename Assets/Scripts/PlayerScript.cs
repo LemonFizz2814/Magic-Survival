@@ -356,12 +356,12 @@ public class PlayerScript : MonoBehaviour
         }
 
         //Spawning chain lightning
-        if (upgradableStats.chainLightningRate > 0 && chainLightningTimer <= 0)
-        {
-            chainLightningTimer = 10 - upgradableStats.chainLightningRate;
+        //if (upgradableStats.chainLightningRate > 0 && chainLightningTimer <= 0)
+        //{
+        //    chainLightningTimer = 10 - upgradableStats.chainLightningRate;
 
-            poolingManager.SpawnObject(PoolingManager.PoolingEnum.ChainLightning, new Vector3(transform.position.x, 0.5f, transform.position.z), Quaternion.identity);
-        }
+        //    poolingManager.SpawnObject(PoolingManager.PoolingEnum.ChainLightning, new Vector3(transform.position.x, 0.5f, transform.position.z), Quaternion.identity);
+        //}
 
         //Spawning pulse lightning
         //if (upgradableStats.electricPulseRate > 0 && electricPulseTimer <= 0)
@@ -383,11 +383,13 @@ public class PlayerScript : MonoBehaviour
         foreach (BaseAttack attack in allAttacks)
         {
             if (!attack.SpawnCheck()) continue;
+            bool attackNameFound = true;
 
+            //If the attack is spawned from the player prefab, we'll need to locate the right child object
+            //and check if it has not been activated
             if (attack.spawnSource == BaseAttack.SPAWNTYPE.PLAYER)
             {
                 GameObject playerVFX = electricField;   //Assigning it Electric field to prevent errors
-                bool playerVFXFound = true;
                 switch (attack.name)
                 {
                     case "Electric Pulse":
@@ -397,14 +399,44 @@ public class PlayerScript : MonoBehaviour
                         playerVFX = grenadeThrow;
                         break;
                     default:
-                        playerVFXFound = false;
+                        attackNameFound = false;
                         Debug.LogError(attack.name + " does not spawn any attacks on the player. " +
                             "Please double check the name (Matthew)");
                         break;
                 }
 
-                if (playerVFXFound && !playerVFX.activeSelf) playerVFX.SetActive(true);
+                if (attackNameFound && !playerVFX.activeSelf) playerVFX.SetActive(true);
+                continue;
             }
+
+            //If the attack spawns from the pooling manager, we need to set it's spawn position
+            if (attack.spawnSource == BaseAttack.SPAWNTYPE.POOL)
+            {
+                Vector3 spawnPos = transform.position;
+                spawnPos.y = 0.5f;
+
+                switch (attack.name)
+                {
+                    case "Lazer Strike":
+                        spawnPos.x += Random.Range(-attack.Range, attack.Range);
+                        spawnPos.z += Random.Range(-attack.Range, attack.Range);
+                        break;
+                    case "Chain Lightning":
+                        break;
+                    default:
+                        attackNameFound = false;
+                        Debug.LogError(attack.name + " does not spawn any attacks on the Pool Manager. " +
+                            "Please double check the name (Matthew)");
+                        break;
+                }
+
+                if (attackNameFound) poolingManager.SpawnObject(attack.poolType, spawnPos, Quaternion.identity);
+                continue;
+            }
+
+            //If the attack is destroyed after a delay, set destroy timer
+            //if (attack.spawnSource == BaseAttack.SPAWNTYPE.INSTANTIATE)
+            //Note: Wait why can't we just use the pool manager to "destroy" them afterward?
         }
 
         if (upgradableStats.spikeSpawnRate > 0 && spikeSpawnTimer <= 0)
@@ -425,18 +457,18 @@ public class PlayerScript : MonoBehaviour
 
 
         //Spawning Lazer Strikes
-        if (upgradableStats.lazerRate > 0 && lazerStrikeTimer <= 0)
-        {
-            lazerStrikeTimer = 18 - upgradableStats.lazerRate;
+        //if (upgradableStats.lazerRate > 0 && lazerStrikeTimer <= 0)
+        //{
+        //    lazerStrikeTimer = 18 - upgradableStats.lazerRate;
 
-            //Spawn a lazer near the player
-            Vector3 spawnPos = transform.position;
+        //    //Spawn a lazer near the player
+        //    Vector3 spawnPos = transform.position;
 
-            spawnPos.x += Random.Range(-6.0f, 6.0f);
-            spawnPos.z += Random.Range(-6.0f, 6.0f);
+        //    spawnPos.x += Random.Range(-6.0f, 6.0f);
+        //    spawnPos.z += Random.Range(-6.0f, 6.0f);
 
-            poolingManager.SpawnObject(PoolingManager.PoolingEnum.LazerStrike, spawnPos, Quaternion.identity);
-        }
+        //    poolingManager.SpawnObject(PoolingManager.PoolingEnum.LazerStrike, spawnPos, Quaternion.identity);
+        //}
 
         //DEBUG
         if (Input.GetKey(KeyCode.Q))
@@ -640,7 +672,9 @@ public class PlayerScript : MonoBehaviour
         stats.fireRate = upgradableStats.fireRate;
 
 
-        projectileObj.GetComponent<ProjectileScript>().FireProjectile(stats, isParticle);
+        //projectileObj.GetComponent<ProjectileScript>().FireProjectile(stats, isParticle);
+        projectileObj.GetComponent<ParticleSystem>().Play();
+        //TestForScriptableObject(projectileObj.GetComponent<ProjParticles>().bulletStats);
 
         muzzleVFX.rotation = Quaternion.Euler(_direction);
         muzzleVFX.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
@@ -707,7 +741,8 @@ public class PlayerScript : MonoBehaviour
         SetPaused(false);
         Time.timeScale = 1;
 
-        BaseAttack attack;
+        BaseAttack attack = new BaseAttack();
+        bool isScriptableObject = false;
         switch (_upgrade)
         {
             case UPGRADES.playerSpeed:
@@ -787,23 +822,38 @@ public class PlayerScript : MonoBehaviour
                 upgradableStats.spikeSpawnRate += _positiveUpgrade;
                 break;
             case UPGRADES.lazerStrike:
-                upgradableStats.lazerRate += _positiveUpgrade;
+                attack = GetAttackByName("Lazer Strike");
+                isScriptableObject = true;
                 break;
             case UPGRADES.grenadeThrow:
                 attack = GetAttackByName("Grenade Throw");
-                attack.currentFireRate -= _positiveUpgrade;
+                isScriptableObject = true;
                 break;
             case UPGRADES.chainLightning:
-                upgradableStats.chainLightningRate += _positiveUpgrade;
+                attack = GetAttackByName("Chain Lightning");
+                isScriptableObject = true;
                 break;
             case UPGRADES.electricPulse:
                 attack = GetAttackByName("Electric Pulse");
-                attack.currentFireRate -= _positiveUpgrade;
+                isScriptableObject = true;
                 break;
             case UPGRADES.electricField:
                 attack = GetAttackByName("Electric Field");
-                attack.currentFireRate -= _positiveUpgrade;
+                isScriptableObject = true;
                 break;
+        }
+
+        //Setting their fire rate here cus i dont wanna do that for each new switch case
+        if (isScriptableObject)
+        {
+            if (!attack.enableSpawn)
+            {
+                attack.enableSpawn = true;
+            }
+            else
+            {
+                attack.FireRate -= _positiveUpgrade;
+            }
         }
 
         UpdateStats();
@@ -850,5 +900,14 @@ public class PlayerScript : MonoBehaviour
         UpdateMaxHealth();
         inGameUI.UpdateHealthBar(health, upgradableStats.maxHealth);
         playerMovement.UpdateMovemnentSpeed(upgradableStats.playerSpeed);
+    }
+
+    void TestForScriptableObject(BaseAttack _bullet)
+    {
+        if (_bullet.FireRate != 1.0f)
+        {
+            _bullet.FireRate = 1.0f;
+
+        }
     }
 }

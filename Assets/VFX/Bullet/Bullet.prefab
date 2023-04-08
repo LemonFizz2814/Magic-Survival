@@ -4881,6 +4881,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3541617612120115667}
   - component: {fileID: 5702378937647432676}
+  - component: {fileID: 2957054689840359570}
   - component: {fileID: 5394959490410081787}
   - component: {fileID: 7194470801168372571}
   m_Layer: 0
@@ -9671,6 +9672,27 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &2957054689840359570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5517728910252801568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f57d0591351ffdc40844af917ff3570b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletStats: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
+  explosionWait: 0.5
+  explosionObj: {fileID: 3679010409709877342, guid: 703de4b8f10c68242a5ef08721ded28d, type: 3}
+  FireRateLevel: 1
+  MultiShotLevel: 1
+  BulletSpeedLevel: 1
+  BulletRangeLevel: 1
+  HomingLevel: 0
+  BulletSizeLevel: 1
 --- !u!199 &5394959490410081787
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -9751,7 +9773,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5517728910252801568}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55c26e5a44f3d5944ae474c5b3d6acca, type: 3}
   m_Name: 
