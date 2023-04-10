@@ -771,6 +771,16 @@ public class PlayerScript : MonoBehaviour
         uiManager.ShowUpgradeUI(upgradeManager.CheckQueue());
     }
 
+    public void SetWalkAnimation()
+    {
+        Vector2 movement = playerMovement.GetMovementJoyStickDirection();
+
+        Vector2 differenceDirection = movement - aimingJoystick.Direction;
+
+        modelAnimator.SetFloat("Horizontal", differenceDirection.x);
+        modelAnimator.SetFloat("Vertical", differenceDirection.y);
+    }
+
     public void PlayAnimation(ANIMATIONS _animation)
     {
         switch (_animation)
