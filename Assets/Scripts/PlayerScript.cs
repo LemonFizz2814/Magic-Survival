@@ -55,6 +55,8 @@ public class PlayerScript : MonoBehaviour
     float chainLightningTimer;
     float electricPulseTimer;
 
+    private CameraTracking camTrack;
+
     bool paused = true;
 
     bool playingOnComputer = false;
@@ -195,6 +197,9 @@ public class PlayerScript : MonoBehaviour
         inGameUI.UpdateCoinText(coins);
         inGameUI.UpdateScoreText(score);
 
+        //Get camera
+        camTrack = FindObjectOfType<CameraTracking>();
+
         playerMovement.UpdateMovemnentSpeed(upgradableStats.playerSpeed);
 
         SetPaused(true);
@@ -252,6 +257,8 @@ public class PlayerScript : MonoBehaviour
 
             if (fireRateTimer <= 0)
             {
+                camTrack.TrackAim = true;
+
                 int amount = upgradableStats.projectiles;
                 int angleRange = 5 + ((amount - 1) * 20);
                 int newAngle = (amount == 1) ? 0 : angleRange / (amount - 1);
@@ -292,6 +299,8 @@ public class PlayerScript : MonoBehaviour
         }
         else if ((aimingJoystick.Direction.magnitude == 0 && playingOnPhone) || (Input.GetMouseButtonUp(0) && playingOnComputer))
         {
+            camTrack.TrackAim = false;
+
             if (poolingManager.GetPoolAmount(PoolingManager.PoolingEnum.Bullet) > 0)
             {
                 ParticleSystem.MainModule main = tempBullet.main;

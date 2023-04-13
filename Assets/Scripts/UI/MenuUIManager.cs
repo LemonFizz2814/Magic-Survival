@@ -26,7 +26,8 @@ public class MenuUIManager : MonoBehaviour
     public PoolingManager poolingManager;
     public TextMeshProUGUI[] coinTexts;
 
-    public Animator cameraAnimator;
+    //public Animator cameraAnimator;
+    public CameraTracking camTrack;
     public Animator fadeAnimator;
     public Animator gameOverAnimator;
     public AdvertisingScript advertisingScript;
@@ -58,12 +59,14 @@ public class MenuUIManager : MonoBehaviour
     }
     IEnumerator StartDelay()
     {
-        cameraAnimator.SetTrigger("PlayPosition");
+        camTrack.camAnim.SetTrigger("PlayPosition");
         poolingManager.SpawnIntialObjects();
         uiManager.ShowPlayScreen(false);
 
         yield return new WaitForSeconds(1.5f);
 
+        camTrack.EnableTrack = true;
+        camTrack.camAnim.enabled = false;
         background.SetActive(false);
         uiManager.ShowInGameUI(true);
         player.StartPressed();
