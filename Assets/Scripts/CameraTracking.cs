@@ -7,6 +7,7 @@ public class CameraTracking : MonoBehaviour
     public List<Transform> targets;
     [SerializeField] private Vector3 offset;
     [SerializeField] private float smoothTime = 0.5f;
+    [SerializeField] private float directionMultiplier = 5.0f;
 
     private bool enableTrack = false;
     private bool trackAim = false;
@@ -46,12 +47,12 @@ public class CameraTracking : MonoBehaviour
         //    bounds.Encapsulate(targets[i].position);
         //}
 
-        Vector3 direction = (targets[1].position - targets[0].position).normalized;
-        Vector3 camPos = targets[1].position + targets[1].forward * offset.z + targets[1].up * offset.y;
-        Vector3 finalPos = targets[0].position + Quaternion.AngleAxis(targets[1].eulerAngles.y, Vector3.up) * direction * camPos.magnitude;
+        //Gotta get the player's rotation and multiply it with the object's forward transform to get
+        //the direction the player model is facing
+        Vector3 center = targets[1].rotation * targets[0].forward;
 
 
-        return finalPos;
+        return targets[0].position + (center * directionMultiplier);
     }
 
     public bool EnableTrack

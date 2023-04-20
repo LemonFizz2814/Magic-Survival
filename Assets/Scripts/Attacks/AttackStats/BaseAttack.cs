@@ -8,15 +8,6 @@ using UnityEngine.Events;
 [CreateAssetMenu(fileName = "Attack Stats", menuName = "New Attack")]
 public class BaseAttack : ScriptableObject
 {
-    //public enum ATTACKSTAT
-    //{
-    //    DAMAGE,
-    //    SPEED,
-    //    FIRERATE,
-    //    DURATION,
-    //    RANGE
-    //}
-
     //Use this enum to attach special attributes for arttribute upgrades
     //(e.g: Increase all electricity dmg) or smth like that
     public enum ATTRIBUTE

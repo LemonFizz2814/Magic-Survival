@@ -51,6 +51,9 @@ public class UpgradeManager : MonoBehaviour
         return queueOfUpgrades > 0;
     }
 
+    //TODO: Modify this so that it would access possible upgrades for each attack/player stat and determine
+    //which stat to increase (e.g: firerate, dmg, speed e.t.c)
+    //Assigns the possible upgrade toward attack/player stat
     public void SelectOptions()
     {
         //skipText.text = "Skip +$" + skipCoin;
@@ -102,6 +105,9 @@ public class UpgradeManager : MonoBehaviour
         }
     }
 
+    //TODO: Modify this function to display possible upgrades for a single attack scriptable object stat
+    //and/or player upgradable stats (which should be used for special attack upgrades not in scriptable object).
+    //Displays selected upgrade to UI
     void PickOption(int _i, int _num)
     {
         //remove that upgrade from the list of upgrades to choose from
@@ -119,6 +125,9 @@ public class UpgradeManager : MonoBehaviour
         //upgradeDescriptionText[i].text = upgradeTier.upgradeDescription;
     }
 
+    //TODO: Modify this so that it would change the selected stat within each scriptable object/player stat
+    //(See PickOption or SelectOption to set possible upgrades)
+    //Used in UI button components: Use selected upgrade to upgrade attack/player stat
     public void UpgradeButtonPressed(int _number)
     {
         queueOfUpgrades--;

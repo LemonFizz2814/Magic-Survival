@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class UpgradeStats : MonoBehaviour
 {
+    public enum ATTACKSTAT
+    {
+        DAMAGE,
+        SPEED,
+        FIRERATE,
+        DURATION,
+        RANGE
+    }
+
     [System.Serializable]
     public class upgradeTiers
     {
@@ -12,6 +21,8 @@ public class UpgradeStats : MonoBehaviour
         public string upgradeDescription;
         public float positiveUpgrade;
         public float negativeUpgrade;
+        public BaseAttack attackObj;
+        public List<ATTACKSTAT> allStatUpgrades;
         [System.NonSerialized]
         public int tierLevel;
 

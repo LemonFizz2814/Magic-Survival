@@ -8885,11 +8885,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1461941302}
   m_CullTransparentMesh: 1
---- !u!4 &1477781051 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4024653143447121451, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
-  m_PrefabInstance: {fileID: 2052016867398748487}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1490057930
 GameObject:
   m_ObjectHideFlags: 0
@@ -13929,6 +13924,11 @@ Transform:
   m_Father: {fileID: 1965799771}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
+--- !u!4 &1590075588 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1766987112580580979, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+  m_PrefabInstance: {fileID: 2052016867398748487}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1591278193
 GameObject:
   m_ObjectHideFlags: 0
@@ -15569,9 +15569,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targets:
   - {fileID: 2052016867398748489}
-  - {fileID: 1477781051}
+  - {fileID: 1590075588}
   offset: {x: 0, y: 29, z: -28}
   smoothTime: 0.5
+  directionMultiplier: 5
   camAnim: {fileID: 1802685067}
 --- !u!4 &1804238808
 Transform:
