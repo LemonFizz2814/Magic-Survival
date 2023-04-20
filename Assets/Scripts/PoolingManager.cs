@@ -26,7 +26,8 @@ public class PoolingManager : MonoBehaviour
         Enemy4,
         Obstacles,
         LazerStrike,
-        ChainLightning
+        ChainLightning,
+        GenericCube
     }
 
     public void SpawnIntialObjects()

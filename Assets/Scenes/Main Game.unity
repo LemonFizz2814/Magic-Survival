@@ -16059,6 +16059,9 @@ MonoBehaviour:
   - name: 9
     gameObjectToSpawn: {fileID: 2663678420200409050, guid: 095b5f1ccffcb0b4aa12aa310393e956, type: 3}
     IntialToSpawn: 15
+  - name: 10
+    gameObjectToSpawn: {fileID: 1672509895666004439, guid: 59195daa45b67c6469520fe851738355, type: 3}
+    IntialToSpawn: 10
 --- !u!4 &1859885233
 Transform:
   m_ObjectHideFlags: 0
@@ -23535,6 +23538,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2053473482, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: radius
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053473482, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053473482, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: num_points
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053473482, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: ObjecttoSpawn
+      value: 
+      objectReference: {fileID: 1672509895666004439, guid: 59195daa45b67c6469520fe851738355, type: 3}
+    - target: {fileID: 2053473482, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: poolingManager
+      value: 
+      objectReference: {fileID: 1859885232}
+    - target: {fileID: 2053473482, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: DistancetoSpawn
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 9738705223228751, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: m_RootOrder
       value: 5

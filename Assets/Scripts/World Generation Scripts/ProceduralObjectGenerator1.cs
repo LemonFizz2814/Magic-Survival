@@ -5,6 +5,8 @@ using UnityEngine;
 public class ProceduralObjectGenerator1 : MonoBehaviour
 {
     public GameObject ObjecttoSpawn;
+    public PoolingManager poolingManager;
+
     public int num_points;
     public float radius;
     public float DistancetoSpawn;
@@ -57,7 +59,7 @@ public class ProceduralObjectGenerator1 : MonoBehaviour
                 {
                     Vector3 loc = new Vector3(_rnd.Next((int)Xmin, (int)Xmax), this.transform.position.y, _rnd.Next((int)Ymin, (int)Ymax));
 
-                    GameObject obj = GameObject.Instantiate(ObjecttoSpawn, loc, Quaternion.identity);
+                    SpawnObj(loc);
                 }
             }
             else
@@ -76,9 +78,17 @@ public class ProceduralObjectGenerator1 : MonoBehaviour
                 {
                     Vector3 loc = new Vector3(_rnd.Next((int)Xmin, (int)Xmax), this.transform.position.y, _rnd.Next((int)Ymin, (int)Ymax));
 
-                    GameObject obj = GameObject.Instantiate(ObjecttoSpawn, loc, Quaternion.identity);
+                    SpawnObj(loc);
                 }
             }
+        }
+    }
+
+    void SpawnObj(Vector3 _pos)
+    {
+        if (poolingManager.CheckIfPoolFree(PoolingManager.PoolingEnum.GenericCube))
+        {
+            poolingManager.SpawnObject(PoolingManager.PoolingEnum.GenericCube, _pos, Quaternion.Euler(0, 45, 0));
         }
     }
 }
