@@ -51,8 +51,6 @@ public class UpgradeManager : MonoBehaviour
         return queueOfUpgrades > 0;
     }
 
-    //TODO: Modify this so that it would access possible upgrades for each attack/player stat and determine
-    //which stat to increase (e.g: firerate, dmg, speed e.t.c)
     //Assigns the possible upgrade toward attack/player stat
     public void SelectOptions()
     {
@@ -63,11 +61,31 @@ public class UpgradeManager : MonoBehaviour
 
         for (int i = 0; i < upgradeStats.GetUpgradeStats().Count; i++)
         {
-            if (upgradeStats.GetUpgradeStats()[i].tierLevel <= maxTiers)
+            UpgradeStats.upgradeTiers currentUpgrade = upgradeStats.GetUpgradeStats()[i];
+
+            //Checking if this upgrade changes the scriptable object stats
+            if (currentUpgrade.upgrade == PlayerScript.UPGRADES.none)
+            {
+                //Making sure that this upgrade doesn't get selected if the attack doesn't even have a spawn rate
+                if (currentUpgrade.attkStat != UpgradeStats.ATTACKSTAT.FIRERATE &&
+                    !currentUpgrade.attackObj.enableSpawn) continue;
+
+                listOfUpgrades.Add(i);
+
+                if (currentUpgrade.tierLevel > 0)
+                {
+                    previousUpgrades.Add(i);
+                }
+                 
+                continue;
+
+            }
+
+            if (currentUpgrade.tierLevel <= maxTiers)
             {
                 listOfUpgrades.Add(i);
 
-                if (upgradeStats.GetUpgradeStats()[i].tierLevel > 0)
+                if (currentUpgrade.tierLevel > 0)
                 {
                     previousUpgrades.Add(i);
                 }
@@ -105,8 +123,6 @@ public class UpgradeManager : MonoBehaviour
         }
     }
 
-    //TODO: Modify this function to display possible upgrades for a single attack scriptable object stat
-    //and/or player upgradable stats (which should be used for special attack upgrades not in scriptable object).
     //Displays selected upgrade to UI
     void PickOption(int _i, int _num)
     {
@@ -120,13 +136,11 @@ public class UpgradeManager : MonoBehaviour
         UpgradeStats.upgradeTiers upgradeTier = upgradeStats.GetUpgradeStats()[options[_i]];
 
         //upgradeNameText[_i].text = upgradeTier.upgradeName;
-        upgradeIconImage[_i].sprite = upgradeIcons[_num];
+        upgradeIconImage[_i].sprite = upgradeTier.icon;
         tierText[_i].text = "" + Mathf.Clamp(upgradeTier.tierLevel + 1, 0, 5);
         //upgradeDescriptionText[i].text = upgradeTier.upgradeDescription;
     }
 
-    //TODO: Modify this so that it would change the selected stat within each scriptable object/player stat
-    //(See PickOption or SelectOption to set possible upgrades)
     //Used in UI button components: Use selected upgrade to upgrade attack/player stat
     public void UpgradeButtonPressed(int _number)
     {
@@ -137,7 +151,16 @@ public class UpgradeManager : MonoBehaviour
         int i = Mathf.Clamp(upgradeTier.tierLevel + 1, 0, 5);
         upgradeStats.GetUpgradeStats()[options[_number]].SetUpgradeTier(i);
 
-        player.Upgrade(upgradeTier.upgrade, upgradeTier.positiveUpgrade, upgradeTier.negativeUpgrade);
+        //Check to see if upgrade tier has a scriptable object
+        string name = "";
+        UpgradeStats.ATTACKSTAT stat = UpgradeStats.ATTACKSTAT.NONE;
+        if (upgradeTier.attkStat != UpgradeStats.ATTACKSTAT.NONE)
+        {
+            name = upgradeTier.attackObj.name;
+            stat = upgradeTier.attkStat;
+        }
+
+        player.Upgrade(upgradeTier.upgrade, upgradeTier.positiveUpgrade, upgradeTier.negativeUpgrade, name, stat);
 
 
         descriptionBox.SetTrigger("Play");

@@ -50,7 +50,6 @@ public class ProjParticles : MonoBehaviour
 
     protected virtual void FireRateUpDate()
     {
-        ParticleSystem.MainModule main = PS.main;
         ParticleSystem.EmissionModule emission = PS.emission;
 
         ParticleSystem.Burst burst = emission.GetBurst(0);
@@ -63,7 +62,6 @@ public class ProjParticles : MonoBehaviour
     {
         // Remapping Equation
         // low2 + (value - low1) * (high2 - low2) / (high1 - low1)
-        ParticleSystem.MainModule main = PS.main;
         ParticleSystem.EmissionModule emission = PS.emission;
         ParticleSystem.ShapeModule shape = PS.shape;
 
@@ -89,7 +87,6 @@ public class ProjParticles : MonoBehaviour
 
     protected virtual void HomingUpDate()
     {
-        ParticleSystem.MainModule main = PS.main;
         ParticleSystem.ExternalForcesModule externalmodule = PS.externalForces;
 
         float HL = HomingLevel;
@@ -145,6 +142,7 @@ public class ProjParticles : MonoBehaviour
                 BulletRangeLevel = _newValue;
                 BulletRangeUpDate();
                 break;
+                
         }
     }
 }

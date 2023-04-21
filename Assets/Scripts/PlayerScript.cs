@@ -460,7 +460,7 @@ public class PlayerScript : MonoBehaviour
         //    if (!grenadeThrow.activeSelf)
         //    {
         //        grenadeThrow.SetActive(true);
-                
+
         //    }
         //}
 
@@ -553,7 +553,7 @@ public class PlayerScript : MonoBehaviour
         health += _damage;
         inGameUI.UpdateHealthBar(health, upgradableStats.maxHealth);
 
-        if(_damage < 0)
+        if (_damage < 0)
         {
             playerHurtVFX.Play();
         }
@@ -666,7 +666,7 @@ public class PlayerScript : MonoBehaviour
         //GameObject projectileObj = Instantiate(projectile, _pos, Quaternion.identity);
         GameObject projectileObj = (projectile == null) ? poolingManager.SpawnObject(PoolingManager.PoolingEnum.Bullet, _pos, Quaternion.identity) : projectile;
         bool isParticle = (projectileObj.GetComponent<ParticleSystem>() != null) ? true : false;
-        
+
 
         projectileObj.transform.localEulerAngles = _direction;
 
@@ -745,7 +745,9 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    public void Upgrade(UPGRADES _upgrade, float _positiveUpgrade, float _negativeUpgrade)
+    //attk name and stat are for scriptable object attacks
+    public void Upgrade(UPGRADES _upgrade, float _positiveUpgrade, float _negativeUpgrade, string _attkName = "",
+        UpgradeStats.ATTACKSTAT _stat = UpgradeStats.ATTACKSTAT.NONE)
     {
         SetPaused(false);
         Time.timeScale = 1;
@@ -754,6 +756,18 @@ public class PlayerScript : MonoBehaviour
         bool isScriptableObject = false;
         switch (_upgrade)
         {
+            //If there is no upgrade enum selected, use _attkName and _stat to upgrade the scriptable object
+            case UPGRADES.none:
+            default:
+                if (_attkName == "")
+                {
+                    Debug.LogError("Upgrade Enum is set to none yet there is no name for the attack object to retrieve");
+                    return;
+                }
+
+                attack = GetAttackByName(_attkName);
+                isScriptableObject = true;
+                break;
             case UPGRADES.playerSpeed:
                 upgradableStats.playerSpeed += _positiveUpgrade;
                 break;
@@ -764,12 +778,15 @@ public class PlayerScript : MonoBehaviour
             case UPGRADES.projectileSpeed:
                 upgradableStats.projectileSpeed += (int)_positiveUpgrade;
                 break;
+            //TODO: Possibly need to get rid of this upgrade as it no longer works with bullet particles
             case UPGRADES.fireRate:
                 upgradableStats.fireRate += _positiveUpgrade;
                 break;
+            //TODO: Possibly need to get rid of this upgrade as it no longer works with bullet particles
             case UPGRADES.piercing:
                 upgradableStats.projectilePierce += (int)_positiveUpgrade;
                 break;
+                //TODO: Possibly need to get rid of this upgrade as it no longer works with bullet particles
             case UPGRADES.spread:
                 upgradableStats.accuracy += _positiveUpgrade;
                 upgradableStats.bulletDamage *= _negativeUpgrade;
@@ -780,8 +797,10 @@ public class PlayerScript : MonoBehaviour
             case UPGRADES.knockback:
                 upgradableStats.bulletKnockback += _positiveUpgrade;
                 break;
+                //Will need to obtain bullet scriptable object here
             case UPGRADES.glassCannon:
-                upgradableStats.bulletDamage *= _positiveUpgrade;
+                attack = GetAttackByName(_attkName);
+                attack.currentDMG *= _positiveUpgrade;
                 upgradableStats.maxHealth /= _negativeUpgrade;
                 break;
             case UPGRADES.homing:
@@ -790,17 +809,23 @@ public class PlayerScript : MonoBehaviour
             case UPGRADES.critical:
                 upgradableStats.criticalChance += (int)_positiveUpgrade;
                 break;
+            //Will need to obtain bullet scriptable object here
             case UPGRADES.sniper:
-                upgradableStats.bulletRange += _positiveUpgrade;
-                upgradableStats.fireRate += _negativeUpgrade;
+                attack = GetAttackByName(_attkName);
+                attack.Range += _positiveUpgrade;
+                attack.FireRate += _negativeUpgrade;
                 break;
+            //Will need to obtain bullet scriptable object here
             case UPGRADES.extraProjectile:
+                attack = GetAttackByName(_attkName);
                 upgradableStats.projectiles += (int)_positiveUpgrade;
-                upgradableStats.bulletDamage += _negativeUpgrade;
+                attack.currentDMG += _negativeUpgrade;
                 break;
+            //Will need to obtain bullet scriptable object here
             case UPGRADES.submachineGun:
-                upgradableStats.fireRate /= _positiveUpgrade;
-                upgradableStats.bulletRange *= _negativeUpgrade;
+                attack = GetAttackByName(_attkName);
+                attack.FireRate /= _positiveUpgrade;
+                attack.Range *= _negativeUpgrade;
                 break;
             case UPGRADES.regeneration:
                 upgradableStats.regeneration += _positiveUpgrade;
@@ -816,10 +841,12 @@ public class PlayerScript : MonoBehaviour
                 upgradableStats.sentrySpinSpeed += _positiveUpgrade;
                 AddSentry();
                 break;
+            //Will need to obtain bullet scriptable object here
             case UPGRADES.jackOfAllTrades:
+                attack = GetAttackByName(_attkName);
                 upgradableStats.maxHealth *= _positiveUpgrade;
                 upgradableStats.playerSpeed *= _positiveUpgrade;
-                upgradableStats.bulletDamage *= _positiveUpgrade;
+                attack.currentDMG *= _positiveUpgrade;
                 break;
             case UPGRADES.distanceDamage:
                 upgradableStats.damageDistance += _positiveUpgrade;
@@ -830,38 +857,35 @@ public class PlayerScript : MonoBehaviour
             case UPGRADES.spike:
                 upgradableStats.spikeSpawnRate += _positiveUpgrade;
                 break;
-            case UPGRADES.lazerStrike:
-                attack = GetAttackByName("Lazer Strike");
-                isScriptableObject = true;
-                break;
-            case UPGRADES.grenadeThrow:
-                attack = GetAttackByName("Grenade Throw");
-                isScriptableObject = true;
-                break;
-            case UPGRADES.chainLightning:
-                attack = GetAttackByName("Chain Lightning");
-                isScriptableObject = true;
-                break;
-            case UPGRADES.electricPulse:
-                attack = GetAttackByName("Electric Pulse");
-                isScriptableObject = true;
-                break;
-            case UPGRADES.electricField:
-                attack = GetAttackByName("Electric Field");
-                isScriptableObject = true;
-                break;
         }
 
-        //Setting their fire rate here cus i dont wanna do that for each new switch case
+        //Setting scriptable object values here (some upgrades may modify them outside of this bool check so check above this if statement)
         if (isScriptableObject)
         {
-            if (!attack.enableSpawn)
+            switch (_stat)
             {
-                attack.enableSpawn = true;
-            }
-            else
-            {
-                attack.FireRate -= _positiveUpgrade;
+                case UpgradeStats.ATTACKSTAT.FIRERATE:
+                    if (!attack.enableSpawn)
+                    {
+                        attack.enableSpawn = true;
+                    }
+                    else
+                    {
+                        attack.FireRate -= _positiveUpgrade;
+                    }
+                    break;
+                case UpgradeStats.ATTACKSTAT.DAMAGE:
+                    attack.currentDMG += _positiveUpgrade;
+                    break;
+                case UpgradeStats.ATTACKSTAT.DURATION:
+                    attack.Duration += _positiveUpgrade;
+                    break;
+                case UpgradeStats.ATTACKSTAT.RANGE:
+                    attack.Range += _positiveUpgrade;
+                    break;
+                case UpgradeStats.ATTACKSTAT.SPEED:
+                    attack.Speed += _positiveUpgrade;
+                    break;
             }
         }
 
@@ -905,7 +929,7 @@ public class PlayerScript : MonoBehaviour
 
     public BaseAttack GetAttackByName(string _name)
     {
-        foreach(BaseAttack attack in allAttacks)
+        foreach (BaseAttack attack in allAttacks)
         {
             if (attack.name == _name) return attack;
         }

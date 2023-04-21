@@ -100,4 +100,30 @@ public class BaseAttack : ScriptableObject
             }
         }
     }
+
+    public float Duration
+    {
+        get { return currentDuration; }
+        set
+        {
+            if (currentDuration != value)
+            {
+                currentDuration = value;
+                onValueChanged.Invoke(currentDuration, "Duration");
+            }
+        }
+    }
+
+    public float Speed
+    {
+        get { return currentSpeed; }
+        set
+        {
+            if (currentSpeed != value)
+            {
+                currentSpeed = value;
+                onValueChanged.Invoke(currentSpeed, "Speed");
+            }
+        }
+    }
 }

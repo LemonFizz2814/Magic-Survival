@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UpgradeStats : MonoBehaviour
 {
     public enum ATTACKSTAT
     {
+        NONE,
         DAMAGE,
         SPEED,
         FIRERATE,
@@ -16,13 +18,22 @@ public class UpgradeStats : MonoBehaviour
     [System.Serializable]
     public class upgradeTiers
     {
+        [Header("UI and name")]
         public string upgradeName;
-        public PlayerScript.UPGRADES upgrade;
+        public Sprite icon;
         public string upgradeDescription;
+
+        [Header("Player & special stat upgrade")]
+        public PlayerScript.UPGRADES upgrade;
+
+        [Header("Attack stat upgrade")]
+        public BaseAttack attackObj;
+        public ATTACKSTAT attkStat;
+
+        [Header("Upgrade values")]
         public float positiveUpgrade;
         public float negativeUpgrade;
-        public BaseAttack attackObj;
-        public List<ATTACKSTAT> allStatUpgrades;
+
         [System.NonSerialized]
         public int tierLevel;
 
