@@ -47,7 +47,7 @@ public class InGameUIManager : MonoBehaviour
     {
         healthBar.maxValue = _maxHealth;
         healthBar.value = _health;
-        healthBar.transform.localScale = new Vector3((float)_maxHealth/800, healthBar.transform.localScale.y, 1);
+        //healthBar.transform.localScale = new Vector3((float)_maxHealth/800, healthBar.transform.localScale.y, 1);
     }
 
     public void UpdateCoinText(int _coins)

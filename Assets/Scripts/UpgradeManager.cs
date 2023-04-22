@@ -69,14 +69,15 @@ public class UpgradeManager : MonoBehaviour
                 //Making sure that this upgrade doesn't get selected if the attack doesn't even have a spawn rate
                 if (currentUpgrade.attkStat != UpgradeStats.ATTACKSTAT.FIRERATE &&
                     !currentUpgrade.attackObj.enableSpawn) continue;
-
-                listOfUpgrades.Add(i);
-
-                if (currentUpgrade.tierLevel > 0)
+                
+                if (currentUpgrade.tierLevel <= maxTiers)
                 {
-                    previousUpgrades.Add(i);
+                    listOfUpgrades.Add(i);
+                    if (currentUpgrade.tierLevel > 0)
+                    {
+                        previousUpgrades.Add(i);
+                    }
                 }
-                 
                 continue;
 
             }
