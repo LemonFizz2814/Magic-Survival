@@ -23997,6 +23997,10 @@ PrefabInstance:
       propertyPath: movementJoystick
       value: 
       objectReference: {fileID: 1408427784}
+    - target: {fileID: 6831396966878808495, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 6877691662272305137, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
