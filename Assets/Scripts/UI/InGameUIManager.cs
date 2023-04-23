@@ -45,6 +45,7 @@ public class InGameUIManager : MonoBehaviour
     }
     public void UpdateHealthBar(float _health, float _maxHealth)
     {
+        healthBar.gameObject.SetActive(true);
         healthBar.maxValue = _maxHealth;
         healthBar.value = _health;
         //healthBar.transform.localScale = new Vector3((float)_maxHealth/800, healthBar.transform.localScale.y, 1);

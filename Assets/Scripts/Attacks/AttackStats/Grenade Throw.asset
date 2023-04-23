@@ -15,7 +15,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   description: 
   enableSpawn: 0
-  spawnSource: 1
+  spawnSource: 0
   poolType: 2
   currentDMG: 8
   bonusEffects: 

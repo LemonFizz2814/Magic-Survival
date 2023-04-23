@@ -7499,7 +7499,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 1899566697}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1212741738}
-  m_Mesh: {fileID: -2432090755550338912, guid: 27877262e63774c4bb3bc1954e6ef12e, type: 3}
+  m_Mesh: {fileID: -2159965483007997719, guid: 33e7151958b9b1e4c96e1d91279d33e6, type: 3}
 --- !u!95 &1212741743
 Animator:
   serializedVersion: 4
@@ -7888,7 +7888,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 674742295}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1248724201}
-  m_Mesh: {fileID: -2432090755550338912, guid: 27877262e63774c4bb3bc1954e6ef12e, type: 3}
+  m_Mesh: {fileID: -2159965483007997719, guid: 33e7151958b9b1e4c96e1d91279d33e6, type: 3}
 --- !u!95 &1248724206
 Animator:
   serializedVersion: 4
@@ -14553,7 +14553,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 806168376}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1675964262}
-  m_Mesh: {fileID: -2432090755550338912, guid: 27877262e63774c4bb3bc1954e6ef12e, type: 3}
+  m_Mesh: {fileID: -2159965483007997719, guid: 33e7151958b9b1e4c96e1d91279d33e6, type: 3}
 --- !u!95 &1675964267
 Animator:
   serializedVersion: 4
@@ -15985,7 +15985,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 247095847}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1850640562}
-  m_Mesh: {fileID: -2432090755550338912, guid: 27877262e63774c4bb3bc1954e6ef12e, type: 3}
+  m_Mesh: {fileID: -2159965483007997719, guid: 33e7151958b9b1e4c96e1d91279d33e6, type: 3}
 --- !u!95 &1850640567
 Animator:
   serializedVersion: 4
@@ -16182,7 +16182,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 166577004}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866311393}
-  m_Mesh: {fileID: -2432090755550338912, guid: 27877262e63774c4bb3bc1954e6ef12e, type: 3}
+  m_Mesh: {fileID: -2159965483007997719, guid: 33e7151958b9b1e4c96e1d91279d33e6, type: 3}
 --- !u!95 &1866311398
 Animator:
   serializedVersion: 4
@@ -23911,7 +23911,7 @@ PrefabInstance:
       objectReference: {fileID: 1103714597}
     - target: {fileID: 1276238983344249789, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: allAttacks.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1276238983344249789, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: allAttacks.Array.data[3]
@@ -23921,10 +23921,18 @@ PrefabInstance:
       propertyPath: allAttacks.Array.data[4]
       value: 
       objectReference: {fileID: 11400000, guid: 3cdbf2ec1ca53aa4a93bc31538b379cc, type: 2}
+    - target: {fileID: 1276238983344249789, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: allAttacks.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
     - target: {fileID: 1998609415014617582, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2077342104991899285, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2301551309414352325, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -23935,11 +23943,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3116095634605301040, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 3116095634605301040, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3803525189255890232, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: m_AnchorMax.y
@@ -23993,6 +24001,10 @@ PrefabInstance:
       propertyPath: WorldChunks.Array.data[8]
       value: 
       objectReference: {fileID: 771325746}
+    - target: {fileID: 4829572034745691698, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6060433278780801593, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: movementJoystick
       value: 

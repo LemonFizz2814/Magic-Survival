@@ -404,8 +404,11 @@ public class PlayerScript : MonoBehaviour
                     case "Electric Pulse":
                         playerVFX = electricPulse;
                         break;
-                    case "Grenade":
+                    case "Grenade Throw":
                         playerVFX = grenadeThrow;
+                        break;
+                    case "Electric Field":
+                        playerVFX = electricField;
                         break;
                     default:
                         attackNameFound = false;
@@ -934,7 +937,7 @@ public class PlayerScript : MonoBehaviour
             if (attack.name == _name) return attack;
         }
 
-        Debug.LogError("Attack name not found, this may cause certain attacks to not function");
+        Debug.LogError("Attack name: " + _name + " not found, this may cause certain attacks to not function");
         return null;
     }
 
