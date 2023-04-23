@@ -404,8 +404,11 @@ public class PlayerScript : MonoBehaviour
                     case "Electric Pulse":
                         playerVFX = electricPulse;
                         break;
-                    case "Grenade":
+                    case "Grenade Throw":
                         playerVFX = grenadeThrow;
+                        break;
+                    case "Electric Field":
+                        playerVFX = electricField;
                         break;
                     default:
                         attackNameFound = false;
