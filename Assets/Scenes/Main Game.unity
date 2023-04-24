@@ -23655,10 +23655,22 @@ PrefabInstance:
       propertyPath: allAttacks.Array.data[4]
       value: 
       objectReference: {fileID: 11400000, guid: 3cdbf2ec1ca53aa4a93bc31538b379cc, type: 2}
+    - target: {fileID: 3240559170149232621, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -3014937882001165872, guid: db03d94f2ad37074999039ed67aa3574, type: 3}
+    - target: {fileID: 3240559170149232621, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 25b79045adcdab740b8d32449efa66db, type: 2}
     - target: {fileID: 4024653143447121451, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: m_LocalPosition.z
       value: -10
       objectReference: {fileID: 0}
+    - target: {fileID: 4164062206689916064, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -9143450767860132912, guid: db03d94f2ad37074999039ed67aa3574, type: 3}
     - target: {fileID: 4255277103545298072, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: MinDistance
       value: 1.002965
@@ -23707,6 +23719,10 @@ PrefabInstance:
       propertyPath: movementJoystick
       value: 
       objectReference: {fileID: 1408427784}
+    - target: {fileID: 8414480809465318227, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 511b715af9b803343a70a4fe96faddf1, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
 --- !u!1 &2052016867398748488 stripped
