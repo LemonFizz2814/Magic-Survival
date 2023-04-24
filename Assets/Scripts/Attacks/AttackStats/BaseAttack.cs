@@ -83,7 +83,15 @@ public class BaseAttack : ScriptableObject
         set { 
             if (currentFireRate != value)
             {
-                currentFireRate = value;
+                if (value < minFireRate)
+                {
+                    currentFireRate = minFireRate;
+                }
+                else
+                {
+                    currentFireRate = value;
+                }
+
                 onValueChanged.Invoke(currentFireRate, "Fire Rate");
             }
         }

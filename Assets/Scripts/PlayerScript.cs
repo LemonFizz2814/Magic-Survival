@@ -435,6 +435,10 @@ public class PlayerScript : MonoBehaviour
                         break;
                     case "Chain Lightning":
                         break;
+                    case "Bullet":
+                        //Just make it do nothing. Bullets are enabled/disabled by the player
+                        continue;
+                        break;
                     default:
                         attackNameFound = false;
                         Debug.LogError(attack.name + " does not spawn any attacks on the Pool Manager. " +
@@ -755,13 +759,12 @@ public class PlayerScript : MonoBehaviour
         SetPaused(false);
         Time.timeScale = 1;
 
-        BaseAttack attack = new BaseAttack();
+        BaseAttack attack = ScriptableObject.CreateInstance<BaseAttack>();
         bool isScriptableObject = false;
         switch (_upgrade)
         {
             //If there is no upgrade enum selected, use _attkName and _stat to upgrade the scriptable object
             case UPGRADES.none:
-            default:
                 if (_attkName == "")
                 {
                     Debug.LogError("Upgrade Enum is set to none yet there is no name for the attack object to retrieve");
@@ -782,9 +785,9 @@ public class PlayerScript : MonoBehaviour
                 upgradableStats.projectileSpeed += (int)_positiveUpgrade;
                 break;
             //TODO: Possibly need to get rid of this upgrade as it no longer works with bullet particles
-            case UPGRADES.fireRate:
-                upgradableStats.fireRate += _positiveUpgrade;
-                break;
+            //case UPGRADES.fireRate:
+            //    upgradableStats.fireRate += _positiveUpgrade;
+            //    break;
             //TODO: Possibly need to get rid of this upgrade as it no longer works with bullet particles
             case UPGRADES.piercing:
                 upgradableStats.projectilePierce += (int)_positiveUpgrade;
@@ -860,6 +863,10 @@ public class PlayerScript : MonoBehaviour
             case UPGRADES.spike:
                 upgradableStats.spikeSpawnRate += _positiveUpgrade;
                 break;
+            default:
+                Debug.LogWarning("Upgrade enum: " + _upgrade + "Does nothing");
+                return;
+                break;
         }
 
         //Setting scriptable object values here (some upgrades may modify them outside of this bool check so check above this if statement)
@@ -874,7 +881,7 @@ public class PlayerScript : MonoBehaviour
                     }
                     else
                     {
-                        attack.FireRate -= _positiveUpgrade;
+                        attack.FireRate += _positiveUpgrade;
                     }
                     break;
                 case UpgradeStats.ATTACKSTAT.DAMAGE:

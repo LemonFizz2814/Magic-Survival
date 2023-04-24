@@ -23873,10 +23873,6 @@ PrefabInstance:
       propertyPath: upgradeStats.Array.data[26].allStatUpgrades
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 591873423592032024, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 80
-      objectReference: {fileID: 0}
     - target: {fileID: 1276238983344249789, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: menuUI
       value: 
@@ -23943,11 +23939,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3116095634605301040, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3116095634605301040, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3803525189255890232, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: m_AnchorMax.y
@@ -24001,18 +23997,10 @@ PrefabInstance:
       propertyPath: WorldChunks.Array.data[8]
       value: 
       objectReference: {fileID: 771325746}
-    - target: {fileID: 4829572034745691698, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6060433278780801593, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: movementJoystick
       value: 
       objectReference: {fileID: 1408427784}
-    - target: {fileID: 6831396966878808495, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 6877691662272305137, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

@@ -137,6 +137,7 @@ public class ProjParticles : MonoBehaviour
             case "Fire Rate":
                 FireRateLevel = _newValue;
                 FireRateUpDate();
+                //Debug.Log("Fire rate is faster");
                 break;
             case "Range":
                 BulletRangeLevel = _newValue;

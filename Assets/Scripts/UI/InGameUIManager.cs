@@ -45,7 +45,6 @@ public class InGameUIManager : MonoBehaviour
     }
     public void UpdateHealthBar(float _health, float _maxHealth)
     {
-        healthBar.gameObject.SetActive(true);
         healthBar.maxValue = _maxHealth;
         healthBar.value = _health;
         //healthBar.transform.localScale = new Vector3((float)_maxHealth/800, healthBar.transform.localScale.y, 1);
@@ -54,5 +53,18 @@ public class InGameUIManager : MonoBehaviour
     public void UpdateCoinText(int _coins)
     {
         coinText.text = "$" + _coins;
+    }
+
+    //Setting the healthbar to be enabled/disabled depending on InGameUI object 
+    //(Since it is a child object of the player prefab
+    public void OnEnable()
+    {
+        healthBar.gameObject.SetActive(true);
+    }
+
+    public void OnDisable()
+    {
+        healthBar.gameObject.SetActive(false);
+        
     }
 }

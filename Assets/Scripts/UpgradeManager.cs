@@ -155,7 +155,7 @@ public class UpgradeManager : MonoBehaviour
         //Check to see if upgrade tier has a scriptable object
         string name = "";
         UpgradeStats.ATTACKSTAT stat = UpgradeStats.ATTACKSTAT.NONE;
-        if (upgradeTier.attkStat != UpgradeStats.ATTACKSTAT.NONE)
+        if (upgradeTier.attackObj != null)
         {
             name = upgradeTier.attackObj.name;
             stat = upgradeTier.attkStat;
