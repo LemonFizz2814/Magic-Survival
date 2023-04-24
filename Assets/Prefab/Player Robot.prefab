@@ -139,6 +139,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ceb189871d9d2ad40bacfb601a1fd39c, type: 2}
   - {fileID: 11400000, guid: 1ad48fa2564dbe742a786fa5f3cdb40d, type: 2}
   - {fileID: 11400000, guid: 8fb835188a4b85549ac32e2c2adb38cf, type: 2}
+  - {fileID: 11400000, guid: 66cdc8c9b722c3846a4f9dcea5e79316, type: 2}
+  - {fileID: 11400000, guid: 3cdbf2ec1ca53aa4a93bc31538b379cc, type: 2}
+  - {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
   SFX_Collect: {fileID: 8300000, guid: 9e3f8e6caa6387747b59e20a5526b07b, type: 3}
   SFX_Death: {fileID: 8300000, guid: 77cce344e3b9b25458ff662faabb3556, type: 3}
   SFX_Menu_Pop_up: {fileID: 8300000, guid: d341ff51a587f9242898d1e5a84dd9a5, type: 3}
@@ -186,15 +189,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeStats:
   - upgradeName: Fire Rate
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 61080230e75360e4892a117b92f0764f, type: 3}
     upgradeDescription: Faster shooting rate
-    upgrade: 4
-    attackObj: {fileID: 0}
-    attkStat: 0
-    positiveUpgrade: -0.07
+    upgrade: 0
+    attackObj: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
+    attkStat: 3
+    positiveUpgrade: 0.07
     negativeUpgrade: 0
   - upgradeName: Max Health
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: d80893ce05633024f9042df625d8093a, type: 3}
     upgradeDescription: Increase max health but slower speed
     upgrade: 2
     attackObj: {fileID: 0}
@@ -202,7 +205,7 @@ MonoBehaviour:
     positiveUpgrade: 25
     negativeUpgrade: 1
   - upgradeName: Player Speed
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 579e33982df8429408d236fa7e788851, type: 3}
     upgradeDescription: Increase players movement speed
     upgrade: 1
     attackObj: {fileID: 0}
@@ -210,31 +213,31 @@ MonoBehaviour:
     positiveUpgrade: 1.15
     negativeUpgrade: 0
   - upgradeName: Bullet Speed
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: d1485ee15a4e80d499fadfdd15311363, type: 3}
     upgradeDescription: Increase projectile movement speed
-    upgrade: 3
-    attackObj: {fileID: 0}
-    attkStat: 0
+    upgrade: 0
+    attackObj: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
+    attkStat: 2
     positiveUpgrade: 5
     negativeUpgrade: 0
   - upgradeName: Piercing
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 1a9129a06b2a31c419975a947cc8e0cf, type: 3}
     upgradeDescription: Projectiles pass through an extra enemy
     upgrade: 5
-    attackObj: {fileID: 0}
+    attackObj: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
     attkStat: 0
     positiveUpgrade: 1
     negativeUpgrade: 0
   - upgradeName: Spread
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 83123e101d545d9408cc54d2783c5831, type: 3}
     upgradeDescription: Accuracy reduced but damage is increased
     upgrade: 6
-    attackObj: {fileID: 0}
+    attackObj: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
     attkStat: 0
     positiveUpgrade: 0.2
     negativeUpgrade: 1.5
   - upgradeName: Magnet
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: db93221ad03f56148b3762c44477c220, type: 3}
     upgradeDescription: Increase range of xp magnet
     upgrade: 7
     attackObj: {fileID: 0}
@@ -242,23 +245,23 @@ MonoBehaviour:
     positiveUpgrade: 1.2
     negativeUpgrade: 0
   - upgradeName: Knockback
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 5b55a6ba8a08f1e4f9ab7e190087e4c4, type: 3}
     upgradeDescription: Knocks enemies back when hit
     upgrade: 8
-    attackObj: {fileID: 0}
+    attackObj: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
     attkStat: 0
     positiveUpgrade: 350
     negativeUpgrade: 0
   - upgradeName: Glass Cannon
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: f3d8408e6f520ef4bbe95b8a9223f726, type: 3}
     upgradeDescription: Increases damage but halves your health
     upgrade: 9
-    attackObj: {fileID: 0}
+    attackObj: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
     attkStat: 0
     positiveUpgrade: 1.5
     negativeUpgrade: 2
   - upgradeName: Critical
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 13b5843f1eb899241b1c729fb5d3e1a6, type: 3}
     upgradeDescription: Increases chance to have a critical x2
     upgrade: 11
     attackObj: {fileID: 0}
@@ -266,39 +269,39 @@ MonoBehaviour:
     positiveUpgrade: 20
     negativeUpgrade: 0
   - upgradeName: Homing
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: dbec789c84657ee44b5c59847e2e0282, type: 3}
     upgradeDescription: Guides towards closest enemy
     upgrade: 10
-    attackObj: {fileID: 0}
+    attackObj: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
     attkStat: 0
     positiveUpgrade: 20
     negativeUpgrade: 0
   - upgradeName: Sniper
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 96a12091d49c5814e9db4c6df2889c2c, type: 3}
     upgradeDescription: Longer range but slower fire rate
     upgrade: 12
-    attackObj: {fileID: 0}
+    attackObj: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
     attkStat: 0
     positiveUpgrade: 0.17
     negativeUpgrade: 0.07
   - upgradeName: Extra Bullet
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: b26ee812e7fffab42baab85ff59d0143, type: 3}
     upgradeDescription: Extra projectile but reduced damage
     upgrade: 13
-    attackObj: {fileID: 0}
+    attackObj: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
     attkStat: 0
     positiveUpgrade: 1
     negativeUpgrade: 3
   - upgradeName: SMG
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 6268602b53468144da41615644e4a9c0, type: 3}
     upgradeDescription: Greatly reduces range but increases fire rate
     upgrade: 14
-    attackObj: {fileID: 0}
+    attackObj: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
     attkStat: 0
     positiveUpgrade: 1.2
     negativeUpgrade: 0.75
   - upgradeName: Regen
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 28f1102009e83a5448b44801bdd462f9, type: 3}
     upgradeDescription: Regenerates health
     upgrade: 15
     attackObj: {fileID: 0}
@@ -306,7 +309,7 @@ MonoBehaviour:
     positiveUpgrade: 1
     negativeUpgrade: 0
   - upgradeName: Explosion
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: f7531445a8264c748966c5470e80ac9f, type: 3}
     upgradeDescription: Creates a big explosion on impact
     upgrade: 16
     attackObj: {fileID: 0}
@@ -314,7 +317,7 @@ MonoBehaviour:
     positiveUpgrade: 0.6
     negativeUpgrade: 0
   - upgradeName: Spinning Saw
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 6d4f71107c7b1de449c5aaa346160a2b, type: 3}
     upgradeDescription: Spinning saws that deal damage
     upgrade: 17
     attackObj: {fileID: 0}
@@ -322,7 +325,7 @@ MonoBehaviour:
     positiveUpgrade: 12
     negativeUpgrade: 0
   - upgradeName: Sentry
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: a84debd38045d7742a256221e005d48d, type: 3}
     upgradeDescription: Adds a rotating sentry turret
     upgrade: 18
     attackObj: {fileID: 0}
@@ -330,15 +333,15 @@ MonoBehaviour:
     positiveUpgrade: 5
     negativeUpgrade: 0
   - upgradeName: Jack Of All Trades
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 70d6a8fb2891caa4c8ce053f808917ea, type: 3}
     upgradeDescription: Health, speed, damage increased
     upgrade: 19
-    attackObj: {fileID: 0}
+    attackObj: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
     attkStat: 0
     positiveUpgrade: 1.1
     negativeUpgrade: 0
   - upgradeName: Distance Damage
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 151e50e857346104bb61114b4c37c36f, type: 3}
     upgradeDescription: Damage is increased by distance
     upgrade: 20
     attackObj: {fileID: 0}
@@ -346,7 +349,7 @@ MonoBehaviour:
     positiveUpgrade: 2
     negativeUpgrade: 0.8
   - upgradeName: Lightning Strike
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 710dd2e9adfffd14698b815c589b5d04, type: 3}
     upgradeDescription: Lightning strikes a random enemy
     upgrade: 21
     attackObj: {fileID: 0}
@@ -354,7 +357,7 @@ MonoBehaviour:
     positiveUpgrade: 1.8
     negativeUpgrade: 0
   - upgradeName: Spike
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 282120fd103270544ba92aa1e87db1f7, type: 3}
     upgradeDescription: Spawns a spike every so often
     upgrade: 22
     attackObj: {fileID: 0}
@@ -362,43 +365,43 @@ MonoBehaviour:
     positiveUpgrade: 0.9
     negativeUpgrade: 0
   - upgradeName: Lazer Strike
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 197a7a2c70120884e8e16e86a166080b, type: 3}
     upgradeDescription: Spawns an Orbital Lazer Strike
-    upgrade: 23
-    attackObj: {fileID: 0}
-    attkStat: 0
+    upgrade: 0
+    attackObj: {fileID: 11400000, guid: 66cdc8c9b722c3846a4f9dcea5e79316, type: 2}
+    attkStat: 3
     positiveUpgrade: 3
     negativeUpgrade: 0
   - upgradeName: Grenade Throw
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: d19a9cb676490aa40bd1446de7c27d7c, type: 3}
     upgradeDescription: Throws a Grenade around the Player
-    upgrade: 24
-    attackObj: {fileID: 0}
-    attkStat: 0
+    upgrade: 0
+    attackObj: {fileID: 11400000, guid: 8fb835188a4b85549ac32e2c2adb38cf, type: 2}
+    attkStat: 3
     positiveUpgrade: 3
     negativeUpgrade: 0
   - upgradeName: Chain Lightning
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 98eeea92907ba9b4a89523e4a9949d10, type: 3}
     upgradeDescription: Creates a lightning orb that zaps nearby enemies
-    upgrade: 25
-    attackObj: {fileID: 0}
-    attkStat: 0
+    upgrade: 0
+    attackObj: {fileID: 11400000, guid: 3cdbf2ec1ca53aa4a93bc31538b379cc, type: 2}
+    attkStat: 3
     positiveUpgrade: 3
     negativeUpgrade: 0
   - upgradeName: Electric Pulse
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 67d9834ba93c0ee43a80ebd4a3c028f3, type: 3}
     upgradeDescription: Periodically send out a burst of lightning
-    upgrade: 26
-    attackObj: {fileID: 0}
-    attkStat: 0
+    upgrade: 0
+    attackObj: {fileID: 11400000, guid: 1ad48fa2564dbe742a786fa5f3cdb40d, type: 2}
+    attkStat: 3
     positiveUpgrade: 3
     negativeUpgrade: 0
   - upgradeName: Electric Field
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 77c615ab000887542b66a11d8e853d55, type: 3}
     upgradeDescription: Create a ring of electricity around you
-    upgrade: 27
-    attackObj: {fileID: 0}
-    attkStat: 0
+    upgrade: 0
+    attackObj: {fileID: 11400000, guid: ceb189871d9d2ad40bacfb601a1fd39c, type: 2}
+    attkStat: 3
     positiveUpgrade: 1
     negativeUpgrade: 0
 --- !u!82 &4255277103545298072
@@ -421,7 +424,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 1.002965
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -504,16 +507,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9738705223228784}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1ec68ad8c1c9c842a963840f17c1810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjecttoSpawn: {fileID: 6958959889192200106, guid: 1c6f8dd09a3c15b4ab12260f9d7c6c44, type: 3}
+  ObjecttoSpawn: {fileID: 1672509895666004439, guid: 59195daa45b67c6469520fe851738355, type: 3}
   poolingManager: {fileID: 0}
   num_points: 10
-  radius: 100
-  DistancetoSpawn: 0
+  radius: 25
+  DistancetoSpawn: 20
   Seed: 2
 --- !u!1 &41763596465489499
 GameObject:
@@ -1151,7 +1154,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1672333561070400611}
-  - {fileID: 2345445134905575085}
+  - {fileID: 9020874320983459341}
   - {fileID: 4380921550423243630}
   - {fileID: 7575750475014900917}
   - {fileID: 1348505178956131362}
@@ -1225,7 +1228,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.7, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1472,7 +1475,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ee394fe6c59b5204fb4d52ec229a88f1, type: 2}
+  - {fileID: 2100000, guid: 25b79045adcdab740b8d32449efa66db, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1497,7 +1500,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 2959467708922500008, guid: b1dde3c522128a946aaa4dbb04b82301, type: 3}
+  m_Mesh: {fileID: -3014937882001165872, guid: db03d94f2ad37074999039ed67aa3574, type: 3}
   m_Bones:
   - {fileID: 6409414928992242738}
   - {fileID: 7432246977752030572}
@@ -1870,7 +1873,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4916972298785550343}
-  m_Mesh: {fileID: -8839368762345780380, guid: b1dde3c522128a946aaa4dbb04b82301, type: 3}
+  m_Mesh: {fileID: -9143450767860132912, guid: db03d94f2ad37074999039ed67aa3574, type: 3}
 --- !u!23 &8414480809465318227
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1891,7 +1894,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 25634feb01858a6459d8b64a144f8de3, type: 2}
+  - {fileID: 2100000, guid: 511b715af9b803343a70a4fe96faddf1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2670,104 +2673,6 @@ Transform:
   m_Father: {fileID: 7432246977752030572}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8663422642838399449
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2345445134905575085}
-  - component: {fileID: 4958787556222273285}
-  - component: {fileID: 3688820691128031903}
-  - component: {fileID: 1792106355896819816}
-  m_Layer: 0
-  m_Name: Head1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &2345445134905575085
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8663422642838399449}
-  m_LocalRotation: {x: -0.000000029802319, y: -0.000000029802319, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 0, z: 0.077}
-  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1065321716769982581}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!33 &4958787556222273285
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8663422642838399449}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &3688820691128031903
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8663422642838399449}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: f48dc70cd97bdff448b5d9012620b683, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &1792106355896819816
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8663422642838399449}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8710383599529440369
 GameObject:
   m_ObjectHideFlags: 0
@@ -3137,6 +3042,80 @@ ParticleSystem:
 Transform:
   m_CorrespondingSourceObject: {fileID: 9019780602994366490, guid: 4fc4e2dd502036940a18ab8af8eaaa81, type: 3}
   m_PrefabInstance: {fileID: 1566080161468030284}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2075207229036581793
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1065321716769982581}
+    m_Modifications:
+    - target: {fileID: 7060527784663569836, guid: 7e612149e62e00443bb5506c0253c24d, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060527784663569836, guid: 7e612149e62e00443bb5506c0253c24d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060527784663569836, guid: 7e612149e62e00443bb5506c0253c24d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060527784663569836, guid: 7e612149e62e00443bb5506c0253c24d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060527784663569836, guid: 7e612149e62e00443bb5506c0253c24d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060527784663569836, guid: 7e612149e62e00443bb5506c0253c24d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060527784663569836, guid: 7e612149e62e00443bb5506c0253c24d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060527784663569836, guid: 7e612149e62e00443bb5506c0253c24d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060527784663569836, guid: 7e612149e62e00443bb5506c0253c24d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060527784663569836, guid: 7e612149e62e00443bb5506c0253c24d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060527784663569836, guid: 7e612149e62e00443bb5506c0253c24d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060527784663569836, guid: 7e612149e62e00443bb5506c0253c24d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060527784663569836, guid: 7e612149e62e00443bb5506c0253c24d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060527784663569836, guid: 7e612149e62e00443bb5506c0253c24d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7689852590386155286, guid: 7e612149e62e00443bb5506c0253c24d, type: 3}
+      propertyPath: m_Name
+      value: Head1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7e612149e62e00443bb5506c0253c24d, type: 3}
+--- !u!4 &9020874320983459341 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7060527784663569836, guid: 7e612149e62e00443bb5506c0253c24d, type: 3}
+  m_PrefabInstance: {fileID: 2075207229036581793}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2169197222484312920
 PrefabInstance:
