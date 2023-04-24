@@ -23822,6 +23822,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[18].attackObj
+      value: 
+      objectReference: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[22].attackObj
       value: 
       objectReference: {fileID: 11400000, guid: 66cdc8c9b722c3846a4f9dcea5e79316, type: 2}
