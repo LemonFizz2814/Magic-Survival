@@ -23665,15 +23665,11 @@ PrefabInstance:
       propertyPath: WorldChunks.Array.data[8]
       value: 
       objectReference: {fileID: 771325746}
-    - target: {fileID: 4916972298785550343, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6060433278780801593, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: movementJoystick
       value: 
       objectReference: {fileID: 1408427784}
-    - target: {fileID: 8537494256306740407, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+    - target: {fileID: 8299859539593128519, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
