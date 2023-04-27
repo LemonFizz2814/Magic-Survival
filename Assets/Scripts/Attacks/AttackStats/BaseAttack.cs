@@ -65,9 +65,10 @@ public class BaseAttack : ScriptableObject
     }
 
     //Check if object spawn timer has reached the fire rate
-    public bool SpawnCheck()
+    //(_ignoreSpawn = used for the bullet because the bullet does not need a spawn timer)
+    public bool SpawnCheck(bool _ignoreSpawn = false)
     {
-        if (!enableSpawn) return false;
+        if (!enableSpawn && !_ignoreSpawn) return false;
 
         spawnTimer += Time.deltaTime;
 

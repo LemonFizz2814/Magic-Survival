@@ -5,7 +5,7 @@ using UnityEditor;
 
 public class PlayerScript : MonoBehaviour
 {
-    public GameObject projectile;
+    public ParticleSystem projectile;
     public GameObject spinningSawObject;
     public GameObject sentryObject;
     public GameObject spikeObject;
@@ -249,64 +249,60 @@ public class PlayerScript : MonoBehaviour
             playerModel.transform.localEulerAngles = new Vector3(0, Angle(aimingJoystick.Direction), 0);
         }
 
-        ParticleSystem tempBullet = projectile.GetComponent<ParticleSystem>();
+        //ParticleSystem tempBullet = projectile.GetComponent<ParticleSystem>();
         if ((aimingJoystick.Direction.magnitude != 0 && playingOnPhone) || (Input.GetMouseButton(0) && playingOnComputer))
         {
             //Matthew: Currently seperating the particle system bullets and placeholder bullets
             //to test things
 
-            if (fireRateTimer <= 0)
-            {
-                camTrack.TrackAim = true;
+            camTrack.TrackAim = true;
+            //if (fireRateTimer <= 0)
+            //{
 
-                int amount = upgradableStats.projectiles;
-                int angleRange = 5 + ((amount - 1) * 20);
-                int newAngle = (amount == 1) ? 0 : angleRange / (amount - 1);
-                Vector3 angle = playerModel.transform.rotation.eulerAngles;
-                if (tempBullet == null)
-                {
-                    for (int i = 0; i < amount; i++)
-                    {
-                        angle += new Vector3(0, (i * newAngle) + (-angleRange / 2), 0);
-                        FireProjectile(angle, new Vector3(transform.position.x, 0.5f, transform.position.z));
-                    }
-                }
-                else if (tempBullet != null)
-                {
-                    FireProjectile(angle, new Vector3(transform.position.x, 0.5f, transform.position.z));
-                }
+            //    int amount = upgradableStats.projectiles;
+            //    int angleRange = 5 + ((amount - 1) * 20);
+            //    int newAngle = (amount == 1) ? 0 : angleRange / (amount - 1);
+            //    Vector3 angle = playerModel.transform.rotation.eulerAngles;
+            //    if (tempBullet == null)
+            //    {
+            //        for (int i = 0; i < amount; i++)
+            //        {
+            //            angle += new Vector3(0, (i * newAngle) + (-angleRange / 2), 0);
+            //            FireProjectile(angle, new Vector3(transform.position.x, 0.5f, transform.position.z));
+            //        }
+            //    }
+            //    else if (tempBullet != null)
+            //    {
+            //    }
 
-                //Debug.Log("Pool amount: " + poolingManager.GetPoolAmount(PoolingManager.PoolingEnum.Bullet));
+            //    //Debug.Log("Pool amount: " + poolingManager.GetPoolAmount(PoolingManager.PoolingEnum.Bullet));
 
-                fireRateTimer = upgradableStats.fireRate;
-            }
+            //    fireRateTimer = upgradableStats.fireRate;
+            //}
 
-            if (tempBullet != null)
-            {
-                projectile.SetActive(true);
+            FireProjectile();
 
-                //Slighyly shifting the projectile upwards
-                Vector3 pos = transform.position;
-                pos.y = 0.5f;
-                projectile.transform.position = pos;
-                //projectile.transform.position = transform.position;
+            //if (tempBullet != null)
+            //{
+            //    projectile.SetActive(true);
 
-                Vector3 angle = playerModel.transform.rotation.eulerAngles;
-                angle.x = 90.0f;
-                projectile.transform.rotation = Quaternion.Euler(angle);
-                //projectileObj.transform.rotation = Quaternion.identity;
-            }
+            //    //Slighyly shifting the projectile upwards
+            //    Vector3 pos = transform.position;
+            //    pos.y = 0.5f;
+            //    projectile.transform.position = pos;
+            //    //projectile.transform.position = transform.position;
+
+            //    Vector3 angle = playerModel.transform.rotation.eulerAngles;
+            //    angle.x = 90.0f;
+            //    projectile.transform.rotation = Quaternion.Euler(angle);
+            //    //projectileObj.transform.rotation = Quaternion.identity;
+            //}
         }
         else if ((aimingJoystick.Direction.magnitude == 0 && playingOnPhone) || (Input.GetMouseButtonUp(0) && playingOnComputer))
         {
             camTrack.TrackAim = false;
 
-            if (poolingManager.GetPoolAmount(PoolingManager.PoolingEnum.Bullet) > 0)
-            {
-                ParticleSystem.MainModule main = tempBullet.main;
-                //main.loop = false;
-                tempBullet.Stop();
-            }
+            if (!projectile.isStopped) projectile.Stop();
         }
 
         if (upgradableStats.regeneration > 0)
@@ -668,11 +664,29 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    //This one is used to fire bullets from the player
+    void FireProjectile()
+    {
+        if (!projectile.isPlaying) projectile.Play();
+
+        Vector3 angle = playerModel.transform.rotation.eulerAngles;
+        angle.y += -2.5f;
+        //projectile.transform.localEulerAngles = angle;
+
+        BaseAttack bullet = GetAttackByName("Bullet");
+
+        //Timing the fire rate with the muzzle (here's hoping that works)
+        if (!bullet.SpawnCheck(true)) return;
+        muzzleVFX.rotation = Quaternion.Euler(angle);
+        muzzleVFX.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
+    }
+
+    //This one is used to fire bullets from the sentries
     void FireProjectile(Vector3 _direction, Vector3 _pos)
     {
         //GameObject projectileObj = Instantiate(projectile, _pos, Quaternion.identity);
-        GameObject projectileObj = (projectile == null) ? poolingManager.SpawnObject(PoolingManager.PoolingEnum.Bullet, _pos, Quaternion.identity) : projectile;
-        bool isParticle = (projectileObj.GetComponent<ParticleSystem>() != null) ? true : false;
+        GameObject projectileObj = (projectile.gameObject == null) ? 
+            poolingManager.SpawnObject(PoolingManager.PoolingEnum.Bullet, _pos, Quaternion.identity) : projectile.gameObject;
 
 
         projectileObj.transform.localEulerAngles = _direction;

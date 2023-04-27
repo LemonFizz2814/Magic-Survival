@@ -47,12 +47,12 @@ public class PoolingManager : MonoBehaviour
         }
 
         //Setting the projectile object in the player script
-        PlayerScript player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
-        if (player.projectile != null) return;
+        //PlayerScript player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
+        //if (player.projectile != null) return;
 
         //Debug.Log("Name: " + parentPools[(int)PoolingEnum.Bullet].transform.name);
 
-        player.projectile = FindFreeObject(parentPools[(int)PoolingEnum.Bullet].transform).gameObject;
+        //player.projectile = FindFreeObject(parentPools[(int)PoolingEnum.Bullet].transform).gameObject;
     }
 
     public bool CheckIfPoolFree(PoolingEnum _poolingEnum)
