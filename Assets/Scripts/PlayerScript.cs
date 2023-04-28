@@ -328,20 +328,20 @@ public class PlayerScript : MonoBehaviour
                 sentries[i].transform.localEulerAngles += new Vector3(0, Time.deltaTime * upgradableStats.sentrySpinSpeed, 0);
             }
 
-            if (sentriesFireRateTimer <= 0)
-            {
-                sentriesFireRateTimer = upgradableStats.sentryFireRate;
+            //if (sentriesFireRateTimer <= 0)
+            //{
+            //    sentriesFireRateTimer = upgradableStats.sentryFireRate;
 
-                for (int i = 0; i < sentries.Count; i++)
-                {
-                    Vector3 newAngle = new Vector3(
-                        sentries[i].transform.localEulerAngles.x + 45,
-                        sentries[i].transform.localEulerAngles.y,
-                        sentries[i].transform.localEulerAngles.z);
-                    FireProjectile(newAngle, sentries[i].transform.GetChild(0).position);
-                    //print(sentries[i].transform.GetChild(0).position);
-                }
-            }
+            //    for (int i = 0; i < sentries.Count; i++)
+            //    {
+            //        Vector3 newAngle = new Vector3(
+            //            sentries[i].transform.localEulerAngles.x + 45,
+            //            sentries[i].transform.localEulerAngles.y,
+            //            sentries[i].transform.localEulerAngles.z);
+            //        FireProjectile(newAngle, sentries[i].transform.GetChild(0).position);
+            //        //print(sentries[i].transform.GetChild(0).position);
+            //    }
+            //}
         }
 
         if (upgradableStats.lightningRate > 0 && lightningTimer <= 0)
