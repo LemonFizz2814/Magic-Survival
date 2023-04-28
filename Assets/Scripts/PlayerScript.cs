@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.Events;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -121,6 +122,8 @@ public class PlayerScript : MonoBehaviour
 
     [SerializeField] private UpgradableStats upgradableStats;
     [SerializeField] private BaseAttack[] allAttacks;
+    public UnityEvent<float, string> onValueChanged = new UnityEvent<float, string>();
+
 
     public enum UPGRADES
     {
@@ -757,6 +760,11 @@ public class PlayerScript : MonoBehaviour
         sentryObj.transform.parent = gameObject.transform;
         sentries.Add(sentryObj);
 
+        //Get the sentry bullet
+        ProjParticles bullet = sentryObj.transform.Find("Bullet").GetComponent<ProjParticles>();
+        bullet.InitValues();
+        bullet.ValueCheck();
+
         float angle = 360 / sentries.Count;
 
         //reset all spinning saws 
@@ -825,6 +833,7 @@ public class PlayerScript : MonoBehaviour
                 break;
             case UPGRADES.homing:
                 upgradableStats.homingStrength += _positiveUpgrade;
+                onValueChanged.Invoke(upgradableStats.homingStrength, "Homing");
                 break;
             case UPGRADES.critical:
                 upgradableStats.criticalChance += (int)_positiveUpgrade;
@@ -840,6 +849,7 @@ public class PlayerScript : MonoBehaviour
                 attack = GetAttackByName(_attkName);
                 upgradableStats.projectiles += (int)_positiveUpgrade;
                 attack.currentDMG += _negativeUpgrade;
+                onValueChanged.Invoke(upgradableStats.projectiles, "MultiShot");
                 break;
             //Will need to obtain bullet scriptable object here
             case UPGRADES.submachineGun:

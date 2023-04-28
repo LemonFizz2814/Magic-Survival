@@ -31,11 +31,11 @@ public class ProjParticles : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bulletStats.InitValues();
-        PS = gameObject.GetComponent<ParticleSystem>();
+        InitValues();
         bulletStats.onValueChanged.AddListener(OnValueChangeHandler);
-        player = FindObjectOfType<PlayerScript>();
+        player.onValueChanged.AddListener(OnValueChangeHandler);
         ProjEvents = new List<ParticleCollisionEvent>();
+
     }
 
     // Update is called once per frame
@@ -128,6 +128,29 @@ public class ProjParticles : MonoBehaviour
         }
     }
 
+    public void InitValues()
+    {
+        if (PS == null) PS = gameObject.GetComponent<ParticleSystem>();
+        
+        if (player == null) player = FindObjectOfType<PlayerScript>();
+        
+    }
+
+    //For Sentries: Set the values of the bullet values after they're spawned in
+    public void ValueCheck()
+    {
+        PlayerScript.UpgradableStats stats = player.GetUpgradableStats();
+        MultiShotLevel = stats.projectiles;
+        HomingLevel = stats.homingStrength;
+        FireRateLevel = bulletStats.FireRate;
+        BulletRangeLevel = bulletStats.Range;
+
+        FireRateUpDate();
+        MultiShotUpDate();
+        BulletRangeUpDate();
+        HomingUpDate();
+    }
+
     protected void OnValueChangeHandler(float _newValue, string _variableName)
     {
         Debug.Log(_variableName + "'s value has changed to: " + _newValue);
@@ -142,8 +165,16 @@ public class ProjParticles : MonoBehaviour
             case "Range":
                 BulletRangeLevel = _newValue;
                 BulletRangeUpDate();
+                Debug.Log(gameObject.transform.parent.name);
                 break;
-                
+            case "Homing":
+                HomingLevel = _newValue;
+                HomingUpDate();
+                break;
+            case "MultiShot":
+                MultiShotLevel = (int)_newValue;
+                MultiShotUpDate();
+                break;
         }
     }
 }
