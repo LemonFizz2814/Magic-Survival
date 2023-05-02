@@ -12,21 +12,26 @@ public class ProjParticles : MonoBehaviour
     public GameObject explosionObj;
 
     [Header("Particle values")]
-    public ParticleSystem PS;
+    [SerializeField] protected ParticleSystem PS;
     private List<ParticleCollisionEvent> ProjEvents;
 
     //[Range(1,5)]
-    public float FireRateLevel = 1;
-    [Range(1, 10)]
-    public int MultiShotLevel = 1;
+    [SerializeField]
+    protected float FireRateLevel = 1;
+    [SerializeField] [Range(1, 10)]
+    protected int MultiShotLevel = 1;
     //[Range(1, 5)]
-    public float BulletSpeedLevel = 1;
+    [SerializeField]
+    protected float BulletSpeedLevel = 1;
+    [SerializeField]
     //[Range(1, 5)]
-    public float BulletRangeLevel = 1;
+    protected float BulletRangeLevel = 1;
+    [SerializeField]
+    protected float HomingLevel = 0;
+    [SerializeField]
+    protected float BulletSizeLevel = 1;
     //[Range(0, 5)]
-    public float HomingLevel = 0;
     //[Range(1, 5)]
-    public float BulletSizeLevel = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -165,7 +170,6 @@ public class ProjParticles : MonoBehaviour
             case "Range":
                 BulletRangeLevel = _newValue;
                 BulletRangeUpDate();
-                Debug.Log(gameObject.transform.parent.name);
                 break;
             case "Homing":
                 HomingLevel = _newValue;
