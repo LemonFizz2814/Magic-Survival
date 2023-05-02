@@ -20,7 +20,7 @@ MonoBehaviour:
   currentDMG: 10
   bonusEffects: 
   currentSpeed: 0
-  currentFireRate: 9
+  currentFireRate: 18
   currentDuration: 0
   currentRange: 6
   onValueChanged:
@@ -31,7 +31,7 @@ MonoBehaviour:
   minSpeed: 0
   maxSpeed: 0
   minFireRate: 1
-  maxFireRate: 3
+  maxFireRate: 18
   minDuration: 0
   maxDuration: 0
   minRange: 6

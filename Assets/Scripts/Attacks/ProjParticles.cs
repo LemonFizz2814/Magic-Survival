@@ -175,6 +175,10 @@ public class ProjParticles : MonoBehaviour
                 MultiShotLevel = (int)_newValue;
                 MultiShotUpDate();
                 break;
+            case "Speed":
+                BulletSpeedLevel = _newValue;
+                BulletRangeUpDate();
+                break;
         }
     }
 }

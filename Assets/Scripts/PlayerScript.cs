@@ -132,7 +132,6 @@ public class PlayerScript : MonoBehaviour
         maxHealth,
         projectileSpeed,
         fireRate,
-        piercing,
         spread,
         magnet,
         knockback,
@@ -799,9 +798,10 @@ public class PlayerScript : MonoBehaviour
             case UPGRADES.playerSpeed:
                 upgradableStats.playerSpeed += _positiveUpgrade;
                 break;
+                //Matthew: Sergio wants to remove the debuff for now
             case UPGRADES.maxHealth:
                 upgradableStats.maxHealth += (int)_positiveUpgrade;
-                upgradableStats.playerSpeed /= _negativeUpgrade;
+                //upgradableStats.playerSpeed /= _negativeUpgrade;
                 break;
             case UPGRADES.projectileSpeed:
                 upgradableStats.projectileSpeed += (int)_positiveUpgrade;
@@ -810,11 +810,7 @@ public class PlayerScript : MonoBehaviour
             //case UPGRADES.fireRate:
             //    upgradableStats.fireRate += _positiveUpgrade;
             //    break;
-            //TODO: Possibly need to get rid of this upgrade as it no longer works with bullet particles
-            case UPGRADES.piercing:
-                upgradableStats.projectilePierce += (int)_positiveUpgrade;
-                break;
-                //TODO: Possibly need to get rid of this upgrade as it no longer works with bullet particles
+                //TODO: Change this to work with a new attack
             case UPGRADES.spread:
                 upgradableStats.accuracy += _positiveUpgrade;
                 upgradableStats.bulletDamage *= _negativeUpgrade;
@@ -838,20 +834,20 @@ public class PlayerScript : MonoBehaviour
             case UPGRADES.critical:
                 upgradableStats.criticalChance += (int)_positiveUpgrade;
                 break;
-            //Will need to obtain bullet scriptable object here
+            //Matthew: Removing the debuff for now due to sergio's request + change to new attack
             case UPGRADES.sniper:
                 attack = GetAttackByName(_attkName);
                 attack.Range += _positiveUpgrade;
-                attack.FireRate += _negativeUpgrade;
+                //attack.FireRate += _negativeUpgrade;
                 break;
-            //Will need to obtain bullet scriptable object here
+            //Matthew: removing the debuff here due to Sergio's request for now
             case UPGRADES.extraProjectile:
                 attack = GetAttackByName(_attkName);
                 upgradableStats.projectiles += (int)_positiveUpgrade;
-                attack.currentDMG += _negativeUpgrade;
+                //attack.currentDMG += _negativeUpgrade;
                 onValueChanged.Invoke(upgradableStats.projectiles, "MultiShot");
                 break;
-            //Will need to obtain bullet scriptable object here
+            //Matthew: Change this to make it work with a new attack
             case UPGRADES.submachineGun:
                 attack = GetAttackByName(_attkName);
                 attack.FireRate /= _positiveUpgrade;
@@ -863,6 +859,7 @@ public class PlayerScript : MonoBehaviour
             case UPGRADES.explosion:
                 upgradableStats.explosionSize += 1 + (_positiveUpgrade * 0.5f);
                 break;
+                //Fix the misaligned spawning (Contact blake maybe)
             case UPGRADES.spinningSaw:
                 upgradableStats.sawSpinSpeed += _positiveUpgrade;
                 AddSpinningSaw();
@@ -871,7 +868,7 @@ public class PlayerScript : MonoBehaviour
                 upgradableStats.sentrySpinSpeed += _positiveUpgrade;
                 AddSentry();
                 break;
-            //Will need to obtain bullet scriptable object here
+            //Will need to obtain bullet scriptable object here (may need future modifications)
             case UPGRADES.jackOfAllTrades:
                 attack = GetAttackByName(_attkName);
                 upgradableStats.maxHealth *= _positiveUpgrade;
@@ -881,9 +878,11 @@ public class PlayerScript : MonoBehaviour
             case UPGRADES.distanceDamage:
                 upgradableStats.damageDistance += _positiveUpgrade;
                 break;
+                //Will need to be put in scriptable object (also target enemies, contact blake)
             case UPGRADES.lightningStrike:
                 upgradableStats.lightningRate += _positiveUpgrade;
                 break;
+                //Modify fire rate/amount
             case UPGRADES.spike:
                 upgradableStats.spikeSpawnRate += _positiveUpgrade;
                 break;
@@ -892,6 +891,8 @@ public class PlayerScript : MonoBehaviour
                 return;
                 break;
         }
+
+        //Modify electric field to deal DOT damage to enemies
 
         //Setting scriptable object values here (some upgrades may modify them outside of this bool check so check above this if statement)
         if (isScriptableObject)
@@ -902,6 +903,7 @@ public class PlayerScript : MonoBehaviour
                     if (!attack.enableSpawn)
                     {
                         attack.enableSpawn = true;
+                        if (attack.name == "Bullet") attack.FireRate += _positiveUpgrade;
                     }
                     else
                     {

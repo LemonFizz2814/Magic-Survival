@@ -31,7 +31,7 @@ MonoBehaviour:
   minSpeed: 0
   maxSpeed: 0
   minFireRate: 0
-  maxFireRate: 1
+  maxFireRate: 16
   minDuration: 0
   maxDuration: 0
   minRange: 0
