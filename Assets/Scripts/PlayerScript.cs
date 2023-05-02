@@ -40,6 +40,7 @@ public class PlayerScript : MonoBehaviour
     public float xpIncr;
     public float maxHealthLevelUp;
     public float speedLevelUp;
+    public List<KeyCode> allDebugKeys;
 
     int xp;
     int level;
@@ -485,10 +486,15 @@ public class PlayerScript : MonoBehaviour
         //}
 
         //DEBUG
-        if (Input.GetKey(KeyCode.Q))
+        foreach(KeyCode key in allDebugKeys)
         {
-            IncreaseXP(xpToLevelUp - xp);
+            if (Input.GetKey(key))
+            {
+                IncreaseXP(xpToLevelUp - xp, key);
+            }
         }
+
+        
         if (Input.GetKey(KeyCode.E))
         {
             for (int i = 1; i < customizeMenuManager.GetCustomizationSelectionsArray().Length; i++)
@@ -596,7 +602,7 @@ public class PlayerScript : MonoBehaviour
         //Time.timeScale = 0;
     }
 
-    void IncreaseXP(int _xp)
+    void IncreaseXP(int _xp, KeyCode _debugKey = KeyCode.None)
     {
         if (menuUI.hasSound)
         {
@@ -607,7 +613,7 @@ public class PlayerScript : MonoBehaviour
 
         if (xp >= xpToLevelUp)
         {
-            LeveledUp();
+            LeveledUp(_debugKey);
         }
         inGameUI.UpdateXPBar(xp, xpToLevelUp);
         inGameUI.UpdateLevelText(level);
@@ -632,7 +638,7 @@ public class PlayerScript : MonoBehaviour
         inGameUI.UpdateScoreText(score);
     }
 
-    void LeveledUp()
+    void LeveledUp(KeyCode _debugKey = KeyCode.None)
     {
         xp = 0;
         level++;
@@ -649,7 +655,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         uiManager.ShowUpgradeUI(true);
-        upgradeManager.QueueUpgrades();
+        upgradeManager.QueueUpgrades(_debugKey);
         //SetPaused(true);
         //Time.timeScale = 0;
     }
@@ -745,11 +751,11 @@ public class PlayerScript : MonoBehaviour
         sawObj.transform.parent = gameObject.transform;
         spinningSaws.Add(sawObj);
 
-        float angle = 360 / spinningSaws.Count;
 
         //reset all spinning saws 
         for (int i = 0; i < spinningSaws.Count; i++)
         {
+            float angle = 360 / (i + 1);
             spinningSaws[i].transform.localEulerAngles = new Vector3(0, angle * i, 0);
         }
     }

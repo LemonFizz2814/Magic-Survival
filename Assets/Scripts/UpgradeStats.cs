@@ -33,6 +33,7 @@ public class UpgradeStats : MonoBehaviour
         [Header("Upgrade values")]
         public float positiveUpgrade;
         public float negativeUpgrade;
+        public KeyCode debugKey = KeyCode.None;
 
         [System.NonSerialized]
         public int tierLevel;

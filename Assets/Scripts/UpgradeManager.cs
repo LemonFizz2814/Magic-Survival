@@ -32,13 +32,14 @@ public class UpgradeManager : MonoBehaviour
     int[] options = { 0, 0, 0 };
     int[] arrayOfUpgrades;
 
-    public void QueueUpgrades()
+    public void QueueUpgrades(KeyCode debugKey = KeyCode.None)
     {
         queueOfUpgrades++;
 
         if (queueOfUpgrades <= 1)
         {
-            SelectOptions();
+            if (debugKey == KeyCode.None) SelectOptions();
+            else DebugSelectOptions(debugKey);
         }
     }
 
@@ -122,6 +123,34 @@ public class UpgradeManager : MonoBehaviour
                 PickOption(randOption, randUpgrade);
             }
         }
+    }
+
+    //Choose selected options
+    public void DebugSelectOptions(KeyCode _key)
+    {
+        List<int> listOfUpgrades = new List<int>();
+
+        int iPicks = 0;
+        List<UpgradeStats.upgradeTiers> upgrades = upgradeStats.GetUpgradeStats();
+        for(int i = 0; i < upgrades.Count; i++)
+        {
+            if (upgrades[i].debugKey == _key)
+            {
+                listOfUpgrades.Add(i);
+                iPicks++;
+            }
+
+            if (iPicks >= 3)
+            {
+                arrayOfUpgrades = listOfUpgrades.ToArray();
+                for (int j = 0; j < listOfUpgrades.Count; j++)
+                {
+                    PickOption(j, listOfUpgrades[j]);
+                }
+                break;
+            }
+        }
+        
     }
 
     //Displays selected upgrade to UI
