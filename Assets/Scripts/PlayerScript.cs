@@ -488,7 +488,7 @@ public class PlayerScript : MonoBehaviour
         //DEBUG
         foreach(KeyCode key in allDebugKeys)
         {
-            if (Input.GetKey(key))
+            if (Input.GetKeyDown(key))
             {
                 IncreaseXP(xpToLevelUp - xp, key);
             }
