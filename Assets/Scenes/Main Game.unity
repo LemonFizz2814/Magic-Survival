@@ -5456,7 +5456,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1940291844}
   m_Direction: 2
   m_Value: 0.000002029054
-  m_Size: 0.0000019963015
+  m_Size: 0.942126
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8650,7 +8650,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1348700913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17107,7 +17107,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 949cacd14c2337c4e914644e106f80bc, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0
+  m_Volume: 1
   m_Pitch: 1.5
   Loop: 1
   Mute: 0
