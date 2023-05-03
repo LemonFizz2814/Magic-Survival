@@ -11,6 +11,7 @@ public class CharacterSelectScript : MonoBehaviour
     public GameObject selectButton;
     public GameObject selectedButton;
     public GameObject buttons;
+    public GameObject lockImage;
     int num = 0;
 
     CustomizeMenuManager customizeMenuManager;
@@ -35,6 +36,10 @@ public class CharacterSelectScript : MonoBehaviour
     public GameObject GetButtonSelected()
     {
         return selectButton;
+    }
+    public GameObject GetLock()
+    {
+        return lockImage;
     }
 
     public void SetNum(int _num)
