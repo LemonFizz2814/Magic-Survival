@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7588389248430187427}
   - component: {fileID: 5668809930656962409}
   - component: {fileID: 5849554074068959108}
+  - component: {fileID: 6637437774269867797}
   m_Layer: 0
   m_Name: Buzz Saw
   m_TagString: Saw
@@ -97,6 +98,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.032230735, y: 0.032230727, z: 0.01}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &6637437774269867797
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6173121073386387132}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2b9ed1e62645b9d47b9913c7f98433b2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7800288334459659184
 GameObject:
   m_ObjectHideFlags: 0
