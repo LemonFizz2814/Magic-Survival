@@ -36,14 +36,21 @@ public class CustomizeMenuManager : MonoBehaviour
 
     void SetUpCustomization()
     {
-        scrollbar.value         = 0;
-        scrollbar.numberOfSteps = 0;
         content.offsetMin       = new Vector2(0, 0);
-        content.offsetMax       = new Vector2(selectAmount * spacing, 0);
+        content.offsetMax       = new Vector2(0, selectAmount * spacing);
 
-        startingPos.GetComponent<RectTransform>().anchoredPosition = new Vector2(spacing / 2, 0);
+        startingPos.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -spacing / 2f);
 
         SetUpCharacterSelections();
+
+        StartCoroutine(ScrollDelay());
+    }
+    IEnumerator ScrollDelay()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        scrollbar.value = 1;
+        scrollbar.numberOfSteps = 0;
     }
 
     void SetCustomizeUnlocked()
@@ -70,7 +77,7 @@ public class CustomizeMenuManager : MonoBehaviour
             selectObj.transform.SetParent(startingPos);
             //selectObj.GetComponent<RectTransform>().anchoredPosition = new Vector3(i * spacing, 0, 0);
             selectObj.GetComponent<RectTransform>().localScale = new Vector3(0.85f, 0.85f, 1);
-            selectObj.GetComponent<RectTransform>().localPosition = new Vector3(i * spacing, 0, 0);
+            selectObj.GetComponent<RectTransform>().localPosition = new Vector3(0, i * -spacing, 0);
 
             CharacterSelectScript characterSelectScript = selectObj.GetComponent<CharacterSelectScript>();
 
@@ -80,6 +87,7 @@ public class CustomizeMenuManager : MonoBehaviour
 
             characterSelectScript.GetName().text    = customizationSelections[i].name;
             characterSelectScript.GetImage().sprite = customizationSelections[i].image;
+            characterSelectScript.GetLock().SetActive(!customizationSelections[i].isUnlocked);
             characterSelectScript.HideButtons(customizationSelections[i].isUnlocked);
             characterSelectScript.Selected(customizationSelections[i].isSelected);
             characterSelectScript.SetNum(i);
