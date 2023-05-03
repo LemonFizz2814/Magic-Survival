@@ -6665,22 +6665,22 @@ MonoBehaviour:
   spacing: 260
   customizationSelections:
   - name: Default
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: 45067161eaf01cc4a990e78c20fe8ab5, type: 3}
     isUnlocked: 1
   - name: Brain
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: efc685e1cac244c4095259a62015cfde, type: 3}
     isUnlocked: 0
   - name: Cat
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: ff2b1e71b1d5d57448d6121c08836106, type: 3}
     isUnlocked: 0
   - name: Teeth
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: 37ac943fca9e39d44be6ce9c5478d942, type: 3}
     isUnlocked: 0
   - name: Gas
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: 7733e2e7a61603c4ab131b9ad2bfb5a3, type: 3}
     isUnlocked: 0
   - name: Spike
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: 9273fbefb33210441bfc19335d0bcb4a, type: 3}
     isUnlocked: 0
 --- !u!1 &1105867495
 GameObject:
