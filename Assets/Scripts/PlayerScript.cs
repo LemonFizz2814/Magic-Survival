@@ -751,11 +751,11 @@ public class PlayerScript : MonoBehaviour
         sawObj.transform.parent = gameObject.transform;
         spinningSaws.Add(sawObj);
 
+        float angle = 360 / spinningSaws.Count;
 
         //reset all spinning saws 
         for (int i = 0; i < spinningSaws.Count; i++)
         {
-            float angle = 360 / spinningSaws.Count;
             spinningSaws[i].transform.localEulerAngles = new Vector3(0, angle * i, 0);
         }
     }
