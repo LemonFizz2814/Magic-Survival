@@ -12,7 +12,8 @@ public class UpgradeStats : MonoBehaviour
         SPEED,
         FIRERATE,
         DURATION,
-        RANGE
+        RANGE,
+        AMOUNT
     }
 
     [System.Serializable]

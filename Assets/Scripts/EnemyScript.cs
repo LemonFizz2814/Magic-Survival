@@ -156,13 +156,7 @@ public class EnemyScript : MonoBehaviour
 
         }
 
-        if (other.CompareTag("ElectricField"))
-        {
-            //DamageEnemy(playerScript.GetUpgradableStats().electricFieldDMG, true);
-            BaseAttack attack = playerScript.GetAttackByName("Electric Field");
-            DamageEnemy(attack.currentDMG, true);
-            //Debug.Log("electric field works");
-        }
+       
 
         if (other.CompareTag("ChainLightning"))
         {
@@ -172,6 +166,22 @@ public class EnemyScript : MonoBehaviour
                 lightning.CurrentState = LightningChain.chainLightningState.ATTACK;
 
             }
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        //Checking if the enemy is within the electric field (in which case we apply DOT dmg)
+        //Based on fire rate
+        if (other.CompareTag("ElectricField"))
+        {
+            //DamageEnemy(playerScript.GetUpgradableStats().electricFieldDMG, true);
+            BaseAttack attack = playerScript.GetAttackByName("Electric Field");
+            if (attack.SpawnCheck())
+            {
+                DamageEnemy(attack.currentDMG, true);
+            }
+            //Debug.Log("electric field works");
         }
     }
 

@@ -426,26 +426,30 @@ public class PlayerScript : MonoBehaviour
                 Vector3 spawnPos = transform.position;
                 spawnPos.y = 0.5f;
 
-                switch (attack.name)
+                for (int i = 0; i < attack.Amount; i++)
                 {
-                    case "Lazer Strike":
-                        spawnPos.x += Random.Range(-attack.Range, attack.Range);
-                        spawnPos.z += Random.Range(-attack.Range, attack.Range);
-                        break;
-                    case "Chain Lightning":
-                        break;
-                    case "Bullet":
-                        //Just make it do nothing. Bullets are enabled/disabled by the player
-                        continue;
-                        break;
-                    default:
-                        attackNameFound = false;
-                        Debug.LogError(attack.name + " does not spawn any attacks on the Pool Manager. " +
-                            "Please double check the name (Matthew)");
-                        break;
-                }
+                    switch (attack.name)
+                    {
+                        case "Lazer Strike":
+                            spawnPos.x += Random.Range(-attack.Range, attack.Range);
+                            spawnPos.z += Random.Range(-attack.Range, attack.Range);
+                            break;
+                        case "Chain Lightning":
+                            break;
+                        case "Bullet":
+                            //Just make it do nothing. Bullets are enabled/disabled by the player
+                            continue;
+                            break;
+                        default:
+                            attackNameFound = false;
+                            Debug.LogError(attack.name + " does not spawn any attacks on the Pool Manager. " +
+                                "Please double check the name (Matthew)");
+                            break;
+                    }
 
-                if (attackNameFound) poolingManager.SpawnObject(attack.poolType, spawnPos, Quaternion.identity);
+                    if (attackNameFound) poolingManager.SpawnObject(attack.poolType, spawnPos, Quaternion.identity);
+
+                }
                 continue;
             }
 
@@ -486,7 +490,7 @@ public class PlayerScript : MonoBehaviour
         //}
 
         //DEBUG
-        foreach(KeyCode key in allDebugKeys)
+        foreach (KeyCode key in allDebugKeys)
         {
             if (Input.GetKeyDown(key))
             {
@@ -494,7 +498,7 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
-        
+
         if (Input.GetKey(KeyCode.E))
         {
             for (int i = 1; i < customizeMenuManager.GetCustomizationSelectionsArray().Length; i++)
@@ -693,7 +697,7 @@ public class PlayerScript : MonoBehaviour
     void FireProjectile(Vector3 _direction, Vector3 _pos)
     {
         //GameObject projectileObj = Instantiate(projectile, _pos, Quaternion.identity);
-        GameObject projectileObj = (projectile.gameObject == null) ? 
+        GameObject projectileObj = (projectile.gameObject == null) ?
             poolingManager.SpawnObject(PoolingManager.PoolingEnum.Bullet, _pos, Quaternion.identity) : projectile.gameObject;
 
 
@@ -804,7 +808,7 @@ public class PlayerScript : MonoBehaviour
             case UPGRADES.playerSpeed:
                 upgradableStats.playerSpeed += _positiveUpgrade;
                 break;
-                //Matthew: Sergio wants to remove the debuff for now
+            //Matthew: Sergio wants to remove the debuff for now
             case UPGRADES.maxHealth:
                 upgradableStats.maxHealth += (int)_positiveUpgrade;
                 //upgradableStats.playerSpeed /= _negativeUpgrade;
@@ -816,7 +820,7 @@ public class PlayerScript : MonoBehaviour
             //case UPGRADES.fireRate:
             //    upgradableStats.fireRate += _positiveUpgrade;
             //    break;
-                //TODO: Change this to work with a new attack
+            //TODO: Change this to work with a new attack
             case UPGRADES.spread:
                 upgradableStats.accuracy += _positiveUpgrade;
                 upgradableStats.bulletDamage *= _negativeUpgrade;
@@ -827,7 +831,7 @@ public class PlayerScript : MonoBehaviour
             case UPGRADES.knockback:
                 upgradableStats.bulletKnockback += _positiveUpgrade;
                 break;
-                //Will need to obtain bullet scriptable object here
+            //Will need to obtain bullet scriptable object here
             case UPGRADES.glassCannon:
                 attack = GetAttackByName(_attkName);
                 attack.currentDMG *= _positiveUpgrade;
@@ -847,12 +851,12 @@ public class PlayerScript : MonoBehaviour
                 //attack.FireRate += _negativeUpgrade;
                 break;
             //Matthew: removing the debuff here due to Sergio's request for now
-            case UPGRADES.extraProjectile:
-                attack = GetAttackByName(_attkName);
-                upgradableStats.projectiles += (int)_positiveUpgrade;
-                //attack.currentDMG += _negativeUpgrade;
-                onValueChanged.Invoke(upgradableStats.projectiles, "MultiShot");
-                break;
+            //case UPGRADES.extraProjectile:
+            //    attack = GetAttackByName(_attkName);
+            //    attack.Amount += (int)_positiveUpgrade;
+            //    //upgradableStats.projectiles += (int)_positiveUpgrade;
+            //    //attack.currentDMG += _negativeUpgrade;
+            //    break;
             //Matthew: Change this to make it work with a new attack
             case UPGRADES.submachineGun:
                 attack = GetAttackByName(_attkName);
@@ -865,7 +869,7 @@ public class PlayerScript : MonoBehaviour
             case UPGRADES.explosion:
                 upgradableStats.explosionSize += 1 + (_positiveUpgrade * 0.5f);
                 break;
-                //Fix the misaligned spawning (Contact blake maybe)
+            //Fix the misaligned spawning (Contact blake maybe)
             case UPGRADES.spinningSaw:
                 upgradableStats.sawSpinSpeed += _positiveUpgrade;
                 AddSpinningSaw();
@@ -884,11 +888,11 @@ public class PlayerScript : MonoBehaviour
             case UPGRADES.distanceDamage:
                 upgradableStats.damageDistance += _positiveUpgrade;
                 break;
-                //Will need to be put in scriptable object (also target enemies, contact blake)
+            //Will need to be put in scriptable object (also target enemies, contact blake)
             case UPGRADES.lightningStrike:
                 upgradableStats.lightningRate += _positiveUpgrade;
                 break;
-                //Modify fire rate/amount
+            //Modify fire rate/amount
             case UPGRADES.spike:
                 upgradableStats.spikeSpawnRate += _positiveUpgrade;
                 break;
@@ -898,7 +902,7 @@ public class PlayerScript : MonoBehaviour
                 break;
         }
 
-        //Modify electric field to deal DOT damage to enemies
+        //Modify electric field to deal DOT damage to enemies, lazer strike to fire amounts
 
         //Setting scriptable object values here (some upgrades may modify them outside of this bool check so check above this if statement)
         if (isScriptableObject)
@@ -909,7 +913,11 @@ public class PlayerScript : MonoBehaviour
                     if (!attack.enableSpawn)
                     {
                         attack.enableSpawn = true;
+                        //Upping the fire rate for bullet immediately
                         if (attack.name == "Bullet") attack.FireRate += _positiveUpgrade;
+
+                        //Enabling the electric field immediately
+                        if (attack.name == "Electric Field" && !electricField.activeSelf) electricField.SetActive(true);
                     }
                     else
                     {
@@ -927,6 +935,9 @@ public class PlayerScript : MonoBehaviour
                     break;
                 case UpgradeStats.ATTACKSTAT.SPEED:
                     attack.Speed += _positiveUpgrade;
+                    break;
+                case UpgradeStats.ATTACKSTAT.AMOUNT:
+                    attack.Amount += (int)_positiveUpgrade;
                     break;
             }
         }

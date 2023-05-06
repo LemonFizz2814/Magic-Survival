@@ -42,6 +42,7 @@ public class BaseAttack : ScriptableObject
     public float currentDMG = 0.0f;
     [SerializeField] private List<ATTRIBUTE> bonusEffects;
     [SerializeField] private float currentSpeed, currentFireRate, currentDuration, currentRange;
+    [SerializeField] private int currentAmount;
     public UnityEvent<float, string> onValueChanged = new UnityEvent<float, string>();
 
     [Header("Min/Max values")]
@@ -52,6 +53,7 @@ public class BaseAttack : ScriptableObject
     minFireRate, maxFireRate,
     minDuration, maxDuration,
     minRange, maxRange;
+    [SerializeField] private int minAmount = 1, maxAmount;
 
     public void InitValues()
     {
@@ -61,6 +63,7 @@ public class BaseAttack : ScriptableObject
         currentFireRate = maxFireRate;
         currentDuration = minDuration;
         currentRange = minRange;
+        currentAmount = minAmount;
         enableSpawn = false;
     }
 
@@ -132,6 +135,19 @@ public class BaseAttack : ScriptableObject
             {
                 currentSpeed = value;
                 onValueChanged.Invoke(currentSpeed, "Speed");
+            }
+        }
+    }
+
+    public int Amount
+    {
+        get { return currentAmount; }
+        set
+        {
+            if (currentAmount != value)
+            {
+                currentAmount = value;
+                onValueChanged.Invoke(currentAmount, "MultiShot");
             }
         }
     }
