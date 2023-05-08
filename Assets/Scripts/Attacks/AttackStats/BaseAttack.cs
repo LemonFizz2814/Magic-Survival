@@ -60,7 +60,7 @@ public class BaseAttack : ScriptableObject
         //onValueChanged.RemoveAllListeners();
         currentDMG = minDMG;
         currentSpeed = minSpeed;
-        currentFireRate = maxFireRate;
+        currentFireRate = minFireRate;
         currentDuration = minDuration;
         currentRange = minRange;
         currentAmount = minAmount;
@@ -75,9 +75,9 @@ public class BaseAttack : ScriptableObject
 
         spawnTimer += Time.deltaTime;
 
-        if (spawnTimer < currentFireRate) return false;
+        if (spawnTimer < maxFireRate) return false;
 
-        spawnTimer = 0;
+        spawnTimer = minFireRate + currentFireRate;
         return true;
     }
 

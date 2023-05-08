@@ -190,7 +190,7 @@ public class EnemyScript : MonoBehaviour
         //ProjectileScript projectile = _bullet.GetComponent<ProjectileScript>();
         //projectile.StartExplosion(transform.position);
         ProjParticles proj = _bullet.GetComponent<ProjParticles>();
-        BaseAttack bulletStats = proj.bulletStats;
+        BaseAttack bulletStats = proj.attackStats;
         proj.StartExplosion(transform.position);
 
 

@@ -6,8 +6,8 @@ using UnityEngine;
 public class ProjParticles : MonoBehaviour
 {
     [Header("Attack stats")]
-    public BaseAttack bulletStats;
-    private PlayerScript player;        //Need to grab upgradable stats for unique values
+    public BaseAttack attackStats;
+    [SerializeField] protected PlayerScript player;        //Need to grab upgradable stats for unique values
     public float explosionWait;
     public GameObject explosionObj;
 
@@ -34,10 +34,10 @@ public class ProjParticles : MonoBehaviour
     //[Range(1, 5)]
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         InitValues();
-        bulletStats.onValueChanged.AddListener(OnValueChangeHandler);
+        attackStats.onValueChanged.AddListener(OnValueChangeHandler);
         player.onValueChanged.AddListener(OnValueChangeHandler);
         ProjEvents = new List<ParticleCollisionEvent>();
 
@@ -147,8 +147,8 @@ public class ProjParticles : MonoBehaviour
         PlayerScript.UpgradableStats stats = player.GetUpgradableStats();
         MultiShotLevel = stats.projectiles;
         HomingLevel = stats.homingStrength;
-        FireRateLevel = bulletStats.FireRate;
-        BulletRangeLevel = bulletStats.Range;
+        FireRateLevel = attackStats.FireRate;
+        BulletRangeLevel = attackStats.Range;
 
         FireRateUpDate();
         MultiShotUpDate();

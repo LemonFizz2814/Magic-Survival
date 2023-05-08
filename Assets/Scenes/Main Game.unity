@@ -5456,7 +5456,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1940291844}
   m_Direction: 2
   m_Value: 0.00042158517
-  m_Size: 0.00042180676
+  m_Size: 0.00042133703
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -24216,7 +24216,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.size
-      value: 27
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[4].icon
@@ -24310,6 +24310,10 @@ PrefabInstance:
       propertyPath: upgradeStats.Array.data[26].icon
       value: 
       objectReference: {fileID: 21300000, guid: 197a7a2c70120884e8e16e86a166080b, type: 3}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[27].icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 5d4469babcaeb49449d9d3ba13ef676c, type: 3}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[4].upgrade
       value: 5
@@ -24503,6 +24507,14 @@ PrefabInstance:
       value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[27].attkStat
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[27].debugKey
+      value: 102
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[5].attackObj
       value: 
       objectReference: {fileID: 0}
@@ -24554,6 +24566,10 @@ PrefabInstance:
       propertyPath: upgradeStats.Array.data[26].attackObj
       value: 
       objectReference: {fileID: 11400000, guid: 66cdc8c9b722c3846a4f9dcea5e79316, type: 2}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[27].attackObj
+      value: 
+      objectReference: {fileID: 11400000, guid: 8fb835188a4b85549ac32e2c2adb38cf, type: 2}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[4].upgradeName
       value: Spread
@@ -24645,6 +24661,10 @@ PrefabInstance:
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[26].upgradeName
       value: Extra Lazer Strikes
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[27].upgradeName
+      value: Extra grenade throws
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[1].negativeUpgrade
@@ -24760,15 +24780,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[21].positiveUpgrade
-      value: -3
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[22].positiveUpgrade
-      value: -3
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[23].positiveUpgrade
-      value: -3
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[25].positiveUpgrade
@@ -24776,6 +24796,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[26].positiveUpgrade
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[27].positiveUpgrade
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
@@ -24873,6 +24897,10 @@ PrefabInstance:
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[26].upgradeDescription
       value: Adds one additional Lazer Strike
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[27].upgradeDescription
+      value: Adds one additional Grenade Throw
       objectReference: {fileID: 0}
     - target: {fileID: 1276238983344249789, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: menuUI

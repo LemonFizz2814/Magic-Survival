@@ -9684,9 +9684,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f57d0591351ffdc40844af917ff3570b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletStats: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
+  attackStats: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
+  player: {fileID: 0}
   explosionWait: 0.5
   explosionObj: {fileID: 3679010409709877342, guid: 703de4b8f10c68242a5ef08721ded28d, type: 3}
+  PS: {fileID: 0}
   FireRateLevel: 1
   MultiShotLevel: 1
   BulletSpeedLevel: 1
