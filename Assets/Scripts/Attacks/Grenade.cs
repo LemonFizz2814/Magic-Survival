@@ -38,6 +38,11 @@ public class Grenade : ProjParticles
         base.MultiShotUpDate();
     }
 
+    protected override void BulletRangeUpDate()
+    {
+        //base.BulletRangeUpDate();
+    }
+
     private void OnParticleCollision(GameObject other)
     {
         if (other.transform.tag == "Enemy")

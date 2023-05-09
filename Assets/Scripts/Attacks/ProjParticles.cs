@@ -78,6 +78,8 @@ public class ProjParticles : MonoBehaviour
         shape.arc = (MSL - 1) * 120 / 9;
         shape.rotation = new Vector3(0, 0, 90 + (MSL - 1) * -60 / 9);
 
+        //Type your other case here
+
     }
 
     protected virtual void BulletRangeUpDate()

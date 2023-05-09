@@ -831,7 +831,6 @@ public class PlayerScript : MonoBehaviour
             case UPGRADES.knockback:
                 upgradableStats.bulletKnockback += _positiveUpgrade;
                 break;
-            //Will need to obtain bullet scriptable object here
             case UPGRADES.glassCannon:
                 attack = GetAttackByName(_attkName);
                 attack.currentDMG *= _positiveUpgrade;
@@ -901,8 +900,6 @@ public class PlayerScript : MonoBehaviour
                 return;
                 break;
         }
-
-        //Modify electric field to deal DOT damage to enemies, lazer strike to fire amounts
 
         //Setting scriptable object values here (some upgrades may modify them outside of this bool check so check above this if statement)
         if (isScriptableObject)
