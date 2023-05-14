@@ -231,6 +231,17 @@ public class EnemyScript : MonoBehaviour
             Destroy(Instantiate(criticalText, transform.position, Quaternion.identity), critcalTimer);
         }
 
+        //Spawning damage numbers
+        Vector3 spawnRange = transform.position;
+        spawnRange.x += Random.Range(-2.0f, 2.0f);
+        spawnRange.z += Random.Range(-2.0f, 2.0f);
+        GameObject dmgNum = poolingManager.SpawnObject(PoolingManager.PoolingEnum.DMGNum, spawnRange, Quaternion.identity);
+        TextMesh dmgText = dmgNum.transform.Find("TextMesh").GetComponent<TextMesh>();
+        dmgText.text = _damage.ToString();
+
+        //Despawning the damage number on a timer
+        StartCoroutine(poolingManager.DespawnObjectTimer(dmgNum, 1.0f));
+
         if (!_setDamage && playerScript.GetUpgradableStats().damageDistance > 0)
         {
             //float newDamage = _damage * ((Vector3.Distance(player.transform.position, transform.position) * playerScript.GetUpgradableStats().damageDistance));

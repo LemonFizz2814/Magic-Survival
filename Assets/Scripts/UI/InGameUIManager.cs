@@ -62,9 +62,9 @@ public class InGameUIManager : MonoBehaviour
         healthBar.gameObject.SetActive(true);
     }
 
-    public void OnDisable()
-    {
-        healthBar.gameObject.SetActive(false);
+    //public void OnDisable()
+    //{
+    //    healthBar.gameObject.SetActive(false);
         
-    }
-}
+    //}
+}   

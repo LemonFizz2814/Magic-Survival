@@ -27,7 +27,8 @@ public class PoolingManager : MonoBehaviour
         Obstacles,
         LazerStrike,
         ChainLightning,
-        GenericCube
+        GenericCube,
+        DMGNum
     }
 
     public void SpawnIntialObjects()
@@ -79,6 +80,14 @@ public class PoolingManager : MonoBehaviour
 
     public void DespawnObject(GameObject _object)
     {
+        _object.SetActive(false);
+        _object.transform.position = new Vector3(0, 0, 0);
+    }
+
+    public IEnumerator DespawnObjectTimer(GameObject _object, float _time)
+    {
+        yield return new WaitForSeconds(_time);
+
         _object.SetActive(false);
         _object.transform.position = new Vector3(0, 0, 0);
     }
