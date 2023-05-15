@@ -12,9 +12,11 @@ public class BaseAttack : ScriptableObject
     //(e.g: Increase all electricity dmg) or smth like that
     public enum ATTRIBUTE
     {
+        NONE,
         ELECTRICITY,
         PROJECTILE,
-        ORBITAL_STRIKE
+        ORBITAL_STRIKE,
+        LAZER
     }
     
     //Use this to find out how to spawn the object
@@ -40,7 +42,7 @@ public class BaseAttack : ScriptableObject
 
     [Header("Base values")]
     public float currentDMG = 0.0f;
-    [SerializeField] private List<ATTRIBUTE> bonusEffects;
+    public List<ATTRIBUTE> bonusEffects;
     [SerializeField] private float currentSpeed, currentFireRate, currentDuration, currentRange;
     [SerializeField] private int currentAmount;
     public UnityEvent<float, string> onValueChanged = new UnityEvent<float, string>();

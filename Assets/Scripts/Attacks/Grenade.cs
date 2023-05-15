@@ -49,7 +49,8 @@ public class Grenade : ProjParticles
         {
             EnemyScript enemy = other.GetComponent<EnemyScript>();
             //Debug.Log("Grenade works");
-            enemy.DamageEnemy(attackStats.currentDMG, true);
+            float totalDMG = enemy.CalculateDMG(attackStats);
+            enemy.DamageEnemy(totalDMG, true);
         }
     }
 }

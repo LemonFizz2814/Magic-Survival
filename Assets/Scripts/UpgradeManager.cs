@@ -71,7 +71,7 @@ public class UpgradeManager : MonoBehaviour
                 if (currentUpgrade.attkStat != UpgradeStats.ATTACKSTAT.FIRERATE &&
                     !currentUpgrade.attackObj.enableSpawn) continue;
                 
-                if (currentUpgrade.tierLevel <= maxTiers)
+                if (currentUpgrade.tierLevel < maxTiers)
                 {
                     listOfUpgrades.Add(i);
                     if (currentUpgrade.tierLevel > 0)
@@ -83,7 +83,7 @@ public class UpgradeManager : MonoBehaviour
 
             }
 
-            if (currentUpgrade.tierLevel <= maxTiers)
+            if (currentUpgrade.tierLevel < maxTiers)
             {
                 listOfUpgrades.Add(i);
 
@@ -181,16 +181,7 @@ public class UpgradeManager : MonoBehaviour
         int i = Mathf.Clamp(upgradeTier.tierLevel + 1, 0, 5);
         upgradeStats.GetUpgradeStats()[options[_number]].SetUpgradeTier(i);
 
-        //Check to see if upgrade tier has a scriptable object
-        string name = "";
-        UpgradeStats.ATTACKSTAT stat = UpgradeStats.ATTACKSTAT.NONE;
-        if (upgradeTier.attackObj != null)
-        {
-            name = upgradeTier.attackObj.name;
-            stat = upgradeTier.attkStat;
-        }
-
-        player.Upgrade(upgradeTier.upgrade, upgradeTier.positiveUpgrade, upgradeTier.negativeUpgrade, name, stat);
+        player.Upgrade(upgradeTier);
 
 
         descriptionBox.SetTrigger("Play");

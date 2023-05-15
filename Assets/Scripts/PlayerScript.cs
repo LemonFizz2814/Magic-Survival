@@ -53,9 +53,6 @@ public class PlayerScript : MonoBehaviour
     float lightningTimer;
     float spikeSpawnTimer;
     float regenerationTimer;
-    float lazerStrikeTimer;
-    float chainLightningTimer;
-    float electricPulseTimer;
 
     private CameraTracking camTrack;
 
@@ -108,16 +105,15 @@ public class PlayerScript : MonoBehaviour
         public float lightningDamage;
         public float spikeDestroyDuration;
         public float spikeSpawnRate;
-        public float lazerRate;
-        public float lazerDMG;
-        public float grenadeRate;
-        public float grenadeDMG;
-        public float chainLightningDMG;
-        public float chainLightningRate;
-        public float electricPulseRate;
-        public float electricPulseDMG;
+        public float projectileDMGMultiplier;
+        public float electricityDMGMultiplier;
+        public float orbitalDMGMultiplier;
+        public float lazerDMGMultiplier;
         public float electricFieldRate;
         public float electricFieldDMG;
+
+        //This one is used to catch any errors by the reference methods (Such as GetAttributeDMG)
+        [HideInInspector] public float defaultVal;
 
     }
 
@@ -151,7 +147,7 @@ public class PlayerScript : MonoBehaviour
         lightningStrike,
         spike,
         lazerStrike,
-        grenadeThrow,
+        attributeDMG,
         chainLightning,
         electricPulse,
         electricField,
@@ -181,9 +177,6 @@ public class PlayerScript : MonoBehaviour
         sentriesFireRateTimer = upgradableStats.sentryFireRate;
         lightningTimer = upgradableStats.lightningRate;
         spikeSpawnTimer = upgradableStats.spikeSpawnRate;
-        lazerStrikeTimer = upgradableStats.lazerRate;
-        chainLightningTimer = upgradableStats.chainLightningRate;
-        electricPulseTimer = upgradableStats.electricPulseRate;
 
         if (allAttacks.Length > 0)
         {
@@ -231,9 +224,6 @@ public class PlayerScript : MonoBehaviour
         sentriesFireRateTimer -= Time.deltaTime;
         lightningTimer -= Time.deltaTime;
         spikeSpawnTimer -= Time.deltaTime;
-        lazerStrikeTimer -= Time.deltaTime;
-        chainLightningTimer -= Time.deltaTime;
-        electricPulseTimer -= Time.deltaTime;
 
         if (playingOnComputer)
         {
@@ -784,157 +774,152 @@ public class PlayerScript : MonoBehaviour
     }
 
     //attk name and stat are for scriptable object attacks
-    public void Upgrade(UPGRADES _upgrade, float _positiveUpgrade, float _negativeUpgrade, string _attkName = "",
-        UpgradeStats.ATTACKSTAT _stat = UpgradeStats.ATTACKSTAT.NONE)
+    public void Upgrade(UpgradeStats.upgradeTiers _upgradeStats)
     {
         SetPaused(false);
         Time.timeScale = 1;
 
-        BaseAttack attack = ScriptableObject.CreateInstance<BaseAttack>();
         bool isScriptableObject = false;
-        switch (_upgrade)
+        switch (_upgradeStats.upgrade)
         {
             //If there is no upgrade enum selected, use _attkName and _stat to upgrade the scriptable object
             case UPGRADES.none:
-                if (_attkName == "")
+                if (_upgradeStats.attackObj == null)
                 {
                     Debug.LogError("Upgrade Enum is set to none yet there is no name for the attack object to retrieve");
                     return;
                 }
 
-                attack = GetAttackByName(_attkName);
                 isScriptableObject = true;
                 break;
             case UPGRADES.playerSpeed:
-                upgradableStats.playerSpeed += _positiveUpgrade;
+                upgradableStats.playerSpeed += _upgradeStats.positiveUpgrade;
                 break;
             //Matthew: Sergio wants to remove the debuff for now
             case UPGRADES.maxHealth:
-                upgradableStats.maxHealth += (int)_positiveUpgrade;
-                //upgradableStats.playerSpeed /= _negativeUpgrade;
+                upgradableStats.maxHealth += (int)_upgradeStats.positiveUpgrade;
+                //upgradableStats.playerSpeed /= _upgradeStats.negativeUpgrade;
                 break;
             case UPGRADES.projectileSpeed:
-                upgradableStats.projectileSpeed += (int)_positiveUpgrade;
+                upgradableStats.projectileSpeed += (int)_upgradeStats.positiveUpgrade;
                 break;
             //TODO: Possibly need to get rid of this upgrade as it no longer works with bullet particles
             //case UPGRADES.fireRate:
-            //    upgradableStats.fireRate += _positiveUpgrade;
+            //    upgradableStats.fireRate += _upgradeStats.positiveUpgrade;
             //    break;
             //TODO: Change this to work with a new attack
             case UPGRADES.spread:
-                upgradableStats.accuracy += _positiveUpgrade;
-                upgradableStats.bulletDamage *= _negativeUpgrade;
+                upgradableStats.accuracy += _upgradeStats.positiveUpgrade;
+                upgradableStats.bulletDamage *= _upgradeStats.negativeUpgrade;
                 break;
             case UPGRADES.magnet:
-                upgradableStats.magnetStrength += _positiveUpgrade;
+                upgradableStats.magnetStrength += _upgradeStats.positiveUpgrade;
                 break;
             case UPGRADES.knockback:
-                upgradableStats.bulletKnockback += _positiveUpgrade;
+                upgradableStats.bulletKnockback += _upgradeStats.positiveUpgrade;
                 break;
             case UPGRADES.glassCannon:
-                attack = GetAttackByName(_attkName);
-                attack.currentDMG *= _positiveUpgrade;
-                upgradableStats.maxHealth /= _negativeUpgrade;
+                _upgradeStats.attackObj.currentDMG *= _upgradeStats.positiveUpgrade;
+                upgradableStats.maxHealth /= _upgradeStats.negativeUpgrade;
                 break;
             case UPGRADES.homing:
-                upgradableStats.homingStrength += _positiveUpgrade;
+                upgradableStats.homingStrength += _upgradeStats.positiveUpgrade;
                 onValueChanged.Invoke(upgradableStats.homingStrength, "Homing");
                 break;
             case UPGRADES.critical:
-                upgradableStats.criticalChance += (int)_positiveUpgrade;
+                upgradableStats.criticalChance += (int)_upgradeStats.positiveUpgrade;
                 break;
             //Matthew: Removing the debuff for now due to sergio's request + change to new attack
             case UPGRADES.sniper:
-                attack = GetAttackByName(_attkName);
-                attack.Range += _positiveUpgrade;
-                //attack.FireRate += _negativeUpgrade;
+                _upgradeStats.attackObj.Range += _upgradeStats.positiveUpgrade;
+                //attack.FireRate += _upgradeStats.negativeUpgrade;
                 break;
             //Matthew: removing the debuff here due to Sergio's request for now
             //case UPGRADES.extraProjectile:
             //    attack = GetAttackByName(_attkName);
-            //    attack.Amount += (int)_positiveUpgrade;
-            //    //upgradableStats.projectiles += (int)_positiveUpgrade;
-            //    //attack.currentDMG += _negativeUpgrade;
+            //    attack.Amount += (int)_upgradeStats.positiveUpgrade;
+            //    //upgradableStats.projectiles += (int)_upgradeStats.positiveUpgrade;
+            //    //attack.currentDMG += _upgradeStats.negativeUpgrade;
             //    break;
             //Matthew: Change this to make it work with a new attack
             case UPGRADES.submachineGun:
-                attack = GetAttackByName(_attkName);
-                attack.FireRate /= _positiveUpgrade;
-                attack.Range *= _negativeUpgrade;
+                _upgradeStats.attackObj.FireRate /= _upgradeStats.positiveUpgrade;
+                _upgradeStats.attackObj.Range *= _upgradeStats.negativeUpgrade;
                 break;
             case UPGRADES.regeneration:
-                upgradableStats.regeneration += _positiveUpgrade;
+                upgradableStats.regeneration += _upgradeStats.positiveUpgrade;
                 break;
             case UPGRADES.explosion:
-                upgradableStats.explosionSize += 1 + (_positiveUpgrade * 0.5f);
+                upgradableStats.explosionSize += 1 + (_upgradeStats.positiveUpgrade * 0.5f);
                 break;
             //Fix the misaligned spawning (Contact blake maybe)
             case UPGRADES.spinningSaw:
-                upgradableStats.sawSpinSpeed += _positiveUpgrade;
+                upgradableStats.sawSpinSpeed += _upgradeStats.positiveUpgrade;
                 AddSpinningSaw();
                 break;
             case UPGRADES.sentry:
-                upgradableStats.sentrySpinSpeed += _positiveUpgrade;
+                upgradableStats.sentrySpinSpeed += _upgradeStats.positiveUpgrade;
                 AddSentry();
                 break;
             //Will need to obtain bullet scriptable object here (may need future modifications)
             case UPGRADES.jackOfAllTrades:
-                attack = GetAttackByName(_attkName);
-                upgradableStats.maxHealth *= _positiveUpgrade;
-                upgradableStats.playerSpeed *= _positiveUpgrade;
-                attack.currentDMG *= _positiveUpgrade;
+                upgradableStats.maxHealth *= _upgradeStats.positiveUpgrade;
+                upgradableStats.playerSpeed *= _upgradeStats.positiveUpgrade;
+                _upgradeStats.attackObj.currentDMG *= _upgradeStats.positiveUpgrade;
                 break;
             case UPGRADES.distanceDamage:
-                upgradableStats.damageDistance += _positiveUpgrade;
+                upgradableStats.damageDistance += _upgradeStats.positiveUpgrade;
                 break;
             //Will need to be put in scriptable object (also target enemies, contact blake)
             case UPGRADES.lightningStrike:
-                upgradableStats.lightningRate += _positiveUpgrade;
+                upgradableStats.lightningRate += _upgradeStats.positiveUpgrade;
                 break;
             //Modify fire rate/amount
             case UPGRADES.spike:
-                upgradableStats.spikeSpawnRate += _positiveUpgrade;
+                upgradableStats.spikeSpawnRate += _upgradeStats.positiveUpgrade;
+                break;
+            case UPGRADES.attributeDMG:
+                SetAttributeDMG(_upgradeStats.attributeType, _upgradeStats.positiveUpgrade);
                 break;
             default:
-                Debug.LogWarning("Upgrade enum: " + _upgrade + "Does nothing");
+                Debug.LogWarning("Upgrade enum: " + _upgradeStats.upgrade + "Does nothing");
                 return;
-                break;
         }
 
         //Setting scriptable object values here (some upgrades may modify them outside of this bool check so check above this if statement)
         if (isScriptableObject)
         {
-            switch (_stat)
+            switch (_upgradeStats.attkStat)
             {
                 case UpgradeStats.ATTACKSTAT.FIRERATE:
-                    if (!attack.enableSpawn)
+                    if (!_upgradeStats.attackObj.enableSpawn)
                     {
-                        attack.enableSpawn = true;
+                        _upgradeStats.attackObj.enableSpawn = true;
                         //Upping the fire rate for bullet immediately
-                        if (attack.name == "Bullet") attack.FireRate += _positiveUpgrade;
+                        if (_upgradeStats.attackObj.name == "Bullet") _upgradeStats.attackObj.FireRate += _upgradeStats.positiveUpgrade;
 
                         //Enabling the electric field immediately
-                        if (attack.name == "Electric Field" && !electricField.activeSelf) electricField.SetActive(true);
+                        if (_upgradeStats.attackObj.name == "Electric Field" && !electricField.activeSelf) electricField.SetActive(true);
                     }
                     else
                     {
-                        attack.FireRate += _positiveUpgrade;
+                        _upgradeStats.attackObj.FireRate += _upgradeStats.positiveUpgrade;
                     }
                     break;
                 case UpgradeStats.ATTACKSTAT.DAMAGE:
-                    attack.currentDMG += _positiveUpgrade;
+                    _upgradeStats.attackObj.currentDMG += _upgradeStats.positiveUpgrade;
                     break;
                 case UpgradeStats.ATTACKSTAT.DURATION:
-                    attack.Duration += _positiveUpgrade;
+                    _upgradeStats.attackObj.Duration += _upgradeStats.positiveUpgrade;
                     break;
                 case UpgradeStats.ATTACKSTAT.RANGE:
-                    attack.Range += _positiveUpgrade;
+                    _upgradeStats.attackObj.Range += _upgradeStats.positiveUpgrade;
                     break;
                 case UpgradeStats.ATTACKSTAT.SPEED:
-                    attack.Speed += _positiveUpgrade;
+                    _upgradeStats.attackObj.Speed += _upgradeStats.positiveUpgrade;
                     break;
                 case UpgradeStats.ATTACKSTAT.AMOUNT:
-                    attack.Amount += (int)_positiveUpgrade;
+                    _upgradeStats.attackObj.Amount += (int)_upgradeStats.positiveUpgrade;
                     break;
             }
         }
@@ -942,6 +927,33 @@ public class PlayerScript : MonoBehaviour
         UpdateStats();
 
         uiManager.ShowUpgradeUI(upgradeManager.CheckQueue());
+    }
+
+    //Sets the dmg value for damage multipliers
+    private void SetAttributeDMG(BaseAttack.ATTRIBUTE _attribute, float _addedValue)
+    {
+        upgradableStats.defaultVal = 0.0f;
+
+        //Add modifiers in the order of Attack Stat enum (dmg, speed, firerate, duration, range, amount
+        switch (_attribute)
+        {
+            case BaseAttack.ATTRIBUTE.ELECTRICITY:
+                upgradableStats.electricityDMGMultiplier += _addedValue;
+                break;
+            case BaseAttack.ATTRIBUTE.ORBITAL_STRIKE:
+                upgradableStats.orbitalDMGMultiplier += _addedValue;
+                break;
+            case BaseAttack.ATTRIBUTE.PROJECTILE:
+                upgradableStats.projectileDMGMultiplier += _addedValue;
+                break;
+            case BaseAttack.ATTRIBUTE.LAZER:
+                upgradableStats.lazerDMGMultiplier += _addedValue;
+                break;
+            case BaseAttack.ATTRIBUTE.NONE:
+            default:
+                Debug.LogError("Attribute not selected. Upgrade not applied");
+                break;
+        }
     }
 
     public void SetWalkAnimation()

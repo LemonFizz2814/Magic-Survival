@@ -90,7 +90,8 @@ public class LightningChain : MonoBehaviour
                     if (attkTimer >= attackRate)
                     {
                         //Debug.Log(attkTimer);
-                        target.DamageEnemy(player.GetUpgradableStats().chainLightningDMG, true);
+                        float totalDMG = target.CalculateDMG(player.GetAttackByName("Chain Lightning"));
+                        target.DamageEnemy(totalDMG, true);
                         
                         hitNum++;
                         attkTimer = 0;

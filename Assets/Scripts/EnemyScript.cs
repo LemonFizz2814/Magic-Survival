@@ -125,7 +125,7 @@ public class EnemyScript : MonoBehaviour
 
         if (other.CompareTag("Projectile"))
         {
-            //For particle system related collisions, check projectile script OnParticleCollision
+            //For particle system related collisions, check projParticle script onParticleCollision
             //Debug.Log("Collision works");
             HitByBullet(other.gameObject, other.transform.position);
         }
@@ -139,12 +139,12 @@ public class EnemyScript : MonoBehaviour
         }
         if (other.CompareTag("Spike"))
         {
-            DamageEnemy(playerScript.GetUpgradableStats().bulletDamage / 4, true);
+            DamageEnemy(CalculateDMG(playerScript.GetAttackByName("Bullet")) / 4, true);
         }
 
         if (other.CompareTag("LazerStrike"))
         {
-            DamageEnemy(playerScript.GetUpgradableStats().lazerDMG, true);
+            DamageEnemy(CalculateDMG(playerScript.GetAttackByName("Lazer Strike")), true);
         }
 
         if (other.CompareTag("ElectricPulse"))
@@ -152,7 +152,7 @@ public class EnemyScript : MonoBehaviour
             //Matthew: If anyone is curious, the electric pulse VFX prefab is using the lazer strike script
             //because they are similar to each other so it didn't take much for me to tweak the code for this
             BaseAttack attack = playerScript.GetAttackByName("Electric Pulse");
-            DamageEnemy(attack.currentDMG, true);
+            DamageEnemy(CalculateDMG(attack), true);
 
         }
 
@@ -179,7 +179,7 @@ public class EnemyScript : MonoBehaviour
             BaseAttack attack = playerScript.GetAttackByName("Electric Field");
             if (attack.SpawnCheck())
             {
-                DamageEnemy(attack.currentDMG, true);
+                DamageEnemy(CalculateDMG(attack), true);
             }
             //Debug.Log("electric field works");
         }
@@ -194,7 +194,7 @@ public class EnemyScript : MonoBehaviour
         proj.StartExplosion(transform.position);
 
 
-        DamageEnemy(bulletStats.currentDMG, false);
+        DamageEnemy(CalculateDMG(bulletStats), false);
         Knockback();
 
         Vector3 direction = transform.position - _pos;
@@ -219,6 +219,36 @@ public class EnemyScript : MonoBehaviour
     public void SetPaused(bool _pause)
     {
         paused = _pause;
+    }
+
+    //Return the damage after adding in all the bonus damage multipliers from attributes
+    public float CalculateDMG(BaseAttack _attack)
+    {
+        if (_attack.bonusEffects.Count < 1) return _attack.currentDMG;
+
+        PlayerScript.UpgradableStats stats = playerScript.GetUpgradableStats();
+        float bonusDMG = 0.0f;
+
+        foreach (BaseAttack.ATTRIBUTE statAttribute in _attack.bonusEffects)
+        {
+            switch (statAttribute)
+            {
+                case BaseAttack.ATTRIBUTE.ELECTRICITY:
+                    bonusDMG += (_attack.currentDMG * stats.electricityDMGMultiplier);
+                    break;
+                case BaseAttack.ATTRIBUTE.LAZER:
+                    bonusDMG += (_attack.currentDMG * stats.lazerDMGMultiplier);
+                    break;
+                case BaseAttack.ATTRIBUTE.ORBITAL_STRIKE:
+                    bonusDMG += (_attack.currentDMG * stats.orbitalDMGMultiplier);
+                    break;
+                case BaseAttack.ATTRIBUTE.PROJECTILE:
+                    bonusDMG += (_attack.currentDMG * stats.projectileDMGMultiplier);
+                    break;
+            }
+        }
+
+        return _attack.currentDMG + bonusDMG;
     }
 
     public void DamageEnemy(float _damage, bool _setDamage)

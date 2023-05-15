@@ -26,6 +26,7 @@ public class UpgradeStats : MonoBehaviour
 
         [Header("Player & special stat upgrade")]
         public PlayerScript.UPGRADES upgrade;
+        public BaseAttack.ATTRIBUTE attributeType;
 
         [Header("Attack stat upgrade")]
         public BaseAttack attackObj;
