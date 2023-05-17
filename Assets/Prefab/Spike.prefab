@@ -4924,18 +4924,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6958959889192200107}
     m_Modifications:
-    - target: {fileID: 6203482952669351258, guid: b2a8abd384c775043b0109277a8dca1b, type: 3}
-      propertyPath: CollisionModule.enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6203482952669351258, guid: b2a8abd384c775043b0109277a8dca1b, type: 3}
-      propertyPath: CollisionModule.collisionMessages
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6203482952669351258, guid: b2a8abd384c775043b0109277a8dca1b, type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 6203482952669351259, guid: b2a8abd384c775043b0109277a8dca1b, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -4984,75 +4972,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lazer Spike (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 6203482953333961543, guid: b2a8abd384c775043b0109277a8dca1b, type: 3}
-      propertyPath: ShapeModule.type
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6203482953333961543, guid: b2a8abd384c775043b0109277a8dca1b, type: 3}
-      propertyPath: CollisionModule.type
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6203482953333961543, guid: b2a8abd384c775043b0109277a8dca1b, type: 3}
-      propertyPath: CollisionModule.enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6203482953333961543, guid: b2a8abd384c775043b0109277a8dca1b, type: 3}
-      propertyPath: InitialModule.rotation3D
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6203482953333961543, guid: b2a8abd384c775043b0109277a8dca1b, type: 3}
-      propertyPath: CollisionModule.radiusScale
-      value: 0.0001
-      objectReference: {fileID: 0}
-    - target: {fileID: 6203482953333961543, guid: b2a8abd384c775043b0109277a8dca1b, type: 3}
-      propertyPath: ShapeModule.radiusThickness
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6203482953333961543, guid: b2a8abd384c775043b0109277a8dca1b, type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 6203482953333961543, guid: b2a8abd384c775043b0109277a8dca1b, type: 3}
-      propertyPath: CollisionModule.m_Bounce.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6203482953333961543, guid: b2a8abd384c775043b0109277a8dca1b, type: 3}
-      propertyPath: CollisionModule.collisionMessages
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6203482953333961543, guid: b2a8abd384c775043b0109277a8dca1b, type: 3}
-      propertyPath: CollisionModule.collidesWith.m_Bits
-      value: 1024
-      objectReference: {fileID: 0}
-    - target: {fileID: 6203482953333961543, guid: b2a8abd384c775043b0109277a8dca1b, type: 3}
-      propertyPath: CollisionModule.collidesWithDynamic
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6203482953333961543, guid: b2a8abd384c775043b0109277a8dca1b, type: 3}
-      propertyPath: InitialModule.startRotationX.scalar
-      value: -1.5707963
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3121812060955585452, guid: b2a8abd384c775043b0109277a8dca1b, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2a8abd384c775043b0109277a8dca1b, type: 3}
---- !u!1 &4962501500778321274 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6203482953333961542, guid: b2a8abd384c775043b0109277a8dca1b, type: 3}
-  m_PrefabInstance: {fileID: 1353729927669966396}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &9095552213970417995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4962501500778321274}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ac39941e0054a4439415ae3008f5795, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SpikeHitbox: {fileID: 8843206394499513653, guid: e9238e46f9d4a9d4d87976015e912ecf, type: 3}
 --- !u!4 &4962501501069634407 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6203482952669351259, guid: b2a8abd384c775043b0109277a8dca1b, type: 3}

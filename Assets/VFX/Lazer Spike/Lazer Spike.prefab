@@ -4898,7 +4898,7 @@ GameObject:
   - component: {fileID: 6203482953333961541}
   - component: {fileID: 6203482953333961543}
   - component: {fileID: 6203482953333961540}
-  - component: {fileID: 5788145582087075859}
+  - component: {fileID: 1506848830668213800}
   m_Layer: 0
   m_Name: Lazer Spike
   m_TagString: Untagged
@@ -5549,7 +5549,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 12
+    type: 0
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -8728,15 +8728,15 @@ ParticleSystem:
         m_RotationOrder: 4
     minKillSpeed: 0
     maxKillSpeed: 10000
-    radiusScale: 0.0001
+    radiusScale: 0.015
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 1024
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
     collisionMessages: 1
-    collidesWithDynamic: 1
+    collidesWithDynamic: 0
     interiorCollisions: 0
   TriggerModule:
     enabled: 0
@@ -9758,7 +9758,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &5788145582087075859
+--- !u!114 &1506848830668213800
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

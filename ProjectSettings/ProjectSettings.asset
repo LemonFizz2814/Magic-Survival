@@ -163,9 +163,9 @@ PlayerSettings:
     iPhone: 0
     tvOS: 0
   overrideDefaultApplicationIdentifier: 0
-  AndroidBundleVersionCode: 6
+  AndroidBundleVersionCode: 7
   AndroidMinSdkVersion: 22
-  AndroidTargetSdkVersion: 0
+  AndroidTargetSdkVersion: 31
   AndroidPreferredInstallLocation: 1
   aotOptions: 
   stripEngineCode: 1
@@ -240,12 +240,12 @@ PlayerSettings:
   clonedFromGUID: c0afd0d1d80e3634a9dac47e8a0426ea
   templatePackageId: com.unity.template.3d@5.0.4
   templateDefaultScene: Assets/Scenes/SampleScene.unity
-  useCustomMainManifest: 1
+  useCustomMainManifest: 0
   useCustomLauncherManifest: 0
-  useCustomMainGradleTemplate: 1
+  useCustomMainGradleTemplate: 0
   useCustomLauncherGradleManifest: 0
-  useCustomBaseGradleTemplate: 0
-  useCustomGradlePropertiesTemplate: 1
+  useCustomBaseGradleTemplate: 1
+  useCustomGradlePropertiesTemplate: 0
   useCustomProguardFile: 0
   AndroidTargetArchitectures: 3
   AndroidTargetDevices: 0
@@ -266,7 +266,7 @@ PlayerSettings:
     banner: {fileID: 0}
   androidGamepadSupportLevel: 0
   chromeosInputEmulation: 1
-  AndroidMinifyWithR8: 1
+  AndroidMinifyWithR8: 0
   AndroidMinifyRelease: 0
   AndroidMinifyDebug: 0
   AndroidValidateAppBundleSize: 1
@@ -797,7 +797,13 @@ PlayerSettings:
   activeInputHandler: 0
   cloudProjectId: 79c5fca6-0256-4163-8331-aefcf27632ab
   framebufferDepthMemorylessMode: 0
-  qualitySettingsNames: []
+  qualitySettingsNames:
+  - Very Low
+  - Low
+  - Medium
+  - High
+  - Very High
+  - Ultra
   projectName: Magic Survival (1)
   organizationId: cordless-games
   cloudEnabled: 0
