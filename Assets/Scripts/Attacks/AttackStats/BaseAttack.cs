@@ -16,7 +16,8 @@ public class BaseAttack : ScriptableObject
         ELECTRICITY,
         PROJECTILE,
         ORBITAL_STRIKE,
-        LAZER
+        LAZER,
+        EXPLOSIVE,
     }
     
     //Use this to find out how to spawn the object
@@ -34,6 +35,8 @@ public class BaseAttack : ScriptableObject
 
     [Header("Spawn Settings")]
     public bool enableSpawn = false;
+    public bool immediateSpawn = false;     //Matthew: USE THIS ONLY FOR ATTACKS THAT ARE PLAYER CHILD OBJECTS
+                                            //(Check GetPlayerAttackObj in PlayerScript)
     private float spawnTimer = 0.0f;
     public SPAWNTYPE spawnSource = SPAWNTYPE.POOL;
 

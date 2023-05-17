@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class PlayerScript : MonoBehaviour
 {
+    [Header("Player spawned attacks (Check child objects)")]
     public ParticleSystem projectile;
     public GameObject spinningSawObject;
     public GameObject sentryObject;
@@ -14,12 +15,18 @@ public class PlayerScript : MonoBehaviour
     public GameObject grenadeThrow;
     public GameObject electricPulse;
     public GameObject electricField;
+    public GameObject ringShot;
+    public ParticleSystem lightningVFX;
 
+    [Header("Other player child objects")]
     public GameObject playerModel;
     public Animator modelAnimator;
-
+    public ParticleSystem playerHurtVFX;
+    public ParticleSystem absorbVFX;
     public Transform muzzleVFX;
 
+
+    [Header("UI related scripts")]
     public InGameUIManager inGameUI;
     public MenuUIManager menuUI;
     public UpgradeManager upgradeManager;
@@ -27,15 +34,14 @@ public class PlayerScript : MonoBehaviour
     public UpgradeStats upgradeStats;
     public PlayerMovement playerMovement;
     public Joystick aimingJoystick;
+
+    [Header("Manager scripts")]
     public PoolingManager poolingManager;
     public EnemySpawner enemySpawner;
 
     public CustomizeMenuManager customizeMenuManager;
 
-    public ParticleSystem playerHurtVFX;
-    public ParticleSystem absorbVFX;
-    public ParticleSystem lightningVFX;
-
+    [Header("Player stats")]
     public int xpToLevelUp;
     public float xpIncr;
     public float maxHealthLevelUp;
@@ -109,14 +115,11 @@ public class PlayerScript : MonoBehaviour
         public float electricityDMGMultiplier;
         public float orbitalDMGMultiplier;
         public float lazerDMGMultiplier;
-        public float electricFieldRate;
-        public float electricFieldDMG;
-
-        //This one is used to catch any errors by the reference methods (Such as GetAttributeDMG)
-        [HideInInspector] public float defaultVal;
+        public float explosiveDMGMultiplier;
 
     }
 
+    [Header("Upgrade stats and attacks")]
     [SerializeField] private UpgradableStats upgradableStats;
     [SerializeField] private BaseAttack[] allAttacks;
     public UnityEvent<float, string> onValueChanged = new UnityEvent<float, string>();
@@ -387,26 +390,10 @@ public class PlayerScript : MonoBehaviour
             //and check if it has not been activated
             if (attack.spawnSource == BaseAttack.SPAWNTYPE.PLAYER)
             {
-                GameObject playerVFX = electricField;   //Assigning it Electric field to prevent errors
-                switch (attack.name)
-                {
-                    case "Electric Pulse":
-                        playerVFX = electricPulse;
-                        break;
-                    case "Grenade Throw":
-                        playerVFX = grenadeThrow;
-                        break;
-                    case "Electric Field":
-                        playerVFX = electricField;
-                        break;
-                    default:
-                        attackNameFound = false;
-                        Debug.LogError(attack.name + " does not spawn any attacks on the player. " +
-                            "Please double check the name (Matthew)");
-                        break;
-                }
+                GameObject playerVFX = GetPlayerAttackObj(attack.name);   //Assigning it Electric field to prevent errors
+                
 
-                if (attackNameFound && !playerVFX.activeSelf) playerVFX.SetActive(true);
+                if (playerVFX != null && !playerVFX.activeSelf) playerVFX.SetActive(true);
                 continue;
             }
 
@@ -898,8 +885,11 @@ public class PlayerScript : MonoBehaviour
                         //Upping the fire rate for bullet immediately
                         if (_upgradeStats.attackObj.name == "Bullet") _upgradeStats.attackObj.FireRate += _upgradeStats.positiveUpgrade;
 
-                        //Enabling the electric field immediately
-                        if (_upgradeStats.attackObj.name == "Electric Field" && !electricField.activeSelf) electricField.SetActive(true);
+                        //Enabling the attack immediately if required
+                        if (!_upgradeStats.attackObj.immediateSpawn) return;
+
+                        GameObject playerAttack = GetPlayerAttackObj(_upgradeStats.attackObj.name);
+                        playerAttack.SetActive(true);
                     }
                     else
                     {
@@ -932,7 +922,6 @@ public class PlayerScript : MonoBehaviour
     //Sets the dmg value for damage multipliers
     private void SetAttributeDMG(BaseAttack.ATTRIBUTE _attribute, float _addedValue)
     {
-        upgradableStats.defaultVal = 0.0f;
 
         //Add modifiers in the order of Attack Stat enum (dmg, speed, firerate, duration, range, amount
         switch (_attribute)
@@ -948,6 +937,9 @@ public class PlayerScript : MonoBehaviour
                 break;
             case BaseAttack.ATTRIBUTE.LAZER:
                 upgradableStats.lazerDMGMultiplier += _addedValue;
+                break;
+            case BaseAttack.ATTRIBUTE.EXPLOSIVE:
+                upgradableStats.explosiveDMGMultiplier += _addedValue;
                 break;
             case BaseAttack.ATTRIBUTE.NONE:
             default:
@@ -1005,6 +997,30 @@ public class PlayerScript : MonoBehaviour
         UpdateMaxHealth();
         inGameUI.UpdateHealthBar(health, upgradableStats.maxHealth);
         playerMovement.UpdateMovemnentSpeed(upgradableStats.playerSpeed);
+    }
+
+    //Retrieve a player attack child object (Check the VFX child object under the player prefab)
+    private GameObject GetPlayerAttackObj(string _name)
+    {
+        switch (_name)
+        {
+            case "Electric Pulse":
+                return electricPulse;
+                break;
+            case "Grenade Throw":
+                return grenadeThrow;
+                break;
+            case "Electric Field":
+                return electricField;
+                break;
+            case "Ring Shot":
+                return ringShot;
+                break;
+            default:
+                Debug.LogError(_name + " does not spawn any attacks on the player. " +
+                    "Please double check the name (Matthew)");
+                return null;
+        }
     }
 
     void TestForScriptableObject(BaseAttack _bullet)

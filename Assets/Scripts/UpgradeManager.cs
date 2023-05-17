@@ -129,8 +129,9 @@ public class UpgradeManager : MonoBehaviour
     public void DebugSelectOptions(KeyCode _key)
     {
         List<int> listOfUpgrades = new List<int>();
-
         int iPicks = 0;
+
+
         List<UpgradeStats.upgradeTiers> upgrades = upgradeStats.GetUpgradeStats();
         for(int i = 0; i < upgrades.Count; i++)
         {
@@ -150,10 +151,27 @@ public class UpgradeManager : MonoBehaviour
                 break;
             }
         }
+
+        //Add a random upgrade to fill out the remaining UI slots
+        while (iPicks < 3)
+        {
+            listOfUpgrades.Add(Random.Range(0, upgrades.Count));
+            iPicks++;
+
+            if (iPicks == 3)
+            {
+                arrayOfUpgrades = listOfUpgrades.ToArray();
+                for (int j = 0; j < listOfUpgrades.Count; j++)
+                {
+                    PickOption(j, listOfUpgrades[j]);
+                }
+            }
+        }
         
     }
 
     //Displays selected upgrade to UI
+    //(i = the UI icon slot, num = the element in the array of upgrades
     void PickOption(int _i, int _num)
     {
         //remove that upgrade from the list of upgrades to choose from

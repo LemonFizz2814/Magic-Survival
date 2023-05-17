@@ -14,15 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
   description: 
-  enableSpawn: 1
+  enableSpawn: 0
+  immediateSpawn: 0
   spawnSource: 1
   poolType: 8
   currentDMG: 10
-  bonusEffects: 
+  bonusEffects: 0400000003000000
   currentSpeed: 0
-  currentFireRate: 18
+  currentFireRate: 1
   currentDuration: 0
   currentRange: 6
+  currentAmount: 1
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -36,3 +38,5 @@ MonoBehaviour:
   maxDuration: 0
   minRange: 6
   maxRange: 0
+  minAmount: 1
+  maxAmount: 0

@@ -15,14 +15,16 @@ MonoBehaviour:
   icon: {fileID: 0}
   description: 
   enableSpawn: 0
+  immediateSpawn: 0
   spawnSource: 0
   poolType: 2
   currentDMG: 8
-  bonusEffects: 
+  bonusEffects: 05000000
   currentSpeed: 0
-  currentFireRate: 1
+  currentFireRate: 0
   currentDuration: 0
   currentRange: 0
+  currentAmount: 1
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -36,3 +38,5 @@ MonoBehaviour:
   maxDuration: 0
   minRange: 0
   maxRange: 0
+  minAmount: 1
+  maxAmount: 0

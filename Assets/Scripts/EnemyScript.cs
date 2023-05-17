@@ -245,6 +245,9 @@ public class EnemyScript : MonoBehaviour
                 case BaseAttack.ATTRIBUTE.PROJECTILE:
                     bonusDMG += (_attack.currentDMG * stats.projectileDMGMultiplier);
                     break;
+                case BaseAttack.ATTRIBUTE.EXPLOSIVE:
+                    bonusDMG += (_attack.currentDMG * stats.explosiveDMGMultiplier);
+                    break;
             }
         }
 

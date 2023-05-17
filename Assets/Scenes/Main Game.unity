@@ -23326,7 +23326,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2071350927
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24219,7 +24219,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.size
-      value: 30
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[4].icon
@@ -24326,6 +24326,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 197a7a2c70120884e8e16e86a166080b, type: 3}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[30].icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 197a7a2c70120884e8e16e86a166080b, type: 3}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[31].icon
+      value: 
+      objectReference: {fileID: 21300000, guid: d1485ee15a4e80d499fadfdd15311363, type: 3}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[32].icon
+      value: 
+      objectReference: {fileID: 21300000, guid: d19a9cb676490aa40bd1446de7c27d7c, type: 3}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[33].icon
+      value: 
+      objectReference: {fileID: 21300000, guid: d67422f579320d844b2d2f279b1cd2b8, type: 3}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[4].upgrade
       value: 5
       objectReference: {fileID: 0}
@@ -24416,6 +24432,22 @@ PrefabInstance:
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[2].debugKey
       value: 113
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[30].upgrade
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[31].upgrade
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[32].upgrade
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[33].upgrade
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[3].debugKey
@@ -24550,6 +24582,38 @@ PrefabInstance:
       value: 102
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[30].attkStat
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[30].debugKey
+      value: 103
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[31].attkStat
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[31].debugKey
+      value: 103
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[32].attkStat
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[32].debugKey
+      value: 103
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[33].attkStat
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[33].debugKey
+      value: 104
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[5].attackObj
       value: 
       objectReference: {fileID: 0}
@@ -24613,6 +24677,10 @@ PrefabInstance:
       propertyPath: upgradeStats.Array.data[29].attackObj
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[33].attackObj
+      value: 
+      objectReference: {fileID: 11400000, guid: f1613865c997ff24b820592681894126, type: 2}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[4].upgradeName
       value: Spread
@@ -24718,12 +24786,44 @@ PrefabInstance:
       value: Lazer DMG Bonus
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[30].upgradeName
+      value: Orbital DMG bonus
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[31].upgradeName
+      value: Projectile DMG bonus
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[32].upgradeName
+      value: Explosive DMG bonus
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[33].upgradeName
+      value: Ring Shot
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[28].attributeType
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[29].attributeType
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[30].attributeType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[31].attributeType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[32].attributeType
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[33].attributeType
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[1].negativeUpgrade
@@ -24870,6 +24970,22 @@ PrefabInstance:
       value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[30].positiveUpgrade
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[31].positiveUpgrade
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[32].positiveUpgrade
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[33].positiveUpgrade
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[1].upgradeDescription
       value: Increase max health
       objectReference: {fileID: 0}
@@ -24977,6 +25093,22 @@ PrefabInstance:
       propertyPath: upgradeStats.Array.data[29].upgradeDescription
       value: 15% extra DMG to all lazer attacks
       objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[30].upgradeDescription
+      value: 15% extra DMG to all orbital attacks
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[31].upgradeDescription
+      value: 15% extra DMG to all Projectile attacks
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[32].upgradeDescription
+      value: 15% extra DMG to all explosive attacks
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[33].upgradeDescription
+      value: Spawns in ring shots
+      objectReference: {fileID: 0}
     - target: {fileID: 1276238983344249789, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: menuUI
       value: 
@@ -25011,7 +25143,7 @@ PrefabInstance:
       objectReference: {fileID: 1103714597}
     - target: {fileID: 1276238983344249789, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: allDebugKeys.Array.size
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1276238983344249789, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: allDebugKeys.Array.data[0]
@@ -25052,6 +25184,14 @@ PrefabInstance:
     - target: {fileID: 1276238983344249789, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: allDebugKeys.Array.data[9]
       value: 102
+      objectReference: {fileID: 0}
+    - target: {fileID: 1276238983344249789, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: allDebugKeys.Array.data[10]
+      value: 103
+      objectReference: {fileID: 0}
+    - target: {fileID: 1276238983344249789, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: allDebugKeys.Array.data[11]
+      value: 104
       objectReference: {fileID: 0}
     - target: {fileID: 4422367855720157847, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: WorldChunks.Array.data[0]
