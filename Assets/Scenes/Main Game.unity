@@ -17110,7 +17110,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 949cacd14c2337c4e914644e106f80bc, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.471
   m_Pitch: 1.5
   Loop: 1
   Mute: 0
@@ -24312,31 +24312,31 @@ PrefabInstance:
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[26].icon
       value: 
-      objectReference: {fileID: 21300000, guid: 197a7a2c70120884e8e16e86a166080b, type: 3}
+      objectReference: {fileID: 21300000, guid: d9cb937553d50a444adba671f788591e, type: 3}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[27].icon
       value: 
-      objectReference: {fileID: 21300000, guid: 5d4469babcaeb49449d9d3ba13ef676c, type: 3}
+      objectReference: {fileID: 21300000, guid: 0dd0c95c5cb58e243a4b9c4c579205e6, type: 3}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[28].icon
       value: 
-      objectReference: {fileID: 21300000, guid: 67d9834ba93c0ee43a80ebd4a3c028f3, type: 3}
+      objectReference: {fileID: 21300000, guid: 609b378c275c4fc43aa1c2205d1ba657, type: 3}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[29].icon
       value: 
-      objectReference: {fileID: 21300000, guid: 197a7a2c70120884e8e16e86a166080b, type: 3}
+      objectReference: {fileID: 21300000, guid: 536c8d7c7d56a014c91dd70a1807e2cc, type: 3}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[30].icon
       value: 
-      objectReference: {fileID: 21300000, guid: 197a7a2c70120884e8e16e86a166080b, type: 3}
+      objectReference: {fileID: 21300000, guid: 10217f61a59e5d647ac4762c17095fef, type: 3}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[31].icon
       value: 
-      objectReference: {fileID: 21300000, guid: d1485ee15a4e80d499fadfdd15311363, type: 3}
+      objectReference: {fileID: 21300000, guid: 2c86e34627056074b860d73ef94ea0d3, type: 3}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[32].icon
       value: 
-      objectReference: {fileID: 21300000, guid: d19a9cb676490aa40bd1446de7c27d7c, type: 3}
+      objectReference: {fileID: 21300000, guid: 61769d42ecf7ded4eaf3e5e780465255, type: 3}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[33].icon
       value: 
@@ -24823,7 +24823,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[33].attributeType
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[1].negativeUpgrade
