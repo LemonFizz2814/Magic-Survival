@@ -36,6 +36,12 @@ public class Grenade : ProjParticles
     protected override void MultiShotUpDate()
     {
         base.MultiShotUpDate();
+       
+        /*ParticleSystem.EmissionModule emission = PS.emission;
+        PlayerScript.UpgradableStats stats = player.GetUpgradableStats();
+
+        ParticleSystem.Burst burst = emission.GetBurst(0);
+        burst.count = stats.projectiles;*/
     }
 
     protected override void BulletRangeUpDate()

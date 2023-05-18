@@ -905,7 +905,9 @@ public class PlayerScript : MonoBehaviour
                     }
                     else
                     {
-                        _upgradeStats.attackObj.FireRate += _upgradeStats.positiveUpgrade;
+                        //_upgradeStats.attackObj.FireRate += _upgradeStats.positiveUpgrade;
+                        _upgradeStats.attackObj.FireRate = FirerateLevel + _upgradeStats.positiveUpgrade;
+                        FirerateLevel += _upgradeStats.positiveUpgrade;
                     }
                     break;
                 case UpgradeStats.ATTACKSTAT.DAMAGE:

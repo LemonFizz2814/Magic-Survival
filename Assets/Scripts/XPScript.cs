@@ -9,7 +9,7 @@ public class XPScript : MonoBehaviour
     public float speed;
     public float maxSpeed;
     float magnetRange;
-    int xpGain = 1;
+    public int xpGain = 1;
 
     public void Awake()
     {
@@ -44,6 +44,6 @@ public class XPScript : MonoBehaviour
     }
     public void SetXPGain(int _xp)
     {
-        xpGain = _xp;
+        xpGain = _xp * 2;
     }
 }

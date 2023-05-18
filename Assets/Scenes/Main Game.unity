@@ -7881,6 +7881,7 @@ MonoBehaviour:
   despawnDistance: 100
   speed: 5
   maxSpeed: 10
+  xpGain: 100
 --- !u!65 &1212741740
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8270,6 +8271,7 @@ MonoBehaviour:
   despawnDistance: 100
   speed: 5
   maxSpeed: 10
+  xpGain: 100
 --- !u!65 &1248724203
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14935,6 +14937,7 @@ MonoBehaviour:
   despawnDistance: 100
   speed: 5
   maxSpeed: 10
+  xpGain: 100
 --- !u!65 &1675964264
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16367,6 +16370,7 @@ MonoBehaviour:
   despawnDistance: 100
   speed: 5
   maxSpeed: 10
+  xpGain: 100
 --- !u!65 &1850640564
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16567,6 +16571,7 @@ MonoBehaviour:
   despawnDistance: 100
   speed: 5
   maxSpeed: 10
+  xpGain: 100
 --- !u!65 &1866311395
 BoxCollider:
   m_ObjectHideFlags: 0
