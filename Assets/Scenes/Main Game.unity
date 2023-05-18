@@ -24219,7 +24219,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.size
-      value: 34
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[4].icon
@@ -24341,6 +24341,10 @@ PrefabInstance:
       propertyPath: upgradeStats.Array.data[33].icon
       value: 
       objectReference: {fileID: 21300000, guid: d67422f579320d844b2d2f279b1cd2b8, type: 3}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[34].icon
+      value: 
+      objectReference: {fileID: 21300000, guid: cafeda52255dfcd4ebff23160fd51383, type: 3}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[4].upgrade
       value: 5
@@ -24614,6 +24618,14 @@ PrefabInstance:
       value: 104
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[34].attkStat
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[34].debugKey
+      value: 104
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[5].attackObj
       value: 
       objectReference: {fileID: 0}
@@ -24681,6 +24693,10 @@ PrefabInstance:
       propertyPath: upgradeStats.Array.data[33].attackObj
       value: 
       objectReference: {fileID: 11400000, guid: f1613865c997ff24b820592681894126, type: 2}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[34].attackObj
+      value: 
+      objectReference: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[4].upgradeName
       value: Spread
@@ -24802,6 +24818,10 @@ PrefabInstance:
       value: Ring Shot
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[34].upgradeName
+      value: Bullet Range
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[28].attributeType
       value: 1
       objectReference: {fileID: 0}
@@ -24836,6 +24856,10 @@ PrefabInstance:
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[1].negativeUpgrade
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[3].positiveUpgrade
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[4].negativeUpgrade
@@ -24994,6 +25018,10 @@ PrefabInstance:
       value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[34].positiveUpgrade
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[1].upgradeDescription
       value: Increase max health
       objectReference: {fileID: 0}
@@ -25116,6 +25144,10 @@ PrefabInstance:
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[33].upgradeDescription
       value: Spawns in ring shots
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[34].upgradeDescription
+      value: Inceases projectile range
       objectReference: {fileID: 0}
     - target: {fileID: 1276238983344249789, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: menuUI
