@@ -6,6 +6,12 @@ using UnityEngine.Events;
 
 public class PlayerScript : MonoBehaviour
 {
+    //Sergio Made a rough patch here. Bullet Firerate, speed and range was not upgrading reltive to the level. Ask for more details.
+    private float FirerateLevel = 1;
+    private float SpeedLevel = 1;
+    private float RangeLevel = 1;
+
+
     [Header("Player spawned attacks (Check child objects)")]
     public ParticleSystem projectile;
     public GameObject spinningSawObject;
@@ -881,9 +887,15 @@ public class PlayerScript : MonoBehaviour
                 case UpgradeStats.ATTACKSTAT.FIRERATE:
                     if (!_upgradeStats.attackObj.enableSpawn)
                     {
+                        //Sergio Made a rough patch here. Bullet Firerate was not upgrading reltive to the level. Ask for more details.
                         _upgradeStats.attackObj.enableSpawn = true;
                         //Upping the fire rate for bullet immediately
-                        if (_upgradeStats.attackObj.name == "Bullet") _upgradeStats.attackObj.FireRate += _upgradeStats.positiveUpgrade;
+                        if (_upgradeStats.attackObj.name == "Bullet")
+                        {
+                            //_upgradeStats.attackObj.FireRate += _upgradeStats.positiveUpgrade;
+                            _upgradeStats.attackObj.FireRate = FirerateLevel + _upgradeStats.positiveUpgrade;
+                            FirerateLevel += _upgradeStats.positiveUpgrade;
+                        }
 
                         //Enabling the attack immediately if required
                         if (!_upgradeStats.attackObj.immediateSpawn) return;
@@ -903,10 +915,16 @@ public class PlayerScript : MonoBehaviour
                     _upgradeStats.attackObj.Duration += _upgradeStats.positiveUpgrade;
                     break;
                 case UpgradeStats.ATTACKSTAT.RANGE:
-                    _upgradeStats.attackObj.Range += _upgradeStats.positiveUpgrade;
+                    //Sergio Made a rough patch here. Bullet range was not upgrading reltive to the level. Ask for more details.
+                    //_upgradeStats.attackObj.Range += _upgradeStats.positiveUpgrade;
+                    _upgradeStats.attackObj.Range = RangeLevel + _upgradeStats.positiveUpgrade;
+                    RangeLevel += _upgradeStats.positiveUpgrade;
                     break;
                 case UpgradeStats.ATTACKSTAT.SPEED:
-                    _upgradeStats.attackObj.Speed += _upgradeStats.positiveUpgrade;
+                    //Sergio Made a rough patch here. Bullet speed was not upgrading reltive to the level. Ask for more details.
+                    //_upgradeStats.attackObj.Speed += _upgradeStats.positiveUpgrade;
+                    _upgradeStats.attackObj.Speed = SpeedLevel + _upgradeStats.positiveUpgrade;
+                    SpeedLevel += _upgradeStats.positiveUpgrade;
                     break;
                 case UpgradeStats.ATTACKSTAT.AMOUNT:
                     _upgradeStats.attackObj.Amount += (int)_upgradeStats.positiveUpgrade;
