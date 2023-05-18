@@ -8650,7 +8650,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1348700913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17110,7 +17110,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 949cacd14c2337c4e914644e106f80bc, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.471
+  m_Volume: 1
   m_Pitch: 1.5
   Loop: 1
   Mute: 0
@@ -24826,6 +24826,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[0].negativeUpgrade
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[0].positiveUpgrade
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[1].negativeUpgrade
       value: 0
       objectReference: {fileID: 0}
@@ -25233,6 +25241,10 @@ PrefabInstance:
       propertyPath: movementJoystick
       value: 
       objectReference: {fileID: 1408427784}
+    - target: {fileID: 6078201310322048935, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8299859539593128519, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: m_IsActive
       value: 0
