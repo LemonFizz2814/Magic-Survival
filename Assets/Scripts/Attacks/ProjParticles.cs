@@ -79,6 +79,12 @@ public class ProjParticles : MonoBehaviour
         shape.rotation = new Vector3(0, 0, 90 + (MSL - 1) * -60 / 9);
 
         //Type your other case here
+        //For Multi Grenade
+        /*ParticleSystem.EmissionModule emission = PS.emission;
+
+        ParticleSystem.Burst burst = emission.GetBurst(0);
+        float MSL = MultiShotLevel;
+        burst.count = MultiShotLevel;*/
 
     }
 
