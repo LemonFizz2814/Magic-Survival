@@ -886,7 +886,7 @@ public class PlayerScript : MonoBehaviour
                         if (_upgradeStats.attackObj.name == "Bullet") _upgradeStats.attackObj.FireRate += _upgradeStats.positiveUpgrade;
 
                         //Enabling the attack immediately if required
-                        if (!_upgradeStats.attackObj.immediateSpawn) return;
+                        if (!_upgradeStats.attackObj.immediateSpawn) break;
 
                         GameObject playerAttack = GetPlayerAttackObj(_upgradeStats.attackObj.name);
                         playerAttack.SetActive(true);
