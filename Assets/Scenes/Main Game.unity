@@ -24555,6 +24555,10 @@ PrefabInstance:
       value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[25].attkStat
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[25].debugKey
       value: 112
       objectReference: {fileID: 0}
@@ -24987,8 +24991,12 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[25].negativeUpgrade
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[25].positiveUpgrade
-      value: -0.6
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[26].positiveUpgrade

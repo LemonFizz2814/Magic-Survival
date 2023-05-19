@@ -14,26 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
   description: 
-  enableSpawn: 0
+  enableSpawn: 1
   immediateSpawn: 1
   spawnSource: 0
   poolType: 2
-  currentDMG: 6
+  currentDMG: 1
   bonusEffects: 01000000
   currentSpeed: 0
-  currentFireRate: 0
+  currentFireRate: 2
   currentDuration: 0
   currentRange: 0
   currentAmount: 1
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  minDMG: 6
+  minDMG: 1
   maxDMG: 1000
   minSpeed: 0
   maxSpeed: 0
-  minFireRate: 0
-  maxFireRate: 3
+  minFireRate: 0.1
+  maxFireRate: 1
   minDuration: 0
   maxDuration: 0
   minRange: 0
