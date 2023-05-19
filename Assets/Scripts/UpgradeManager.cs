@@ -27,7 +27,7 @@ public class UpgradeManager : MonoBehaviour
     const int maxTiers = 5;
 
     int previousPick = 0;
-    int queueOfUpgrades = 0;
+    [SerializeField] int queueOfUpgrades = 0;
 
     int[] options = { 0, 0, 0 };
     int[] arrayOfUpgrades;

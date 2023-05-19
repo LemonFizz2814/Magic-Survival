@@ -131,7 +131,7 @@ public class EnemyScript : MonoBehaviour
         }
         if (other.CompareTag("Saw"))
         {
-            DamageEnemy(playerScript.GetUpgradableStats().bulletDamage, true);
+            DamageEnemy(CalculateDMG(playerScript.GetAttackByName("Bullet")), true);
         }
         if (other.CompareTag("Explosion"))
         {
@@ -139,7 +139,7 @@ public class EnemyScript : MonoBehaviour
         }
         if (other.CompareTag("Spike"))
         {
-            DamageEnemy(CalculateDMG(playerScript.GetAttackByName("Bullet")) / 4, true);
+            DamageEnemy(CalculateDMG(playerScript.GetAttackByName("Bullet")), true);
         }
 
         if (other.CompareTag("LazerStrike"))

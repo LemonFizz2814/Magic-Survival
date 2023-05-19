@@ -888,7 +888,7 @@ public class PlayerScript : MonoBehaviour
                         
 
                         //Enabling the attack immediately if required
-                        if (!_upgradeStats.attackObj.immediateSpawn) return;
+                        if (!_upgradeStats.attackObj.immediateSpawn) break;
 
                         GameObject playerAttack = GetPlayerAttackObj(_upgradeStats.attackObj.name);
                         playerAttack.SetActive(true);
