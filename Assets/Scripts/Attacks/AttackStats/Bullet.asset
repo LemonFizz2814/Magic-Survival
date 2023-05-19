@@ -20,23 +20,23 @@ MonoBehaviour:
   poolType: 2
   currentDMG: 5
   bonusEffects: 02000000
-  currentSpeed: 10
-  currentFireRate: 0
+  currentSpeed: 1
+  currentFireRate: 1
   currentDuration: 0
-  currentRange: 0.75
+  currentRange: 3
   currentAmount: 1
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
   minDMG: 5
   maxDMG: 1000
-  minSpeed: 10
-  maxSpeed: 0
-  minFireRate: 0.5
+  minSpeed: 1
+  maxSpeed: 5
+  minFireRate: 1
   maxFireRate: 10
   minDuration: 0
   maxDuration: 0
-  minRange: 0.75
-  maxRange: 0
+  minRange: 1
+  maxRange: 5
   minAmount: 1
   maxAmount: 0

@@ -906,7 +906,6 @@ public class PlayerScript : MonoBehaviour
                     break;
                 case UpgradeStats.ATTACKSTAT.RANGE:
                     _upgradeStats.attackObj.Range += _upgradeStats.positiveUpgrade;
-                    RangeLevel += _upgradeStats.positiveUpgrade;
                     break;
                 case UpgradeStats.ATTACKSTAT.SPEED:
                     _upgradeStats.attackObj.Speed += _upgradeStats.positiveUpgrade;
