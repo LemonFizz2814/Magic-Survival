@@ -16023,9 +16023,9 @@ MonoBehaviour:
   targets:
   - {fileID: 2052016867398748489}
   - {fileID: 1590075588}
-  offset: {x: 0, y: 29, z: -28}
-  smoothTime: 0.5
-  directionMultiplier: 5
+  offset: {x: 0, y: 17, z: -16}
+  smoothTime: 0.2
+  directionMultiplier: 1
   camAnim: {fileID: 1802685067}
 --- !u!4 &1804238808
 Transform:
