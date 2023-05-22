@@ -16,6 +16,7 @@ TagManager:
   - ChainLightning
   - ElectricPulse
   - ElectricField
+  - SettingsSave
   layers:
   - Default
   - TransparentFX

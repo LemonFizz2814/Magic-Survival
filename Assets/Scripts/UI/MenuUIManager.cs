@@ -7,6 +7,7 @@ using TMPro;
 
 public class MenuUIManager : MonoBehaviour
 {
+    public SettingsSave SettingsSave;
     public TextMeshProUGUI scoreText; 
     public TextMeshProUGUI highScoreText;
 
@@ -37,12 +38,79 @@ public class MenuUIManager : MonoBehaviour
     [Header("Audio")]
     public GameObject BGM;
     public bool hasSound = true;
+    public bool hasMusic = true;
     public GameObject MusicButton;
     public GameObject SoundButton;
+    private bool Reset;
+    private float elapsedtime;
+
+    private void Awake()
+    {
+        SettingsSave = GameObject.FindGameObjectWithTag("SettingsSave").GetComponent<SettingsSave>();
+
+        if (!SettingsSave.HasMusic)
+        {
+            Color32 Red = new Color32(236, 61, 86, 255);
+            MusicButton.GetComponent<Image>().color = Red;
+
+            //BGM.SetActive(false);
+            BGM.GetComponent<AudioSource>().volume = 0;
+            
+        }
+        else
+        {
+            Color32 Cyan = new Color32(68, 229, 227, 255);
+            MusicButton.GetComponent<Image>().color = Cyan;
+
+            //BGM.SetActive(true);
+            BGM.GetComponent<AudioSource>().volume = 1;
+        }
+
+        hasMusic = SettingsSave.HasMusic;
+
+
+        if (!SettingsSave.HasSound)
+        {
+            Color32 Red = new Color32(236, 61, 86, 255);
+            SoundButton.GetComponent<Image>().color = Red;
+
+            hasSound = false;
+        }
+        else
+        {
+            Color32 Cyan = new Color32(68, 229, 227, 255);
+            SoundButton.GetComponent<Image>().color = Cyan;
+
+            hasSound = true;
+        }
+
+        hasSound = SettingsSave.HasSound;
+    }
+
+    private void Update()
+    {
+        if (SettingsSave.HasMusic && Reset)
+        {
+            BGM.GetComponent<AudioSource>().volume = 0;
+        }
+
+        if (fadeAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle") && Reset)
+        {
+            Reset = false;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
 
     public void RestartPressed()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        uiManager.ShowCustomizeUI(false);
+        uiManager.ShowPlayScreen(false);
+
+        fadeAnimator.SetBool("Fade", true);
+        
+        Reset = true;
+
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void UpdateScoreText(int _score)
@@ -138,20 +206,26 @@ public class MenuUIManager : MonoBehaviour
 
     public void ToggleMusic()
     {
-        if (BGM.activeSelf)
+        if (hasMusic)
         {
             Color32 Red = new Color32(236, 61, 86, 255);
             MusicButton.GetComponent<Image>().color = Red;
 
-            BGM.SetActive(false);
+            //BGM.SetActive(false);
+            BGM.GetComponent<AudioSource>().volume = 0;
+            hasMusic = false;
         }
         else
         {
             Color32 Cyan = new Color32(68, 229, 227, 255);
             MusicButton.GetComponent<Image>().color = Cyan;
 
-            BGM.SetActive(true);
+            //BGM.SetActive(true);
+            BGM.GetComponent<AudioSource>().volume = 1;
+            hasMusic = true;
         }
+
+        SettingsSave.HasMusic = hasMusic;
     }
     public void ToggleSound()
     {
@@ -169,5 +243,7 @@ public class MenuUIManager : MonoBehaviour
 
             hasSound = true;
         }
+
+        SettingsSave.HasSound = hasSound;
     }
 }
