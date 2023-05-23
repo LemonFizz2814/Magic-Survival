@@ -510,7 +510,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!136 &753105176
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -574,115 +574,225 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeStats:
   - upgradeName: Fire Rate
-    upgrade: 4
+    icon: {fileID: 0}
     upgradeDescription: Faster shooting rate
+    upgrade: 4
+    attributeType: 0
+    attackObj: {fileID: 0}
+    attkStat: 0
     positiveUpgrade: -0.07
     negativeUpgrade: 0
+    debugKey: 0
   - upgradeName: Max Health
-    upgrade: 2
+    icon: {fileID: 0}
     upgradeDescription: Increase max health but slower speed
+    upgrade: 2
+    attributeType: 0
+    attackObj: {fileID: 0}
+    attkStat: 0
     positiveUpgrade: 25
     negativeUpgrade: 1
+    debugKey: 0
   - upgradeName: Player Speed
-    upgrade: 1
+    icon: {fileID: 0}
     upgradeDescription: Increase players movement speed
+    upgrade: 1
+    attributeType: 0
+    attackObj: {fileID: 0}
+    attkStat: 0
     positiveUpgrade: 1.1
     negativeUpgrade: 0
+    debugKey: 0
   - upgradeName: Bullet Speed
-    upgrade: 3
+    icon: {fileID: 0}
     upgradeDescription: Increase projectile movement speed
+    upgrade: 3
+    attributeType: 0
+    attackObj: {fileID: 0}
+    attkStat: 0
     positiveUpgrade: 5
     negativeUpgrade: 0
+    debugKey: 0
   - upgradeName: Piercing
-    upgrade: 5
+    icon: {fileID: 0}
     upgradeDescription: Projectiles pass through an extra enemy
+    upgrade: 5
+    attributeType: 0
+    attackObj: {fileID: 0}
+    attkStat: 0
     positiveUpgrade: 1
     negativeUpgrade: 0
+    debugKey: 0
   - upgradeName: Spread
-    upgrade: 6
+    icon: {fileID: 0}
     upgradeDescription: Accuracy reduced but damage is increased
+    upgrade: 6
+    attributeType: 0
+    attackObj: {fileID: 0}
+    attkStat: 0
     positiveUpgrade: 0.2
     negativeUpgrade: 1.5
+    debugKey: 0
   - upgradeName: Magnet
-    upgrade: 7
+    icon: {fileID: 0}
     upgradeDescription: Increase range of xp magnet
+    upgrade: 7
+    attributeType: 0
+    attackObj: {fileID: 0}
+    attkStat: 0
     positiveUpgrade: 1.2
     negativeUpgrade: 0
+    debugKey: 0
   - upgradeName: Knockback
-    upgrade: 8
+    icon: {fileID: 0}
     upgradeDescription: Knocks enemies back when hit
+    upgrade: 8
+    attributeType: 0
+    attackObj: {fileID: 0}
+    attkStat: 0
     positiveUpgrade: 350
     negativeUpgrade: 0
+    debugKey: 0
   - upgradeName: Glass Cannon
-    upgrade: 9
+    icon: {fileID: 0}
     upgradeDescription: Increases damage but halves your health
+    upgrade: 9
+    attributeType: 0
+    attackObj: {fileID: 0}
+    attkStat: 0
     positiveUpgrade: 1.5
     negativeUpgrade: 2
+    debugKey: 0
   - upgradeName: Critical
-    upgrade: 11
+    icon: {fileID: 0}
     upgradeDescription: Increases chance to have a critical x2
+    upgrade: 11
+    attributeType: 0
+    attackObj: {fileID: 0}
+    attkStat: 0
     positiveUpgrade: 20
     negativeUpgrade: 0
+    debugKey: 0
   - upgradeName: Homing
-    upgrade: 10
+    icon: {fileID: 0}
     upgradeDescription: Guides towards closest enemy
+    upgrade: 10
+    attributeType: 0
+    attackObj: {fileID: 0}
+    attkStat: 0
     positiveUpgrade: 20
     negativeUpgrade: 0
+    debugKey: 0
   - upgradeName: Sniper
-    upgrade: 12
+    icon: {fileID: 0}
     upgradeDescription: Longer range but slower fire rate
+    upgrade: 12
+    attributeType: 0
+    attackObj: {fileID: 0}
+    attkStat: 0
     positiveUpgrade: 0.17
     negativeUpgrade: 0.07
+    debugKey: 0
   - upgradeName: Extra Bullet
-    upgrade: 13
+    icon: {fileID: 0}
     upgradeDescription: Extra projectile but reduced damage
+    upgrade: 13
+    attributeType: 0
+    attackObj: {fileID: 0}
+    attkStat: 0
     positiveUpgrade: 1
     negativeUpgrade: 3
+    debugKey: 0
   - upgradeName: SMG
-    upgrade: 14
+    icon: {fileID: 0}
     upgradeDescription: Greatly reduces range but increases fire rate
+    upgrade: 14
+    attributeType: 0
+    attackObj: {fileID: 0}
+    attkStat: 0
     positiveUpgrade: 1.2
     negativeUpgrade: 0.75
+    debugKey: 0
   - upgradeName: Regen
-    upgrade: 15
+    icon: {fileID: 0}
     upgradeDescription: Regenerates health
+    upgrade: 15
+    attributeType: 0
+    attackObj: {fileID: 0}
+    attkStat: 0
     positiveUpgrade: 1
     negativeUpgrade: 0
+    debugKey: 0
   - upgradeName: Explosion
-    upgrade: 16
+    icon: {fileID: 0}
     upgradeDescription: Creates a big explosion on impact
+    upgrade: 16
+    attributeType: 0
+    attackObj: {fileID: 0}
+    attkStat: 0
     positiveUpgrade: 0.6
     negativeUpgrade: 0
+    debugKey: 0
   - upgradeName: Spinning Saw
-    upgrade: 17
+    icon: {fileID: 0}
     upgradeDescription: Spinning saws that deal damage
+    upgrade: 17
+    attributeType: 0
+    attackObj: {fileID: 0}
+    attkStat: 0
     positiveUpgrade: 12
     negativeUpgrade: 0
+    debugKey: 0
   - upgradeName: Sentry
-    upgrade: 18
+    icon: {fileID: 0}
     upgradeDescription: Adds a rotating sentry turret
+    upgrade: 18
+    attributeType: 0
+    attackObj: {fileID: 0}
+    attkStat: 0
     positiveUpgrade: 5
     negativeUpgrade: 0
+    debugKey: 0
   - upgradeName: Jack Of All Trades
-    upgrade: 19
+    icon: {fileID: 0}
     upgradeDescription: Health, speed, damage increased
+    upgrade: 19
+    attributeType: 0
+    attackObj: {fileID: 0}
+    attkStat: 0
     positiveUpgrade: 1.1
     negativeUpgrade: 0
+    debugKey: 0
   - upgradeName: Distance Damage
-    upgrade: 20
+    icon: {fileID: 0}
     upgradeDescription: Damage is increased by distance
+    upgrade: 20
+    attributeType: 0
+    attackObj: {fileID: 0}
+    attkStat: 0
     positiveUpgrade: 2
     negativeUpgrade: 0.8
+    debugKey: 0
   - upgradeName: Lightning Strike
-    upgrade: 21
+    icon: {fileID: 0}
     upgradeDescription: Lightning strikes a random enemy
+    upgrade: 21
+    attributeType: 0
+    attackObj: {fileID: 0}
+    attkStat: 0
     positiveUpgrade: 1.8
     negativeUpgrade: 0
+    debugKey: 0
   - upgradeName: Spike
-    upgrade: 22
+    icon: {fileID: 0}
     upgradeDescription: Spawns a spike every so often
+    upgrade: 22
+    attributeType: 0
+    attackObj: {fileID: 0}
+    attkStat: 0
     positiveUpgrade: 0.9
     negativeUpgrade: 0
+    debugKey: 0
 --- !u!82 &753105181
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1257,7 +1367,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1500937289
 MonoBehaviour:
   m_ObjectHideFlags: 0
