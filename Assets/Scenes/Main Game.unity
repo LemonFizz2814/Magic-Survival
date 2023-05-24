@@ -26266,7 +26266,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.size
-      value: 35
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[4].icon
@@ -26393,8 +26393,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: cafeda52255dfcd4ebff23160fd51383, type: 3}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[35].icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 83123e101d545d9408cc54d2783c5831, type: 3}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[4].upgrade
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[5].upgrade
@@ -26503,6 +26507,10 @@ PrefabInstance:
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[3].debugKey
       value: 101
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[4].attkStat
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[4].debugKey
@@ -26677,6 +26685,18 @@ PrefabInstance:
       value: 104
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[35].attkStat
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[35].debugKey
+      value: 104
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[4].attackObj
+      value: 
+      objectReference: {fileID: 11400000, guid: 3805aa03320605948aba54ac9cda98b3, type: 2}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[5].attackObj
       value: 
       objectReference: {fileID: 0}
@@ -26749,8 +26769,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[35].attackObj
+      value: 
+      objectReference: {fileID: 11400000, guid: 3805aa03320605948aba54ac9cda98b3, type: 2}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[4].upgradeName
-      value: Spread
+      value: Shotgun
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[5].upgradeName
@@ -26873,6 +26897,10 @@ PrefabInstance:
       value: Bullet Range
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[35].upgradeName
+      value: Shotgun Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[28].attributeType
       value: 1
       objectReference: {fileID: 0}
@@ -26914,11 +26942,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[4].negativeUpgrade
-      value: 1.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[4].positiveUpgrade
-      value: 0.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[5].negativeUpgrade
@@ -27077,12 +27105,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[35].positiveUpgrade
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[1].upgradeDescription
       value: Increase max health
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[4].upgradeDescription
-      value: Accuracy reduced but damage is increased
+      value: Attack enemies with a shotgun
       objectReference: {fileID: 0}
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[5].upgradeDescription
@@ -27203,6 +27235,10 @@ PrefabInstance:
     - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: upgradeStats.Array.data[34].upgradeDescription
       value: Inceases projectile range
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[35].upgradeDescription
+      value: Inceases shotgun damage
       objectReference: {fileID: 0}
     - target: {fileID: 1276238983344249789, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: menuUI

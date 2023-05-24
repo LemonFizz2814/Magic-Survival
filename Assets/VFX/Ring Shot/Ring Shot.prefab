@@ -4882,7 +4882,7 @@ GameObject:
   - component: {fileID: 2048667591523259830}
   - component: {fileID: 7091732676386987905}
   - component: {fileID: 7464348283816997278}
-  - component: {fileID: 592591214580255623}
+  - component: {fileID: 552311906163518316}
   m_Layer: 0
   m_Name: Ring Shot
   m_TagString: Projectile
@@ -4909,7 +4909,7 @@ Transform:
 --- !u!198 &7091732676386987905
 ParticleSystem:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 393273549051076892, guid: 41649ceeff9e6744c8812659a1a2f1fb, type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7051202224347931205}
@@ -9753,7 +9753,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &592591214580255623
+--- !u!114 &552311906163518316
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9762,14 +9762,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7051202224347931205}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f57d0591351ffdc40844af917ff3570b, type: 3}
+  m_Script: {fileID: 11500000, guid: a0285c5ec3dbb024db56916f1cc88d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackStats: {fileID: 11400000, guid: f1613865c997ff24b820592681894126, type: 2}
+  attackStats: {fileID: 0}
   player: {fileID: 0}
   explosionWait: 0
-  explosionObj: {fileID: 3679010409709877342, guid: 703de4b8f10c68242a5ef08721ded28d, type: 3}
-  PS: {fileID: 7091732676386987905}
+  explosionObj: {fileID: 0}
+  PS: {fileID: 0}
   FireRateLevel: 1
   MultiShotLevel: 1
   BulletSpeedLevel: 1

@@ -98,6 +98,16 @@ public class ProjParticles : MonoBehaviour
         main.startLifetime = 0.5f * MultiOffset;
     }
 
+    protected virtual void BulletSpeedUpdate()
+    {
+        float BSL = BulletSpeedLevel;
+        float BRL = BulletRangeLevel;
+        float MultiOffset = BRL / BSL;
+        ParticleSystem.MainModule main = PS.main;
+        main.startSpeed = BSL * 10;
+        main.startLifetime = 0.5f * MultiOffset;
+    }
+
     protected virtual void HomingUpDate()
     {
         ParticleSystem.ExternalForcesModule externalmodule = PS.externalForces;
