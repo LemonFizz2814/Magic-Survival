@@ -22,10 +22,10 @@ public class CoinSpawner : MonoBehaviour
     private IEnumerator WaitToSpawn()
     {
         yield return new WaitForSeconds(spawnRate);
-        if (Resources.FindObjectsOfTypeAll(typeof(CoinScript)).Length <= maxSpawn)
+        if (FindObjectsOfType(typeof(CoinScript)).Length <= maxSpawn)
         {
             SpawnCoin();
-        }
+        }        
 
         StartCoroutine(WaitToSpawn());
     }
@@ -35,9 +35,11 @@ public class CoinSpawner : MonoBehaviour
         float angle;
         Vector3 pos;
         bool foundSpot = false;
+        int safetyCheck = 0;
 
         do
         {
+            safetyCheck++;
             angle = Random.Range(0, 2f * Mathf.PI);
             pos = player.transform.position + new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * radius;
 
@@ -50,11 +52,12 @@ public class CoinSpawner : MonoBehaviour
                     foundSpot = true;
                 }
             }
-        } while (!foundSpot);
+        } while (!foundSpot && safetyCheck < 100);
 
         if (poolingManager.CheckIfPoolFree(PoolingManager.PoolingEnum.Coins))
         {
             GameObject coinObj = poolingManager.SpawnObject(PoolingManager.PoolingEnum.Coins, pos, Quaternion.Euler(0, 45, 0));
+            coinObj.transform.position = new Vector3(coinObj.transform.position.x, 1, coinObj.transform.position.z);
             coinObj.GetComponent<CoinScript>().Init();
         }
     }

@@ -175,7 +175,7 @@ public class PlayerScript : MonoBehaviour
         xp = 0;
         level = 0;
         score = 0;
-        coins = 250;// PlayerPrefs.GetInt("Coins", 0);
+        coins = PlayerPrefs.GetInt("Coins", 0);
         fireRateTimer = upgradableStats.fireRate;
         sentriesFireRateTimer = upgradableStats.sentryFireRate;
         lightningTimer = upgradableStats.lightningRate;
@@ -499,13 +499,13 @@ public class PlayerScript : MonoBehaviour
         if (other.CompareTag("Coin"))
         {
             IncreaseCoins(1);
-            poolingManager.DespawnObject(other.gameObject);
             absorbVFX.Play();
+            poolingManager.DespawnObject(other.gameObject);
             //Destroy(other.gameObject);
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    /*private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("xp"))
         {
@@ -521,7 +521,7 @@ public class PlayerScript : MonoBehaviour
             absorbVFX.Play();
             //Destroy(other.gameObject);
         }
-    }
+    }*/
 
     public void SetPaused(bool _pause)
     {

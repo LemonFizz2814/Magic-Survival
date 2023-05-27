@@ -273,7 +273,7 @@ public class EnemyScript : MonoBehaviour
         if (dmgNum != null)
         {
             TextMesh dmgText = dmgNum.transform.Find("TextMesh").GetComponent<TextMesh>();
-            dmgText.text = _damage.ToString();
+            dmgText.text = (Mathf.Round(_damage * 10) / 10).ToString();
 
             //Despawning the damage number on a timer
             StartCoroutine(poolingManager.DespawnObjectTimer(dmgNum, 1.0f));

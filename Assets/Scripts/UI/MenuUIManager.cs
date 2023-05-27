@@ -192,8 +192,14 @@ public class MenuUIManager : MonoBehaviour
 
         if (Random.Range(0, 100) < advertisingScript.chanceForAd)
         {
-            advertisingScript.ShowAd();
+            StartCoroutine(ShowAdDelay());
         }
+    }
+
+    IEnumerator ShowAdDelay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        advertisingScript.ShowAd();
     }
 
     void UpdateCoinTexts()

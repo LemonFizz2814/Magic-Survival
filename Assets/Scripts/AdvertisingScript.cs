@@ -65,6 +65,11 @@ public class AdvertisingScript : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
             ? _iOSGameId
             : _androidGameId;
         Advertisement.Initialize(_gameId, false, this);
+
+        _adUnitId = (isIOS) ? "Rewarded_iOS" : "Rewarded_Android";
+        Advertisement.Load(_adUnitId, this);
+        _adUnitId = (isIOS) ? "Interstitial_iOS" : "Interstitial_Android";
+        Advertisement.Load(_adUnitId, this);
     }
     private bool IsStoreInitialized()
     {
@@ -74,7 +79,6 @@ public class AdvertisingScript : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
     public void OnUnityAdsAdLoaded(string adUnitId)
     {
         Debug.Log($"LOADED");
-        Advertisement.Show(adUnitId, this);
     }
     public void OnInitializationComplete()
     {
@@ -178,7 +182,7 @@ public class AdvertisingScript : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
         {
             _adUnitId = (isIOS) ? "Interstitial_iOS" : "Interstitial_Android";
             adType = EADTYPE.nothing;
-            Advertisement.Load(_adUnitId, this);
+            Advertisement.Show(_adUnitId, this);
         }
     }
     public void WatchAd()
@@ -186,7 +190,7 @@ public class AdvertisingScript : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
         _adUnitId = (isIOS) ? "Rewarded_iOS" : "Rewarded_Android";
         Debug.Log("Showing Ad: " + _adUnitId);
         adType = EADTYPE.coin;
-        Advertisement.Load(_adUnitId, this);
+        Advertisement.Show(_adUnitId, this);
     }
 
     // banner

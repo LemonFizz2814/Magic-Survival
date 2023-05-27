@@ -97,13 +97,13 @@ MonoBehaviour:
   xpIncr: 1.16
   maxHealthLevelUp: 2
   speedLevelUp: 0.1
-  allDebugKeys: 
+  allDebugKeys: 710000006500000072000000740000007900000075000000690000006f00000070000000660000006700000068000000
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 1024
   upgradableStats:
     playerSpeed: 5
-    magnetStrength: 3.6
+    magnetStrength: 4
     maxHealth: 100
     regeneration: 0.25
     projectileSpeed: 10
@@ -112,7 +112,7 @@ MonoBehaviour:
     projectiles: 1
     bulletDamage: 5
     bulletsSize: 1
-    bulletRange: 0.75
+    bulletRange: 1
     bulletKnockback: 0
     fireRate: 0.5
     accuracy: 0
@@ -196,19 +196,19 @@ MonoBehaviour:
     attributeType: 0
     attackObj: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
     attkStat: 3
-    positiveUpgrade: 0.07
+    positiveUpgrade: 1
     negativeUpgrade: 0
-    debugKey: 0
+    debugKey: 113
   - upgradeName: Max Health
     icon: {fileID: 21300000, guid: d80893ce05633024f9042df625d8093a, type: 3}
-    upgradeDescription: Increase max health but slower speed
+    upgradeDescription: Increase max health
     upgrade: 2
     attributeType: 0
     attackObj: {fileID: 0}
     attkStat: 0
     positiveUpgrade: 25
-    negativeUpgrade: 1
-    debugKey: 0
+    negativeUpgrade: 0
+    debugKey: 113
   - upgradeName: Player Speed
     icon: {fileID: 21300000, guid: 579e33982df8429408d236fa7e788851, type: 3}
     upgradeDescription: Increase players movement speed
@@ -218,7 +218,7 @@ MonoBehaviour:
     attkStat: 0
     positiveUpgrade: 1.15
     negativeUpgrade: 0
-    debugKey: 0
+    debugKey: 113
   - upgradeName: Bullet Speed
     icon: {fileID: 21300000, guid: d1485ee15a4e80d499fadfdd15311363, type: 3}
     upgradeDescription: Increase projectile movement speed
@@ -226,189 +226,179 @@ MonoBehaviour:
     attributeType: 0
     attackObj: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
     attkStat: 2
-    positiveUpgrade: 5
-    negativeUpgrade: 0
-    debugKey: 0
-  - upgradeName: Piercing
-    icon: {fileID: 21300000, guid: 1a9129a06b2a31c419975a947cc8e0cf, type: 3}
-    upgradeDescription: Projectiles pass through an extra enemy
-    upgrade: 5
-    attributeType: 0
-    attackObj: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
-    attkStat: 0
     positiveUpgrade: 1
     negativeUpgrade: 0
-    debugKey: 0
-  - upgradeName: Spread
+    debugKey: 101
+  - upgradeName: Shotgun
     icon: {fileID: 21300000, guid: 83123e101d545d9408cc54d2783c5831, type: 3}
-    upgradeDescription: Accuracy reduced but damage is increased
-    upgrade: 6
+    upgradeDescription: Attack enemies with a shotgun
+    upgrade: 0
     attributeType: 0
-    attackObj: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
-    attkStat: 0
-    positiveUpgrade: 0.2
-    negativeUpgrade: 1.5
-    debugKey: 0
+    attackObj: {fileID: 11400000, guid: 3805aa03320605948aba54ac9cda98b3, type: 2}
+    attkStat: 3
+    positiveUpgrade: 1
+    negativeUpgrade: 0
+    debugKey: 101
   - upgradeName: Magnet
     icon: {fileID: 21300000, guid: db93221ad03f56148b3762c44477c220, type: 3}
     upgradeDescription: Increase range of xp magnet
-    upgrade: 7
+    upgrade: 6
     attributeType: 0
     attackObj: {fileID: 0}
     attkStat: 0
     positiveUpgrade: 1.2
     negativeUpgrade: 0
-    debugKey: 0
+    debugKey: 101
   - upgradeName: Knockback
     icon: {fileID: 21300000, guid: 5b55a6ba8a08f1e4f9ab7e190087e4c4, type: 3}
     upgradeDescription: Knocks enemies back when hit
-    upgrade: 8
+    upgrade: 7
     attributeType: 0
     attackObj: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
     attkStat: 0
     positiveUpgrade: 350
     negativeUpgrade: 0
-    debugKey: 0
+    debugKey: 114
   - upgradeName: Glass Cannon
     icon: {fileID: 21300000, guid: f3d8408e6f520ef4bbe95b8a9223f726, type: 3}
     upgradeDescription: Increases damage but halves your health
-    upgrade: 9
+    upgrade: 8
     attributeType: 0
     attackObj: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
     attkStat: 0
     positiveUpgrade: 1.5
     negativeUpgrade: 2
-    debugKey: 0
+    debugKey: 114
   - upgradeName: Critical
     icon: {fileID: 21300000, guid: 13b5843f1eb899241b1c729fb5d3e1a6, type: 3}
     upgradeDescription: Increases chance to have a critical x2
-    upgrade: 11
+    upgrade: 10
     attributeType: 0
     attackObj: {fileID: 0}
     attkStat: 0
     positiveUpgrade: 20
     negativeUpgrade: 0
-    debugKey: 0
+    debugKey: 114
   - upgradeName: Homing
     icon: {fileID: 21300000, guid: dbec789c84657ee44b5c59847e2e0282, type: 3}
     upgradeDescription: Guides towards closest enemy
-    upgrade: 10
-    attributeType: 0
-    attackObj: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
-    attkStat: 0
-    positiveUpgrade: 20
-    negativeUpgrade: 0
-    debugKey: 0
-  - upgradeName: Sniper
-    icon: {fileID: 21300000, guid: 96a12091d49c5814e9db4c6df2889c2c, type: 3}
-    upgradeDescription: Longer range but slower fire rate
-    upgrade: 12
-    attributeType: 0
-    attackObj: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
-    attkStat: 0
-    positiveUpgrade: 0.17
-    negativeUpgrade: 0.07
-    debugKey: 0
-  - upgradeName: Extra Bullet
-    icon: {fileID: 21300000, guid: b26ee812e7fffab42baab85ff59d0143, type: 3}
-    upgradeDescription: Extra projectile but reduced damage
-    upgrade: 13
+    upgrade: 9
     attributeType: 0
     attackObj: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
     attkStat: 0
     positiveUpgrade: 1
-    negativeUpgrade: 3
-    debugKey: 0
+    negativeUpgrade: 0
+    debugKey: 116
+  - upgradeName: Sniper
+    icon: {fileID: 21300000, guid: 96a12091d49c5814e9db4c6df2889c2c, type: 3}
+    upgradeDescription: Longer range but slower fire rate
+    upgrade: 11
+    attributeType: 0
+    attackObj: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
+    attkStat: 0
+    positiveUpgrade: 0.17
+    negativeUpgrade: 0
+    debugKey: 116
+  - upgradeName: Extra Bullet
+    icon: {fileID: 21300000, guid: b26ee812e7fffab42baab85ff59d0143, type: 3}
+    upgradeDescription: Extra projectile but reduced damage
+    upgrade: 0
+    attributeType: 0
+    attackObj: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
+    attkStat: 6
+    positiveUpgrade: 1
+    negativeUpgrade: 0
+    debugKey: 116
   - upgradeName: SMG
     icon: {fileID: 21300000, guid: 6268602b53468144da41615644e4a9c0, type: 3}
     upgradeDescription: Greatly reduces range but increases fire rate
-    upgrade: 14
+    upgrade: 13
     attributeType: 0
     attackObj: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
     attkStat: 0
     positiveUpgrade: 1.2
     negativeUpgrade: 0.75
-    debugKey: 0
+    debugKey: 121
   - upgradeName: Regen
     icon: {fileID: 21300000, guid: 28f1102009e83a5448b44801bdd462f9, type: 3}
     upgradeDescription: Regenerates health
-    upgrade: 15
+    upgrade: 14
     attributeType: 0
     attackObj: {fileID: 0}
     attkStat: 0
     positiveUpgrade: 1
     negativeUpgrade: 0
-    debugKey: 0
+    debugKey: 121
   - upgradeName: Explosion
     icon: {fileID: 21300000, guid: f7531445a8264c748966c5470e80ac9f, type: 3}
     upgradeDescription: Creates a big explosion on impact
-    upgrade: 16
+    upgrade: 15
     attributeType: 0
     attackObj: {fileID: 0}
     attkStat: 0
     positiveUpgrade: 0.6
     negativeUpgrade: 0
-    debugKey: 0
+    debugKey: 121
   - upgradeName: Spinning Saw
     icon: {fileID: 21300000, guid: 6d4f71107c7b1de449c5aaa346160a2b, type: 3}
     upgradeDescription: Spinning saws that deal damage
-    upgrade: 17
+    upgrade: 16
     attributeType: 0
     attackObj: {fileID: 0}
     attkStat: 0
     positiveUpgrade: 12
     negativeUpgrade: 0
-    debugKey: 0
+    debugKey: 117
   - upgradeName: Sentry
     icon: {fileID: 21300000, guid: a84debd38045d7742a256221e005d48d, type: 3}
     upgradeDescription: Adds a rotating sentry turret
-    upgrade: 18
+    upgrade: 17
     attributeType: 0
     attackObj: {fileID: 0}
     attkStat: 0
     positiveUpgrade: 5
     negativeUpgrade: 0
-    debugKey: 0
+    debugKey: 117
   - upgradeName: Jack Of All Trades
     icon: {fileID: 21300000, guid: 70d6a8fb2891caa4c8ce053f808917ea, type: 3}
     upgradeDescription: Health, speed, damage increased
-    upgrade: 19
+    upgrade: 18
     attributeType: 0
     attackObj: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
     attkStat: 0
     positiveUpgrade: 1.1
     negativeUpgrade: 0
-    debugKey: 0
+    debugKey: 117
   - upgradeName: Distance Damage
     icon: {fileID: 21300000, guid: 151e50e857346104bb61114b4c37c36f, type: 3}
     upgradeDescription: Damage is increased by distance
-    upgrade: 20
+    upgrade: 19
     attributeType: 0
     attackObj: {fileID: 0}
     attkStat: 0
     positiveUpgrade: 2
     negativeUpgrade: 0.8
-    debugKey: 0
+    debugKey: 105
   - upgradeName: Lightning Strike
     icon: {fileID: 21300000, guid: 710dd2e9adfffd14698b815c589b5d04, type: 3}
     upgradeDescription: Lightning strikes a random enemy
-    upgrade: 21
+    upgrade: 20
     attributeType: 0
     attackObj: {fileID: 0}
     attkStat: 0
     positiveUpgrade: 1.8
     negativeUpgrade: 0
-    debugKey: 0
+    debugKey: 105
   - upgradeName: Spike
     icon: {fileID: 21300000, guid: 282120fd103270544ba92aa1e87db1f7, type: 3}
     upgradeDescription: Spawns a spike every so often
-    upgrade: 22
+    upgrade: 21
     attributeType: 0
     attackObj: {fileID: 0}
     attkStat: 0
     positiveUpgrade: 0.9
     negativeUpgrade: 0
-    debugKey: 0
+    debugKey: 105
   - upgradeName: Lazer Strike
     icon: {fileID: 21300000, guid: 197a7a2c70120884e8e16e86a166080b, type: 3}
     upgradeDescription: Spawns an Orbital Lazer Strike
@@ -418,7 +408,7 @@ MonoBehaviour:
     attkStat: 3
     positiveUpgrade: 3
     negativeUpgrade: 0
-    debugKey: 0
+    debugKey: 111
   - upgradeName: Grenade Throw
     icon: {fileID: 21300000, guid: d19a9cb676490aa40bd1446de7c27d7c, type: 3}
     upgradeDescription: Throws a Grenade around the Player
@@ -428,7 +418,7 @@ MonoBehaviour:
     attkStat: 3
     positiveUpgrade: 3
     negativeUpgrade: 0
-    debugKey: 0
+    debugKey: 111
   - upgradeName: Chain Lightning
     icon: {fileID: 21300000, guid: 98eeea92907ba9b4a89523e4a9949d10, type: 3}
     upgradeDescription: Creates a lightning orb that zaps nearby enemies
@@ -438,7 +428,7 @@ MonoBehaviour:
     attkStat: 3
     positiveUpgrade: 3
     negativeUpgrade: 0
-    debugKey: 0
+    debugKey: 111
   - upgradeName: Electric Pulse
     icon: {fileID: 21300000, guid: 67d9834ba93c0ee43a80ebd4a3c028f3, type: 3}
     upgradeDescription: Periodically send out a burst of lightning
@@ -448,7 +438,7 @@ MonoBehaviour:
     attkStat: 3
     positiveUpgrade: 3
     negativeUpgrade: 0
-    debugKey: 0
+    debugKey: 112
   - upgradeName: Electric Field
     icon: {fileID: 21300000, guid: 77c615ab000887542b66a11d8e853d55, type: 3}
     upgradeDescription: Create a ring of electricity around you
@@ -456,9 +446,109 @@ MonoBehaviour:
     attributeType: 0
     attackObj: {fileID: 11400000, guid: ceb189871d9d2ad40bacfb601a1fd39c, type: 2}
     attkStat: 3
+    positiveUpgrade: 0.1
+    negativeUpgrade: 0
+    debugKey: 112
+  - upgradeName: Extra Lazer Strikes
+    icon: {fileID: 21300000, guid: d9cb937553d50a444adba671f788591e, type: 3}
+    upgradeDescription: Adds one additional Lazer Strike
+    upgrade: 0
+    attributeType: 0
+    attackObj: {fileID: 11400000, guid: 66cdc8c9b722c3846a4f9dcea5e79316, type: 2}
+    attkStat: 6
     positiveUpgrade: 1
     negativeUpgrade: 0
-    debugKey: 0
+    debugKey: 112
+  - upgradeName: Extra grenade throws
+    icon: {fileID: 21300000, guid: 0dd0c95c5cb58e243a4b9c4c579205e6, type: 3}
+    upgradeDescription: Adds one additional Grenade Throw
+    upgrade: 0
+    attributeType: 0
+    attackObj: {fileID: 11400000, guid: 8fb835188a4b85549ac32e2c2adb38cf, type: 2}
+    attkStat: 6
+    positiveUpgrade: 1
+    negativeUpgrade: 0
+    debugKey: 102
+  - upgradeName: Electricity DMG Bonus
+    icon: {fileID: 21300000, guid: 609b378c275c4fc43aa1c2205d1ba657, type: 3}
+    upgradeDescription: 15% extra DMG to all electricity attacks
+    upgrade: 23
+    attributeType: 1
+    attackObj: {fileID: 0}
+    attkStat: 1
+    positiveUpgrade: 0.15
+    negativeUpgrade: 0
+    debugKey: 102
+  - upgradeName: Lazer DMG Bonus
+    icon: {fileID: 21300000, guid: 536c8d7c7d56a014c91dd70a1807e2cc, type: 3}
+    upgradeDescription: 15% extra DMG to all lazer attacks
+    upgrade: 23
+    attributeType: 4
+    attackObj: {fileID: 0}
+    attkStat: 1
+    positiveUpgrade: 0.15
+    negativeUpgrade: 0
+    debugKey: 102
+  - upgradeName: Orbital DMG bonus
+    icon: {fileID: 21300000, guid: 10217f61a59e5d647ac4762c17095fef, type: 3}
+    upgradeDescription: 15% extra DMG to all orbital attacks
+    upgrade: 23
+    attributeType: 3
+    attackObj: {fileID: 0}
+    attkStat: 1
+    positiveUpgrade: 0.15
+    negativeUpgrade: 0
+    debugKey: 103
+  - upgradeName: Projectile DMG bonus
+    icon: {fileID: 21300000, guid: 2c86e34627056074b860d73ef94ea0d3, type: 3}
+    upgradeDescription: 15% extra DMG to all Projectile attacks
+    upgrade: 23
+    attributeType: 2
+    attackObj: {fileID: 0}
+    attkStat: 1
+    positiveUpgrade: 0.15
+    negativeUpgrade: 0
+    debugKey: 103
+  - upgradeName: Explosive DMG bonus
+    icon: {fileID: 21300000, guid: 61769d42ecf7ded4eaf3e5e780465255, type: 3}
+    upgradeDescription: 15% extra DMG to all explosive attacks
+    upgrade: 23
+    attributeType: 5
+    attackObj: {fileID: 0}
+    attkStat: 1
+    positiveUpgrade: 0.15
+    negativeUpgrade: 0
+    debugKey: 103
+  - upgradeName: Ring Shot
+    icon: {fileID: 21300000, guid: d67422f579320d844b2d2f279b1cd2b8, type: 3}
+    upgradeDescription: Spawns in ring shots
+    upgrade: 0
+    attributeType: 0
+    attackObj: {fileID: 11400000, guid: f1613865c997ff24b820592681894126, type: 2}
+    attkStat: 3
+    positiveUpgrade: 0.15
+    negativeUpgrade: 0
+    debugKey: 104
+  - upgradeName: Bullet Range
+    icon: {fileID: 21300000, guid: cafeda52255dfcd4ebff23160fd51383, type: 3}
+    upgradeDescription: Inceases projectile range
+    upgrade: 0
+    attributeType: 0
+    attackObj: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
+    attkStat: 5
+    positiveUpgrade: 1
+    negativeUpgrade: 0
+    debugKey: 104
+  - upgradeName: Shotgun Damage
+    icon: {fileID: 21300000, guid: 83123e101d545d9408cc54d2783c5831, type: 3}
+    upgradeDescription: Inceases shotgun damage
+    upgrade: 0
+    attributeType: 0
+    attackObj: {fileID: 11400000, guid: 3805aa03320605948aba54ac9cda98b3, type: 2}
+    attkStat: 1
+    positiveUpgrade: 1
+    negativeUpgrade: 0
+    debugKey: 104
 --- !u!82 &4255277103545298072
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1060,7 +1150,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 10
+  m_PixelsPerUnitMultiplier: 12
 --- !u!1 &2934934277675535012
 GameObject:
   m_ObjectHideFlags: 0
@@ -1405,7 +1495,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &591873423592032024
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1415,7 +1505,7 @@ RectTransform:
   m_GameObject: {fileID: 4829572034745691698}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -8.511701}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.5227, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3629395395543733580}
@@ -2189,7 +2279,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 10
+  m_PixelsPerUnitMultiplier: 12
 --- !u!1 &7557223472592189201
 GameObject:
   m_ObjectHideFlags: 0
@@ -2810,7 +2900,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5702378937647432676, guid: 38e6e2a07efdc9f4ead83e004cd6a63b, type: 3}
       propertyPath: looping
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5702378937647432676, guid: 38e6e2a07efdc9f4ead83e004cd6a63b, type: 3}
       propertyPath: playOnAwake
