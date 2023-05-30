@@ -271,7 +271,7 @@ MonoBehaviour:
     debugKey: 114
   - upgradeName: Critical
     icon: {fileID: 21300000, guid: 13b5843f1eb899241b1c729fb5d3e1a6, type: 3}
-    upgradeDescription: Increases chance to have a critical x2
+    upgradeDescription: Increases chance to deal 2X damage
     upgrade: 10
     attributeType: 0
     attackObj: {fileID: 0}
@@ -531,7 +531,7 @@ MonoBehaviour:
     debugKey: 104
   - upgradeName: Bullet Range
     icon: {fileID: 21300000, guid: cafeda52255dfcd4ebff23160fd51383, type: 3}
-    upgradeDescription: Inceases projectile range
+    upgradeDescription: Inceases bullet range
     upgrade: 0
     attributeType: 0
     attackObj: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
