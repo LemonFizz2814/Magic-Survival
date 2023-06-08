@@ -52,7 +52,7 @@ public class InGameUIManager : MonoBehaviour
 
     public void UpdateCoinText(int _coins)
     {
-        coinText.text = "$" + _coins;
+        coinText.text = _coins + " volts";
     }
 
     //Setting the healthbar to be enabled/disabled depending on InGameUI object 
