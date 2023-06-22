@@ -127,6 +127,7 @@ MonoBehaviour:
     lightningDamage: 8
     spikeDestroyDuration: 6
     spikeSpawnRate: 0
+    baseDMGMultiplier: 1
     projectileDMGMultiplier: 0
     electricityDMGMultiplier: 0
     orbitalDMGMultiplier: 0
@@ -264,7 +265,7 @@ MonoBehaviour:
     upgradeDescription: Increases damage but halves your health
     upgrade: 8
     attributeType: 0
-    attackObj: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
+    attackObj: {fileID: 0}
     attkStat: 0
     positiveUpgrade: 1.5
     negativeUpgrade: 2

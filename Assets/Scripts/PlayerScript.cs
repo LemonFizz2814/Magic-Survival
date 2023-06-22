@@ -111,6 +111,7 @@ public class PlayerScript : MonoBehaviour
         public float lightningDamage;
         public float spikeDestroyDuration;
         public float spikeSpawnRate;
+        public float baseDMGMultiplier;
         public float projectileDMGMultiplier;
         public float electricityDMGMultiplier;
         public float orbitalDMGMultiplier;
@@ -806,7 +807,7 @@ public class PlayerScript : MonoBehaviour
                 upgradableStats.bulletKnockback += _upgradeStats.positiveUpgrade;
                 break;
             case UPGRADES.glassCannon:
-                _upgradeStats.attackObj.currentDMG *= _upgradeStats.positiveUpgrade;
+                upgradableStats.baseDMGMultiplier += _upgradeStats.positiveUpgrade;
                 upgradableStats.maxHealth /= _upgradeStats.negativeUpgrade;
                 break;
             case UPGRADES.homing:
@@ -848,11 +849,12 @@ public class PlayerScript : MonoBehaviour
                 upgradableStats.sentrySpinSpeed += _upgradeStats.positiveUpgrade;
                 AddSentry();
                 break;
-            //Will need to obtain bullet scriptable object here (may need future modifications)
             case UPGRADES.jackOfAllTrades:
                 upgradableStats.maxHealth *= _upgradeStats.positiveUpgrade;
                 upgradableStats.playerSpeed *= _upgradeStats.positiveUpgrade;
-                _upgradeStats.attackObj.currentDMG *= _upgradeStats.positiveUpgrade;
+
+                //Adding the .1 in the value as to not make it too overpowered (may need a tweak idk)
+                upgradableStats.baseDMGMultiplier += (_upgradeStats.positiveUpgrade % 1);
                 break;
             case UPGRADES.distanceDamage:
                 upgradableStats.damageDistance += _upgradeStats.positiveUpgrade;

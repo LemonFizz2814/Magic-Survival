@@ -224,9 +224,9 @@ public class EnemyScript : MonoBehaviour
     //Return the damage after adding in all the bonus damage multipliers from attributes
     public float CalculateDMG(BaseAttack _attack)
     {
-        if (_attack.bonusEffects.Count < 1) return _attack.currentDMG;
-
         PlayerScript.UpgradableStats stats = playerScript.GetUpgradableStats();
+        if (_attack.bonusEffects.Count < 1) return _attack.currentDMG * stats.baseDMGMultiplier;
+
         float bonusDMG = 0.0f;
 
         foreach (BaseAttack.ATTRIBUTE statAttribute in _attack.bonusEffects)
@@ -251,6 +251,8 @@ public class EnemyScript : MonoBehaviour
             }
         }
 
+        //Multiply all the damage bonuses with the base dmg multiplier
+        bonusDMG *= stats.baseDMGMultiplier;
         return _attack.currentDMG + bonusDMG;
     }
 
@@ -262,6 +264,13 @@ public class EnemyScript : MonoBehaviour
         {
             _damage *= 2;
             Destroy(Instantiate(criticalText, transform.position, Quaternion.identity), critcalTimer);
+        }
+
+        if (!_setDamage && playerScript.GetUpgradableStats().damageDistance > 0)
+        {
+            //float newDamage = _damage * ((Vector3.Distance(player.transform.position, transform.position) * playerScript.GetUpgradableStats().damageDistance));
+            _damage += (Vector3.Distance(player.transform.position, transform.position) / 10) * playerScript.GetUpgradableStats().damageDistance;
+            print("_Distdamage: " + _damage);
         }
 
         //Spawning damage numbers
@@ -277,13 +286,6 @@ public class EnemyScript : MonoBehaviour
 
             //Despawning the damage number on a timer
             StartCoroutine(poolingManager.DespawnObjectTimer(dmgNum, 1.0f));
-        }
-
-        if (!_setDamage && playerScript.GetUpgradableStats().damageDistance > 0)
-        {
-            //float newDamage = _damage * ((Vector3.Distance(player.transform.position, transform.position) * playerScript.GetUpgradableStats().damageDistance));
-            _damage += (Vector3.Distance(player.transform.position, transform.position) / 10) * playerScript.GetUpgradableStats().damageDistance;
-            print("_damage: " + _damage);
         }
 
         health -= _damage;
