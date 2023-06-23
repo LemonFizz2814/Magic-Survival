@@ -107,6 +107,19 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        //Make any surrounding enemy knock back when the current enemy is knocked back
+        if (collision.gameObject.CompareTag("Enemy") && isDead == true)
+        {
+            if (playerScript.GetUpgradableStats().bulletKnockback <= 0 && rb.velocity.magnitude > 1.0f) return;
+
+            EnemyScript knockTarget = collision.gameObject.GetComponent<EnemyScript>();
+            knockTarget.Knockback();
+            Debug.Log("Dead enemy knockback");
+        }
+    }
+
     private void OnCollisionStay(Collision col)
     {
         //Hits player when the enemy touches them
@@ -117,6 +130,8 @@ public class EnemyScript : MonoBehaviour
 
             t = attackWait + Random.Range(0.00f, 0.15f);
         }
+
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -156,8 +171,6 @@ public class EnemyScript : MonoBehaviour
 
         }
 
-
-
         if (other.CompareTag("ChainLightning"))
         {
             LightningChain lightning = other.GetComponent<LightningChain>();
@@ -167,6 +180,8 @@ public class EnemyScript : MonoBehaviour
 
             }
         }
+
+        
     }
 
     private void OnTriggerStay(Collider other)
@@ -183,6 +198,8 @@ public class EnemyScript : MonoBehaviour
             }
             //Debug.Log("electric field works");
         }
+
+        
     }
 
     public void HitByBullet(GameObject _bullet, Vector3 _pos)
@@ -316,8 +333,7 @@ public class EnemyScript : MonoBehaviour
         }
         PlayAnimation(ANIMATIONS.Die);
         isDead = true;
-        GetComponent<BoxCollider>().enabled = false;
-        GetComponent<Rigidbody>().isKinematic = true;
+        
 
         StartCoroutine(DepsawnWait(despawnWait));
     }
@@ -326,6 +342,8 @@ public class EnemyScript : MonoBehaviour
     {
         enemySpawner.RemoveEnemy(gameObject);
         yield return new WaitForSeconds(_delay);
+        GetComponent<BoxCollider>().enabled = false;
+        GetComponent<Rigidbody>().isKinematic = true;
         poolingManager.DespawnObject(this.gameObject);
     }
 
