@@ -120,9 +120,7 @@ MonoBehaviour:
     explosionSize: 0
     explosionDamage: 1
     damageDistance: 0
-    sawSpinSpeed: 40
     sentrySpinSpeed: 30
-    sentryFireRate: 0.8
     lightningRate: 0
     lightningDamage: 8
     spikeDestroyDuration: 6
@@ -141,6 +139,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3cdbf2ec1ca53aa4a93bc31538b379cc, type: 2}
   - {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
   - {fileID: 11400000, guid: f1613865c997ff24b820592681894126, type: 2}
+  - {fileID: 11400000, guid: b565b89974d52a846b5da7396920d188, type: 2}
+  - {fileID: 11400000, guid: ec829619be9c4894a932f7e24af56af8, type: 2}
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -257,7 +257,7 @@ MonoBehaviour:
     attributeType: 0
     attackObj: {fileID: 11400000, guid: cc9131757619f68458ca2fe11dfc855e, type: 2}
     attkStat: 0
-    positiveUpgrade: 350
+    positiveUpgrade: 500
     negativeUpgrade: 0
     debugKey: 114
   - upgradeName: Glass Cannon
@@ -345,17 +345,17 @@ MonoBehaviour:
     upgradeDescription: Spinning saws that deal damage
     upgrade: 16
     attributeType: 0
-    attackObj: {fileID: 0}
+    attackObj: {fileID: 11400000, guid: b565b89974d52a846b5da7396920d188, type: 2}
     attkStat: 0
     positiveUpgrade: 12
-    negativeUpgrade: 0
+    negativeUpgrade: 3
     debugKey: 117
   - upgradeName: Sentry
     icon: {fileID: 21300000, guid: a84debd38045d7742a256221e005d48d, type: 3}
     upgradeDescription: Adds a rotating sentry turret
     upgrade: 17
     attributeType: 0
-    attackObj: {fileID: 0}
+    attackObj: {fileID: 11400000, guid: ec829619be9c4894a932f7e24af56af8, type: 2}
     attkStat: 0
     positiveUpgrade: 5
     negativeUpgrade: 0

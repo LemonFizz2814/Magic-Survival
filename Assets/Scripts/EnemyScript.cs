@@ -146,7 +146,7 @@ public class EnemyScript : MonoBehaviour
         }
         if (other.CompareTag("Saw"))
         {
-            DamageEnemy(CalculateDMG(playerScript.GetAttackByName("Bullet")), true);
+            DamageEnemy(CalculateDMG(playerScript.GetAttackByName("Spin Saws")), true);
         }
         if (other.CompareTag("Explosion"))
         {

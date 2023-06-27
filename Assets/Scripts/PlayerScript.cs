@@ -55,7 +55,7 @@ public class PlayerScript : MonoBehaviour
     float health;
 
     float fireRateTimer;
-    float sentriesFireRateTimer;
+    //float sentriesFireRateTimer;
     float lightningTimer;
     float spikeSpawnTimer;
     float regenerationTimer;
@@ -104,9 +104,7 @@ public class PlayerScript : MonoBehaviour
         public float damageDistance;
 
         [Header("Special stats")]
-        public float sawSpinSpeed;
         public float sentrySpinSpeed;
-        public float sentryFireRate;
         public float lightningRate;
         public float lightningDamage;
         public float spikeDestroyDuration;
@@ -178,7 +176,6 @@ public class PlayerScript : MonoBehaviour
         score = 0;
         coins = PlayerPrefs.GetInt("Coins", 0);
         fireRateTimer = upgradableStats.fireRate;
-        sentriesFireRateTimer = upgradableStats.sentryFireRate;
         lightningTimer = upgradableStats.lightningRate;
         spikeSpawnTimer = upgradableStats.spikeSpawnRate;
 
@@ -225,7 +222,6 @@ public class PlayerScript : MonoBehaviour
         if (paused) return;
 
         fireRateTimer -= Time.deltaTime;
-        sentriesFireRateTimer -= Time.deltaTime;
         lightningTimer -= Time.deltaTime;
         spikeSpawnTimer -= Time.deltaTime;
 
@@ -313,16 +309,18 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
+        BaseAttack spinAttack = GetAttackByName("Spin Saws");
         for (int i = 0; i < spinningSaws.Count; i++)
         {
-            spinningSaws[i].transform.localEulerAngles += new Vector3(0, Time.deltaTime * upgradableStats.sawSpinSpeed, 0);
+            spinningSaws[i].transform.localEulerAngles += new Vector3(0, Time.deltaTime * spinAttack.Speed, 0);
         }
 
+        spinAttack = GetAttackByName("Sentry");
         if (sentries.Count > 0)
         {
             for (int i = 0; i < sentries.Count; i++)
             {
-                sentries[i].transform.localEulerAngles += new Vector3(0, Time.deltaTime * upgradableStats.sentrySpinSpeed, 0);
+                sentries[i].transform.localEulerAngles += new Vector3(0, Time.deltaTime * spinAttack.Speed, 0);
             }
 
             //if (sentriesFireRateTimer <= 0)
@@ -840,13 +838,16 @@ public class PlayerScript : MonoBehaviour
             case UPGRADES.explosion:
                 upgradableStats.explosionSize += 1 + (_upgradeStats.positiveUpgrade * 0.5f);
                 break;
-            //Fix the misaligned spawning (Contact blake maybe)
             case UPGRADES.spinningSaw:
-                upgradableStats.sawSpinSpeed += _upgradeStats.positiveUpgrade;
+                //Use the positive value to up the speed and negative value to up the damage
+                _upgradeStats.attackObj.Speed += _upgradeStats.positiveUpgrade;
+                _upgradeStats.attackObj.currentDMG += _upgradeStats.negativeUpgrade;
+                
+                //Add another saw
                 AddSpinningSaw();
                 break;
             case UPGRADES.sentry:
-                upgradableStats.sentrySpinSpeed += _upgradeStats.positiveUpgrade;
+                _upgradeStats.attackObj.Speed += _upgradeStats.positiveUpgrade;
                 AddSentry();
                 break;
             case UPGRADES.jackOfAllTrades:
