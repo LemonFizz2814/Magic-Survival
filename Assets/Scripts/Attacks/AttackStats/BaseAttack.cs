@@ -26,7 +26,7 @@ public class BaseAttack : ScriptableObject
         PLAYER,
         POOL,
         ENEMY,
-        INSTANTIATE
+        DELAY_DESTROY
     }
 
     [Header("UI Stuff")]
@@ -39,6 +39,7 @@ public class BaseAttack : ScriptableObject
                                             //(Check GetPlayerAttackObj in PlayerScript)
     private float spawnTimer = 0.0f;
     public SPAWNTYPE spawnSource = SPAWNTYPE.POOL;
+    public float despawnTimer = 0.0f;       //Use this to time how long until it is disabled by pooling manager
 
     //Use this enum to retrieve objects in the pooling manager
     public PoolingManager.PoolingEnum poolType = PoolingManager.PoolingEnum.Bullet;
@@ -56,7 +57,7 @@ public class BaseAttack : ScriptableObject
     private float maxDMG = 1000.0f,
     minSpeed, maxSpeed,
     minFireRate, maxFireRate,
-    minDuration, maxDuration,
+    minDuration, maxDuration,       //Duration is used as a timer for spawn source
     minRange, maxRange;
     [SerializeField] private int minAmount = 1, maxAmount;
 

@@ -146,7 +146,7 @@ public class EnemyScript : MonoBehaviour
         }
         if (other.CompareTag("Saw"))
         {
-            DamageEnemy(CalculateDMG(playerScript.GetAttackByName("Spin Saws")), true);
+            DamageEnemy(CalculateDMG(playerScript.GetAttackByName("Spin Saws")), false);
         }
         if (other.CompareTag("Explosion"))
         {
@@ -159,7 +159,7 @@ public class EnemyScript : MonoBehaviour
 
         if (other.CompareTag("LazerStrike"))
         {
-            DamageEnemy(CalculateDMG(playerScript.GetAttackByName("Lazer Strike")), true);
+            DamageEnemy(CalculateDMG(playerScript.GetAttackByName("Lazer Strike")), false);
         }
 
         if (other.CompareTag("ElectricPulse"))

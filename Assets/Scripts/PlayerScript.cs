@@ -339,21 +339,21 @@ public class PlayerScript : MonoBehaviour
             //}
         }
 
-        if (upgradableStats.lightningRate > 0 && lightningTimer <= 0)
-        {
-            lightningTimer = 10 - upgradableStats.lightningRate;
+        //if (upgradableStats.lightningRate > 0 && lightningTimer <= 0)
+        //{
+        //    lightningTimer = 10 - upgradableStats.lightningRate;
 
-            List<GameObject> activeEnemies = enemySpawner.GetActiveEnemies();
-            if (activeEnemies.Count > 0)
-            {
-                int randomEnemy = Random.Range(0, activeEnemies.Count);
+        //    List<GameObject> activeEnemies = enemySpawner.GetActiveEnemies();
+        //    if (activeEnemies.Count > 0)
+        //    {
+        //        int randomEnemy = Random.Range(0, activeEnemies.Count);
 
-                Vector3 pos = activeEnemies[randomEnemy].transform.position;
-                pos = new Vector3(pos.x, 0.1f, pos.z);
-                Destroy(Instantiate(lightningVFX, pos, Quaternion.identity), 5);
-                activeEnemies[randomEnemy].GetComponent<EnemyScript>().DamageEnemy(upgradableStats.lightningDamage, true);
-            }
-        }
+        //        Vector3 pos = activeEnemies[randomEnemy].transform.position;
+        //        pos = new Vector3(pos.x, 0.1f, pos.z);
+        //        Destroy(Instantiate(lightningVFX, pos, Quaternion.identity), 5);
+        //        activeEnemies[randomEnemy].GetComponent<EnemyScript>().DamageEnemy(upgradableStats.lightningDamage, true);
+        //    }
+        //}
 
         //Spawning chain lightning
         //if (upgradableStats.chainLightningRate > 0 && chainLightningTimer <= 0)
@@ -390,7 +390,7 @@ public class PlayerScript : MonoBehaviour
             if (attack.spawnSource == BaseAttack.SPAWNTYPE.PLAYER)
             {
                 GameObject playerVFX = GetPlayerAttackObj(attack.name);   //Assigning it Electric field to prevent errors
-                
+
 
                 if (playerVFX != null && !playerVFX.activeSelf) playerVFX.SetActive(true);
                 continue;
@@ -401,6 +401,9 @@ public class PlayerScript : MonoBehaviour
             {
                 Vector3 spawnPos = transform.position;
                 spawnPos.y = 0.5f;
+
+                //An enemy target for attacks that have a specifc target to lock on to (mostly lightning strike)
+                GameObject enemyTarget = gameObject;
 
                 for (int i = 0; i < attack.Amount; i++)
                 {
@@ -416,6 +419,19 @@ public class PlayerScript : MonoBehaviour
                             //Just make it do nothing. Bullets are enabled/disabled by the player
                             continue;
                             break;
+                        case "Lightning Strike":
+                            List<GameObject> activeEnemies = enemySpawner.GetActiveEnemies();
+                            if (activeEnemies.Count <= 0) continue;
+
+                            int randomEnemy = Random.Range(0, activeEnemies.Count);
+                            enemyTarget = activeEnemies[randomEnemy];
+
+                            spawnPos = activeEnemies[randomEnemy].transform.position;
+                            spawnPos = new Vector3(spawnPos.x, 0.5f, spawnPos.z);
+                            //Destroy(Instantiate(lightningVFX, pos, Quaternion.identity), 5);
+                            //activeEnemies[randomEnemy].GetComponent<EnemyScript>().DamageEnemy(attack.currentDMG, true);
+
+                            break;
                         default:
                             attackNameFound = false;
                             Debug.LogError(attack.name + " does not spawn any attacks on the Pool Manager. " +
@@ -423,14 +439,31 @@ public class PlayerScript : MonoBehaviour
                             break;
                     }
 
-                    if (attackNameFound) poolingManager.SpawnObject(attack.poolType, spawnPos, Quaternion.identity);
+                    if (!attackNameFound) continue;
+                    GameObject poolObj = poolingManager.SpawnObject(attack.poolType, spawnPos, Quaternion.identity);
 
+                    //Set the lightning strike target
+                    if (attack.name == "Lightning Strike")
+                    {
+                        LightningStrike lightningAttk = poolObj.GetComponentInChildren<LightningStrike>();
+                        lightningAttk.target = enemyTarget.transform;
+                    }
+
+                    //Disable the same object after some time if it has a despawn timer
+                    if (attack.despawnTimer > 0)
+                    {
+                        StartCoroutine(poolingManager.DespawnObjectTimer(poolObj, attack.despawnTimer));
+                    }
                 }
                 continue;
             }
 
             //If the attack is destroyed after a delay, set destroy timer
-            //if (attack.spawnSource == BaseAttack.SPAWNTYPE.INSTANTIATE)
+            //if (attack.spawnSource == BaseAttack.SPAWNTYPE.DELAY_DESTROY)
+            //{
+
+            //    StartCoroutine(poolingManager.DespawnObjectTimer())
+            //}
             //Note: Wait why can't we just use the pool manager to "destroy" them afterward?
         }
 
@@ -842,7 +875,7 @@ public class PlayerScript : MonoBehaviour
                 //Use the positive value to up the speed and negative value to up the damage
                 _upgradeStats.attackObj.Speed += _upgradeStats.positiveUpgrade;
                 _upgradeStats.attackObj.currentDMG += _upgradeStats.negativeUpgrade;
-                
+
                 //Add another saw
                 AddSpinningSaw();
                 break;
@@ -861,9 +894,9 @@ public class PlayerScript : MonoBehaviour
                 upgradableStats.damageDistance += _upgradeStats.positiveUpgrade;
                 break;
             //Will need to be put in scriptable object (also target enemies, contact blake)
-            case UPGRADES.lightningStrike:
-                upgradableStats.lightningRate += _upgradeStats.positiveUpgrade;
-                break;
+            //case UPGRADES.lightningStrike:
+            //    upgradableStats.lightningRate += _upgradeStats.positiveUpgrade;
+            //    break;
             //Modify fire rate/amount
             case UPGRADES.spike:
                 upgradableStats.spikeSpawnRate += _upgradeStats.positiveUpgrade;
@@ -888,11 +921,12 @@ public class PlayerScript : MonoBehaviour
                         _upgradeStats.attackObj.enableSpawn = true;
                         //Upping the fire rate for bullet immediately
                         if (_upgradeStats.attackObj.name == "Bullet") _upgradeStats.attackObj.FireRate += _upgradeStats.positiveUpgrade;
-                        
+
 
                         //Enabling the attack immediately if required
                         if (!_upgradeStats.attackObj.immediateSpawn) break;
-
+                        
+                        //Retrieve the object from player prefab (Check VFX child objects under player prefab)
                         GameObject playerAttack = GetPlayerAttackObj(_upgradeStats.attackObj.name);
                         playerAttack.SetActive(true);
                     }

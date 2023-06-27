@@ -141,6 +141,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f1613865c997ff24b820592681894126, type: 2}
   - {fileID: 11400000, guid: b565b89974d52a846b5da7396920d188, type: 2}
   - {fileID: 11400000, guid: ec829619be9c4894a932f7e24af56af8, type: 2}
+  - {fileID: 11400000, guid: 4f601bd25af7bdf40ab8fe3d175b7831, type: 2}
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -383,10 +384,10 @@ MonoBehaviour:
   - upgradeName: Lightning Strike
     icon: {fileID: 21300000, guid: 710dd2e9adfffd14698b815c589b5d04, type: 3}
     upgradeDescription: Lightning strikes a random enemy
-    upgrade: 20
+    upgrade: 0
     attributeType: 0
-    attackObj: {fileID: 0}
-    attkStat: 0
+    attackObj: {fileID: 11400000, guid: 4f601bd25af7bdf40ab8fe3d175b7831, type: 2}
+    attkStat: 3
     positiveUpgrade: 1.8
     negativeUpgrade: 0
     debugKey: 105

@@ -91,7 +91,7 @@ public class LightningChain : MonoBehaviour
                     {
                         //Debug.Log(attkTimer);
                         float totalDMG = target.CalculateDMG(player.GetAttackByName("Chain Lightning"));
-                        target.DamageEnemy(totalDMG, true);
+                        target.DamageEnemy(totalDMG, false);
                         
                         hitNum++;
                         attkTimer = 0;

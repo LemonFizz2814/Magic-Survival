@@ -28,7 +28,8 @@ public class PoolingManager : MonoBehaviour
         LazerStrike,
         ChainLightning,
         GenericCube,
-        DMGNum
+        DMGNum,
+        LightningStrike
     }
 
     public void SpawnIntialObjects()

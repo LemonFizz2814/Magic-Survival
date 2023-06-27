@@ -18326,6 +18326,9 @@ MonoBehaviour:
   - name: 11
     gameObjectToSpawn: {fileID: 363805296615410397, guid: 56b402563ee73ff4e88c954fc67e9645, type: 3}
     IntialToSpawn: 40
+  - name: 12
+    gameObjectToSpawn: {fileID: 9206525116602585051, guid: db986b1f93cbdde42859daf1d27fe36f, type: 3}
+    IntialToSpawn: 40
 --- !u!4 &1859885233
 Transform:
   m_ObjectHideFlags: 0
