@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6203482952669351258}
   - component: {fileID: 6203482952669351261}
   m_Layer: 0
-  m_Name: Lazer Spike
+  m_Name: Spike Seed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,7 +50,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -979,7 +979,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 5
+        scalar: 1
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -4900,7 +4900,7 @@ GameObject:
   - component: {fileID: 6203482953333961540}
   - component: {fileID: 1506848830668213800}
   m_Layer: 0
-  m_Name: Lazer Spike
+  m_Name: Actual Spikes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9770,7 +9770,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ac39941e0054a4439415ae3008f5795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackStats: {fileID: 11400000, guid: baa91d550230b6c4482f7522e5dc72b1, type: 2}
+  player: {fileID: 0}
+  explosionWait: 5
+  explosionObj: {fileID: 3679010409709877342, guid: 703de4b8f10c68242a5ef08721ded28d, type: 3}
+  PS: {fileID: 6203482952669351258}
+  FireRateLevel: 1
+  MultiShotLevel: 1
+  BulletSpeedLevel: 1
+  BulletRangeLevel: 1
+  HomingLevel: 0
+  BulletSizeLevel: 1
   SpikeHitbox: {fileID: 8843206394499513653, guid: e9238e46f9d4a9d4d87976015e912ecf, type: 3}
+  hitboxList: []
 --- !u!1 &8757489119657500496
 GameObject:
   m_ObjectHideFlags: 0
@@ -9877,7 +9889,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0

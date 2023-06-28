@@ -107,8 +107,8 @@ public class PlayerScript : MonoBehaviour
         public float sentrySpinSpeed;
         public float lightningRate;
         public float lightningDamage;
-        public float spikeDestroyDuration;
-        public float spikeSpawnRate;
+        //public float spikeDestroyDuration;
+        //public float spikeSpawnRate;
         public float baseDMGMultiplier;
         public float projectileDMGMultiplier;
         public float electricityDMGMultiplier;
@@ -177,7 +177,6 @@ public class PlayerScript : MonoBehaviour
         coins = PlayerPrefs.GetInt("Coins", 0);
         fireRateTimer = upgradableStats.fireRate;
         lightningTimer = upgradableStats.lightningRate;
-        spikeSpawnTimer = upgradableStats.spikeSpawnRate;
 
         if (allAttacks.Length > 0)
         {
@@ -430,6 +429,8 @@ public class PlayerScript : MonoBehaviour
                             spawnPos = new Vector3(spawnPos.x, 0.5f, spawnPos.z);
                             //Destroy(Instantiate(lightningVFX, pos, Quaternion.identity), 5);
                             //activeEnemies[randomEnemy].GetComponent<EnemyScript>().DamageEnemy(attack.currentDMG, true);
+                            break;
+                        case "Spike":
 
                             break;
                         default:
@@ -467,11 +468,11 @@ public class PlayerScript : MonoBehaviour
             //Note: Wait why can't we just use the pool manager to "destroy" them afterward?
         }
 
-        if (upgradableStats.spikeSpawnRate > 0 && spikeSpawnTimer <= 0)
-        {
-            spikeSpawnTimer = 5 - upgradableStats.spikeSpawnRate;
-            Destroy(Instantiate(spikeObject, transform.position, Quaternion.identity), upgradableStats.spikeDestroyDuration);
-        }
+        //if (upgradableStats.spikeSpawnRate > 0 && spikeSpawnTimer <= 0)
+        //{
+        //    spikeSpawnTimer = 5 - upgradableStats.spikeSpawnRate;
+        //    Destroy(Instantiate(spikeObject, transform.position, Quaternion.identity), upgradableStats.spikeDestroyDuration);
+        //}
 
         //Spawning grenades
         //if (upgradableStats.grenadeRate > 0)
@@ -899,7 +900,12 @@ public class PlayerScript : MonoBehaviour
             //    break;
             //Modify fire rate/amount
             case UPGRADES.spike:
-                upgradableStats.spikeSpawnRate += _upgradeStats.positiveUpgrade;
+                //upgradableStats.spikeSpawnRate += _upgradeStats.positiveUpgrade;
+                _upgradeStats.attackObj.enableSpawn = true;
+                GameObject playerAttack = GetPlayerAttackObj(_upgradeStats.attackObj.name);
+                playerAttack.SetActive(true);
+                _upgradeStats.attackObj.FireRate += _upgradeStats.positiveUpgrade;
+                _upgradeStats.attackObj.Amount += (int)_upgradeStats.negativeUpgrade;
                 break;
             case UPGRADES.attributeDMG:
                 SetAttributeDMG(_upgradeStats.attributeType, _upgradeStats.positiveUpgrade);
@@ -1054,6 +1060,9 @@ public class PlayerScript : MonoBehaviour
                 break;
             case "Ring Shot":
                 return ringShot;
+                break;
+            case "Spike":
+                return spikeObject;
                 break;
             default:
                 Debug.LogError(_name + " does not spawn any attacks on the player. " +

@@ -26266,6 +26266,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Robot
       objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[20].attackObj
+      value: 
+      objectReference: {fileID: 11400000, guid: baa91d550230b6c4482f7522e5dc72b1, type: 2}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[20].negativeUpgrade
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 388118435640875308, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
+      propertyPath: upgradeStats.Array.data[20].positiveUpgrade
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1276238983344249789, guid: b1c4f12948353fd489f8eaa741c23f13, type: 3}
       propertyPath: menuUI
       value: 

@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8caa6eb81e36ddd49b89b2b95a924548, type: 3}
+  m_Name: Spike
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  description: 
+  enableSpawn: 1
+  immediateSpawn: 1
+  spawnSource: 0
+  despawnTimer: 6
+  poolType: 2
+  currentDMG: 5
+  bonusEffects: 
+  currentSpeed: 0
+  currentFireRate: 1
+  currentDuration: 0
+  currentRange: 0
+  currentAmount: 1
+  onValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  minDMG: 5
+  maxDMG: 1000
+  minSpeed: 0
+  maxSpeed: 0
+  minFireRate: 0
+  maxFireRate: 5
+  minDuration: 0
+  maxDuration: 0
+  minRange: 0
+  maxRange: 0
+  minAmount: 0
+  maxAmount: 5

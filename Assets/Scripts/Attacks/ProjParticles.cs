@@ -174,9 +174,9 @@ public class ProjParticles : MonoBehaviour
         HomingUpDate();
     }
 
-    protected void OnValueChangeHandler(float _newValue, string _variableName)
+    protected virtual void OnValueChangeHandler(float _newValue, string _variableName)
     {
-        Debug.Log(_variableName + "'s value has changed to: " + _newValue);
+        //Debug.Log(_variableName + "'s value has changed to: " + _newValue);
 
         switch (_variableName)
         {

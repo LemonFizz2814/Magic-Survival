@@ -154,7 +154,7 @@ public class EnemyScript : MonoBehaviour
         }
         if (other.CompareTag("Spike"))
         {
-            DamageEnemy(CalculateDMG(playerScript.GetAttackByName("Bullet")), true);
+            DamageEnemy(CalculateDMG(playerScript.GetAttackByName("Spike")), false);
         }
 
         if (other.CompareTag("LazerStrike"))
