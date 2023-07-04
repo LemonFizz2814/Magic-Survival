@@ -36,6 +36,11 @@ public class SpikeScript : ProjParticles
     {
         if (col.tag == "Ground")
         {
+            foreach (GameObject hitbox in GameObject.FindGameObjectsWithTag("Spike"))
+            {
+                hitboxList.Add(hitbox);
+            }
+
             //Despawning any hitboxes in current list
             if (hitboxList.Count > 0)
             {
@@ -53,9 +58,10 @@ public class SpikeScript : ProjParticles
             for (int i = 0; i < current_particles; i++)
             {
                 GameObject newSpike = Instantiate(SpikeHitbox, PartList[i].position, Quaternion.identity);
-
-                //Adding it to the list to track when to despawn them
-                hitboxList.Add(newSpike);
+                
+                //Despawn the hibox once the spike particle is gone
+                Destroy(newSpike, PS.main.duration);
+                //hitboxList.Add(newSpike);
 
             }
         }

@@ -112,11 +112,18 @@ public class EnemyScript : MonoBehaviour
         //Make any surrounding enemy knock back when the current enemy is knocked back
         if (collision.gameObject.CompareTag("Enemy") && isDead == true)
         {
-            if (playerScript.GetUpgradableStats().bulletKnockback <= 0 && rb.velocity.magnitude > 1.0f) return;
+            if (playerScript.GetUpgradableStats().bulletKnockback <= 0 || rb.velocity.magnitude < 1.0f)
+            {
+                //Debug.Log("Disabling knockback");
+                //Making it so that the dead enemy can be walked through by other enemies
+                GetComponent<BoxCollider>().enabled = false;
+                rb.isKinematic = true;
+                return;
+            }
 
             EnemyScript knockTarget = collision.gameObject.GetComponent<EnemyScript>();
             knockTarget.Knockback();
-            Debug.Log("Dead enemy knockback");
+            //Debug.Log("Dead enemy knockback");
         }
     }
 
@@ -333,7 +340,12 @@ public class EnemyScript : MonoBehaviour
         }
         PlayAnimation(ANIMATIONS.Die);
         isDead = true;
-        
+        if (playerScript.GetUpgradableStats().bulletKnockback <= 0)
+        {
+            //Doing this so that other enemies can go through this dead enemy if there is no knockback
+            GetComponent<BoxCollider>().enabled = false;
+            GetComponent<Rigidbody>().isKinematic = true;
+        }
 
         StartCoroutine(DepsawnWait(despawnWait));
     }

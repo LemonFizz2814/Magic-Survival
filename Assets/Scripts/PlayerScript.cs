@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.Events;
+using static Constants;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -308,13 +309,13 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
-        BaseAttack spinAttack = GetAttackByName("Spin Saws");
+        BaseAttack spinAttack = GetAttackByName(AttackNames.SpinSaws);
         for (int i = 0; i < spinningSaws.Count; i++)
         {
             spinningSaws[i].transform.localEulerAngles += new Vector3(0, Time.deltaTime * spinAttack.Speed, 0);
         }
 
-        spinAttack = GetAttackByName("Sentry");
+        spinAttack = GetAttackByName(AttackNames.Sentry);
         if (sentries.Count > 0)
         {
             for (int i = 0; i < sentries.Count; i++)
@@ -408,17 +409,17 @@ public class PlayerScript : MonoBehaviour
                 {
                     switch (attack.name)
                     {
-                        case "Lazer Strike":
+                        case AttackNames.LazerStrike:
                             spawnPos.x += Random.Range(-attack.Range, attack.Range);
                             spawnPos.z += Random.Range(-attack.Range, attack.Range);
                             break;
-                        case "Chain Lightning":
+                        case AttackNames.ChainLightning:
                             break;
-                        case "Bullet":
+                        case AttackNames.Bullet:
                             //Just make it do nothing. Bullets are enabled/disabled by the player
                             continue;
                             break;
-                        case "Lightning Strike":
+                        case AttackNames.LightningStrike:
                             List<GameObject> activeEnemies = enemySpawner.GetActiveEnemies();
                             if (activeEnemies.Count <= 0) continue;
 
@@ -429,9 +430,6 @@ public class PlayerScript : MonoBehaviour
                             spawnPos = new Vector3(spawnPos.x, 0.5f, spawnPos.z);
                             //Destroy(Instantiate(lightningVFX, pos, Quaternion.identity), 5);
                             //activeEnemies[randomEnemy].GetComponent<EnemyScript>().DamageEnemy(attack.currentDMG, true);
-                            break;
-                        case "Spike":
-
                             break;
                         default:
                             attackNameFound = false;
@@ -444,7 +442,7 @@ public class PlayerScript : MonoBehaviour
                     GameObject poolObj = poolingManager.SpawnObject(attack.poolType, spawnPos, Quaternion.identity);
 
                     //Set the lightning strike target
-                    if (attack.name == "Lightning Strike")
+                    if (attack.name == AttackNames.LightningStrike)
                     {
                         LightningStrike lightningAttk = poolObj.GetComponentInChildren<LightningStrike>();
                         lightningAttk.target = enemyTarget.transform;
@@ -695,7 +693,7 @@ public class PlayerScript : MonoBehaviour
         angle.y += -2.5f;
         //projectile.transform.localEulerAngles = angle;
 
-        BaseAttack bullet = GetAttackByName("Bullet");
+        BaseAttack bullet = GetAttackByName(AttackNames.Bullet);
 
         //Timing the fire rate with the muzzle (here's hoping that works)
         if (!bullet.SpawnCheck(true)) return;
@@ -926,8 +924,10 @@ public class PlayerScript : MonoBehaviour
                         //Sergio Made a rough patch here. Bullet Firerate was not upgrading reltive to the level. Ask for more details.
                         _upgradeStats.attackObj.enableSpawn = true;
                         //Upping the fire rate for bullet immediately
-                        if (_upgradeStats.attackObj.name == "Bullet") _upgradeStats.attackObj.FireRate += _upgradeStats.positiveUpgrade;
-
+                        if (_upgradeStats.attackObj.name == AttackNames.Bullet)
+                        {
+                            _upgradeStats.attackObj.FireRate += _upgradeStats.positiveUpgrade;
+                        }
 
                         //Enabling the attack immediately if required
                         if (!_upgradeStats.attackObj.immediateSpawn) break;
@@ -1049,19 +1049,19 @@ public class PlayerScript : MonoBehaviour
     {
         switch (_name)
         {
-            case "Electric Pulse":
+            case AttackNames.ElectricPulse:
                 return electricPulse;
                 break;
-            case "Grenade Throw":
+            case AttackNames.GrenadeThrow:
                 return grenadeThrow;
                 break;
-            case "Electric Field":
+            case AttackNames.ElectricField:
                 return electricField;
                 break;
-            case "Ring Shot":
+            case AttackNames.RingShot:
                 return ringShot;
                 break;
-            case "Spike":
+            case AttackNames.Spike:
                 return spikeObject;
                 break;
             default:
