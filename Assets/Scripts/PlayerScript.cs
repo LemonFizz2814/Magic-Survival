@@ -296,6 +296,19 @@ public class PlayerScript : MonoBehaviour
             camTrack.TrackAim = false;
 
             if (!projectile.isStopped) projectile.Stop();
+
+            //Play the other player equipped attack particle systems
+            foreach (BaseAttack equippedAttack in allAttacks)
+            {
+                //Ignore the bullet attack since it's already stopping from the projectile PS variable
+                if (equippedAttack.name == AttackNames.Bullet) continue;
+
+                if (equippedAttack.spawnSource == BaseAttack.SPAWNTYPE.INPUT && equippedAttack.enableSpawn)
+                {
+                    ParticleSystem attackPS = GetPlayerAttackObj(equippedAttack.name).GetComponent<ParticleSystem>();
+                    if (!attackPS.isStopped) attackPS.Stop();
+                }
+            }
         }
 
         if (upgradableStats.regeneration > 0)
@@ -689,6 +702,19 @@ public class PlayerScript : MonoBehaviour
     {
         if (!projectile.isPlaying) projectile.Play();
 
+        //Play the other player equipped attack particle systems
+        foreach (BaseAttack equippedAttack in allAttacks)
+        {
+            //Ignore the bullet attack since it's already playing from the projectile PS variable
+            if (equippedAttack.name == AttackNames.Bullet) continue;
+
+            if (equippedAttack.spawnSource == BaseAttack.SPAWNTYPE.INPUT && equippedAttack.enableSpawn)
+            {
+                ParticleSystem attackPS = GetPlayerAttackObj(equippedAttack.name).GetComponent<ParticleSystem>();
+                if (!attackPS.isPlaying) attackPS.Play();
+            }
+        }
+
         Vector3 angle = playerModel.transform.rotation.eulerAngles;
         angle.y += -2.5f;
         //projectile.transform.localEulerAngles = angle;
@@ -771,6 +797,7 @@ public class PlayerScript : MonoBehaviour
             spinningSaws[i].transform.localEulerAngles = new Vector3(0, angle * i, 0);
         }
     }
+
     void AddSentry()
     {
         GameObject sentryObj = Instantiate(sentryObject, new Vector3(transform.position.x, 0.5f, transform.position.z), Quaternion.identity);

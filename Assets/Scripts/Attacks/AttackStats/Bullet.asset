@@ -16,14 +16,15 @@ MonoBehaviour:
   description: 
   enableSpawn: 0
   immediateSpawn: 0
-  spawnSource: 1
+  spawnSource: 3
+  despawnTimer: 0
   poolType: 2
   currentDMG: 5
   bonusEffects: 02000000
   currentSpeed: 1
   currentFireRate: 1
   currentDuration: 0
-  currentRange: 3
+  currentRange: 1
   currentAmount: 1
   onValueChanged:
     m_PersistentCalls:

@@ -16,7 +16,8 @@ MonoBehaviour:
   description: 
   enableSpawn: 1
   immediateSpawn: 1
-  spawnSource: 0
+  spawnSource: 3
+  despawnTimer: 0
   poolType: 2
   currentDMG: 6
   bonusEffects: 02000000

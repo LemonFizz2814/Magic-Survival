@@ -9765,11 +9765,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0285c5ec3dbb024db56916f1cc88d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackStats: {fileID: 0}
+  attackStats: {fileID: 11400000, guid: f1613865c997ff24b820592681894126, type: 2}
   player: {fileID: 0}
-  explosionWait: 0
-  explosionObj: {fileID: 0}
-  PS: {fileID: 0}
+  explosionWait: 5
+  explosionObj: {fileID: 3679010409709877342, guid: 703de4b8f10c68242a5ef08721ded28d, type: 3}
+  PS: {fileID: 7091732676386987905}
   FireRateLevel: 1
   MultiShotLevel: 1
   BulletSpeedLevel: 1

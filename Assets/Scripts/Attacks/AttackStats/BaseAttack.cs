@@ -26,7 +26,7 @@ public class BaseAttack : ScriptableObject
         PLAYER,
         POOL,
         ENEMY,
-        DELAY_DESTROY
+        INPUT,
     }
 
     [Header("UI Stuff")]
