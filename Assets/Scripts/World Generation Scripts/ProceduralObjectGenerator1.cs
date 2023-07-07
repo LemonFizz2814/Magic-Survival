@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ProceduralObjectGenerator1 : MonoBehaviour
 {
     public GameObject ObjecttoSpawn;
     public PoolingManager poolingManager;
+    [SerializeField] private List<GameObject> activeObjects;
 
     public int num_points;
     public float radius;
@@ -16,6 +18,14 @@ public class ProceduralObjectGenerator1 : MonoBehaviour
 
     Vector3 pointzero = new Vector3();
     List<Vector3> playerspawn = new List<Vector3>();
+
+    private void Start()
+    {
+        if (SceneManager.GetActiveScene().name != "Main Game")
+        {
+            poolingManager.SpawnIntialObjects();
+        }
+    }
 
     private void Update()
     {
@@ -55,8 +65,10 @@ public class ProceduralObjectGenerator1 : MonoBehaviour
                 int customseed = (int)((Seed * (Xmin + Xmax)) + (Seed * (Ymin + Ymax)) + Mathf.Pow(Seed, 2.0f));
                 System.Random _rnd = new System.Random(customseed);
 
+                //DespawnPrevObj();
                 for (int i = 0; i < num_points; i++)
                 {
+                    Debug.Log(i);
                     Vector3 loc = new Vector3(_rnd.Next((int)Xmin, (int)Xmax), this.transform.position.y, _rnd.Next((int)Ymin, (int)Ymax));
 
                     SpawnObj(loc);
@@ -74,6 +86,7 @@ public class ProceduralObjectGenerator1 : MonoBehaviour
                 int customseed = (int)((Seed * (Xmin + Xmax)) + (Seed * (Ymin + Ymax)) + Mathf.Pow(Seed, 2.0f));
                 System.Random _rnd = new System.Random(customseed);
 
+                //DespawnPrevObj();
                 for (int i = 0; i < num_points; i++)
                 {
                     Vector3 loc = new Vector3(_rnd.Next((int)Xmin, (int)Xmax), this.transform.position.y, _rnd.Next((int)Ymin, (int)Ymax));
@@ -88,7 +101,21 @@ public class ProceduralObjectGenerator1 : MonoBehaviour
     {
         if (poolingManager.CheckIfPoolFree(PoolingManager.PoolingEnum.GenericCube))
         {
-            poolingManager.SpawnObject(PoolingManager.PoolingEnum.GenericCube, _pos, Quaternion.Euler(0, 45, 0));
+            GameObject newObject = poolingManager.SpawnObject(PoolingManager.PoolingEnum.GenericCube, _pos, Quaternion.Euler(0, 45, 0));
+            //activeObjects.Add(newObject);
         }
+    }
+
+    //Despawn the objects at the previous point
+    void DespawnPrevObj()
+    {
+        if (activeObjects.Count == 0) return;
+
+        for (int i = 0; i < activeObjects.Count; i++)
+        {
+            poolingManager.DespawnObject(activeObjects[i]);
+        }
+
+        activeObjects.Clear();
     }
 }
