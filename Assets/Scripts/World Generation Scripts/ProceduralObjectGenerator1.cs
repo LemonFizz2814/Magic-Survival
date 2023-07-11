@@ -15,6 +15,7 @@ public class ProceduralObjectGenerator1 : MonoBehaviour
 
     [Header("Debugging Purpose Only")]
     public int Seed;
+    public bool isSpawn = false;
 
     Vector3 pointzero = new Vector3();
     List<Vector3> playerspawn = new List<Vector3>();
@@ -25,18 +26,51 @@ public class ProceduralObjectGenerator1 : MonoBehaviour
         {
             poolingManager.SpawnIntialObjects();
         }
+
+        playerspawn.Add(this.transform.position);
     }
 
     private void Update()
     {
+        float asd = float.MaxValue;
+        for (int i = 0; i < playerspawn.Count; i++)
+        {
+            if (Vector3.Distance(this.transform.position, playerspawn[i]) < asd)
+            {
+                asd = Vector3.Distance(this.transform.position, playerspawn[i]);
+            }
+        }
+
         //Is the player x distance away from old position
-        if (Vector3.Distance(pointzero, this.transform.position) > DistancetoSpawn)
+        if (asd > DistancetoSpawn)
         {
             //Current point
             pointzero = this.transform.position;
 
+            playerspawn.Add(pointzero);
+
+            float Xmin = (pointzero.x - radius);
+            float Xmax = (pointzero.x + radius);
+
+            float Ymin = (pointzero.z - radius);
+            float Ymax = (pointzero.z + radius);
+
+            //Just a linear Function
+            int customseed = (int)((Seed * (Xmin + Xmax)) + (Seed * (Ymin + Ymax)) + Mathf.Pow(Seed, 2.0f));
+            System.Random _rnd = new System.Random(customseed);
+
+            DespawnPrevObj();
+            for (int i = 0; i < num_points; i++)
+            {
+                Vector3 loc = new Vector3(_rnd.Next((int)Xmin, (int)Xmax), this.transform.position.y, _rnd.Next((int)Ymin, (int)Ymax));
+
+                SpawnObj(loc);
+            }
+        }
+        else
+        {
             //To find point closet to player
-            float leastdistancetoplayer = float.MaxValue;
+            float leastdistancetoplayer = DistancetoSpawn;
             Vector3 closestpointtoplayer = new Vector3();
             for (int i = 0; i < playerspawn.Count; i++)
             {
@@ -47,52 +81,22 @@ public class ProceduralObjectGenerator1 : MonoBehaviour
                 }
             }
 
-            //Now that we have the point closest to the player
-            //Is that point greater than x
-            //If it is we are going to spawn new objects
-            //Otherwise we will spawn objects at old locations
-            if (leastdistancetoplayer > DistancetoSpawn)
+            float Xmin = (closestpointtoplayer.x - radius);
+            float Xmax = (closestpointtoplayer.x + radius);
+
+            float Ymin = (closestpointtoplayer.z - radius);
+            float Ymax = (closestpointtoplayer.z + radius);
+
+            //Just a linear Function
+            int customseed = (int)((Seed * (Xmin + Xmax)) + (Seed * (Ymin + Ymax)) + Mathf.Pow(Seed, 2.0f));
+            System.Random _rnd = new System.Random(customseed);
+
+            DespawnPrevObj();
+            for (int i = 0; i < num_points; i++)
             {
-                playerspawn.Add(pointzero);
+                Vector3 loc = new Vector3(_rnd.Next((int)Xmin, (int)Xmax), this.transform.position.y, _rnd.Next((int)Ymin, (int)Ymax));
 
-                float Xmin = (pointzero.x - radius);
-                float Xmax = (pointzero.x + radius);
-                                                      
-                float Ymin = (pointzero.z - radius);
-                float Ymax = (pointzero.z + radius);
-
-                //Just a linear Function
-                int customseed = (int)((Seed * (Xmin + Xmax)) + (Seed * (Ymin + Ymax)) + Mathf.Pow(Seed, 2.0f));
-                System.Random _rnd = new System.Random(customseed);
-
-                //DespawnPrevObj();
-                for (int i = 0; i < num_points; i++)
-                {
-                    Debug.Log(i);
-                    Vector3 loc = new Vector3(_rnd.Next((int)Xmin, (int)Xmax), this.transform.position.y, _rnd.Next((int)Ymin, (int)Ymax));
-
-                    SpawnObj(loc);
-                }
-            }
-            else
-            {
-                float Xmin = (closestpointtoplayer.x - radius);
-                float Xmax = (closestpointtoplayer.x + radius);
-                                                                 
-                float Ymin = (closestpointtoplayer.z - radius);
-                float Ymax = (closestpointtoplayer.z + radius);
-
-                //Just a linear Function
-                int customseed = (int)((Seed * (Xmin + Xmax)) + (Seed * (Ymin + Ymax)) + Mathf.Pow(Seed, 2.0f));
-                System.Random _rnd = new System.Random(customseed);
-
-                //DespawnPrevObj();
-                for (int i = 0; i < num_points; i++)
-                {
-                    Vector3 loc = new Vector3(_rnd.Next((int)Xmin, (int)Xmax), this.transform.position.y, _rnd.Next((int)Ymin, (int)Ymax));
-
-                    SpawnObj(loc);
-                }
+                SpawnObj(loc);
             }
         }
     }
@@ -102,7 +106,7 @@ public class ProceduralObjectGenerator1 : MonoBehaviour
         if (poolingManager.CheckIfPoolFree(PoolingManager.PoolingEnum.GenericCube))
         {
             GameObject newObject = poolingManager.SpawnObject(PoolingManager.PoolingEnum.GenericCube, _pos, Quaternion.Euler(0, 45, 0));
-            //activeObjects.Add(newObject);
+            activeObjects.Add(newObject);
         }
     }
 
