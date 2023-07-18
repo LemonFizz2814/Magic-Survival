@@ -9,6 +9,7 @@ public class WorldChunker : MonoBehaviour
     private GameObject CurrentChunk;
     private float ChunkXSize;
     private float ChunkZSize;
+    public float perlinScale = 1;
 
     private Vector3 InitPos;
 
@@ -81,22 +82,39 @@ public class WorldChunker : MonoBehaviour
     {
         int MaterialIndex = 0;
 
-        //Beyond Material 2
-        if (Vector3.Distance(InitPos, _tilepos) > Vector3.Distance(InitPos, (InitPos + (2 * TileChangeDistance))))
+        ////Beyond Material 2
+        //if (Vector3.Distance(InitPos, _tilepos) > Vector3.Distance(InitPos, (InitPos + (2 * TileChangeDistance))))
+        //{
+        //    MaterialIndex = 1;
+        //}
+
+        ////Material 2
+        //if (Vector3.Distance(InitPos, _tilepos) < Vector3.Distance(InitPos, (InitPos + (2 * TileChangeDistance))) && Vector3.Distance(InitPos, _tilepos) > Vector3.Distance(InitPos, (InitPos + TileChangeDistance)))
+        //{
+        //    MaterialIndex = 1;
+        //}
+
+        ////Material 1
+        //if (Vector3.Distance(InitPos, _tilepos) < Vector3.Distance(InitPos, (InitPos + TileChangeDistance)))
+        //{
+        //    MaterialIndex = 0;
+        //}
+
+        //Get the player pos as arguments for perlin noise parameters. Divide them by chunk size so they go from 0 - 1
+        Vector3 playerPos = gameObject.transform.parent.transform.position;
+        float XCoord = playerPos.x / ChunkXSize * perlinScale;
+        float ZCoord = playerPos.z / ChunkZSize * perlinScale;
+        float sample = Mathf.PerlinNoise(XCoord, ZCoord);
+        Debug.Log("Perlin result: " + sample);
+
+        //Determine material index based on whether the perlin noise reached past 3 or 6
+        if (sample > 0.6f)
+        {
+            MaterialIndex = 2;
+        }
+        else if (sample > 0.3f)
         {
             MaterialIndex = 1;
-        }
-
-        //Material 2
-        if (Vector3.Distance(InitPos, _tilepos) < Vector3.Distance(InitPos, (InitPos + (2 * TileChangeDistance))) && Vector3.Distance(InitPos, _tilepos) > Vector3.Distance(InitPos, (InitPos + TileChangeDistance)))
-        {
-            MaterialIndex = 1;
-        }
-
-        //Material 1
-        if (Vector3.Distance(InitPos, _tilepos) < Vector3.Distance(InitPos, (InitPos + TileChangeDistance)))
-        {
-            MaterialIndex = 0;
         }
 
         return MaterialIndex;
