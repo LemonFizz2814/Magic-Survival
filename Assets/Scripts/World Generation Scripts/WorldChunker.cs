@@ -10,7 +10,7 @@ public class WorldChunker : MonoBehaviour
     private float ChunkXSize;
     private float ChunkZSize;
     public float perlinScale = 1;
-
+    private Vector2 randPerlin;
     private Vector3 InitPos;
 
     [Header("Tiles")]
@@ -25,6 +25,10 @@ public class WorldChunker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Set random perlin offset
+        randPerlin.x = Random.Range(0f, 99999f);
+        randPerlin.y = Random.Range(0f, 99999f);
+
         //Set Center Chunk
         CurrentChunk = WorldChunks[0];
 
@@ -102,8 +106,8 @@ public class WorldChunker : MonoBehaviour
 
         //Get the player pos as arguments for perlin noise parameters. Divide them by chunk size so they go from 0 - 1
         Vector3 playerPos = gameObject.transform.parent.transform.position;
-        float XCoord = playerPos.x / ChunkXSize * perlinScale;
-        float ZCoord = playerPos.z / ChunkZSize * perlinScale;
+        float XCoord = playerPos.x / ChunkXSize * perlinScale + randPerlin.x;
+        float ZCoord = playerPos.z / ChunkZSize * perlinScale + randPerlin.y;
         float sample = Mathf.PerlinNoise(XCoord, ZCoord);
         Debug.Log("Perlin result: " + sample);
 
