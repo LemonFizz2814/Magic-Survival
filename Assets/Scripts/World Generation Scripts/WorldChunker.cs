@@ -105,9 +105,9 @@ public class WorldChunker : MonoBehaviour
         //}
 
         //Get the player pos as arguments for perlin noise parameters. Divide them by chunk size so they go from 0 - 1
-        Vector3 playerPos = gameObject.transform.parent.transform.position;
-        float XCoord = playerPos.x / ChunkXSize * perlinScale + randPerlin.x;
-        float ZCoord = playerPos.z / ChunkZSize * perlinScale + randPerlin.y;
+        //Vector3 playerPos = gameObject.transform.parent.transform.position;
+        float XCoord = _tilepos.x / ChunkXSize * perlinScale + randPerlin.x;
+        float ZCoord = _tilepos.z / ChunkZSize * perlinScale + randPerlin.y;
         float sample = Mathf.PerlinNoise(XCoord, ZCoord);
         Debug.Log("Perlin result: " + sample);
 
