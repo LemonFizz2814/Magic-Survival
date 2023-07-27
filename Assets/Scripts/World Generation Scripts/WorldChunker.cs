@@ -73,11 +73,15 @@ public class WorldChunker : MonoBehaviour
                 }
             }
 
+            int prevMaterial = -1;
             for (int i = 0; i < MaxNumberChunks; i++)
             {
                 ChunkPositioner(i);
 
-                TileChanger(WorldChunks[i]);
+                TileChanger(WorldChunks[i], prevMaterial);
+
+                prevMaterial = GetMaterialIndex(WorldChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material);
+
             }
         }
     }
@@ -112,21 +116,28 @@ public class WorldChunker : MonoBehaviour
         Debug.Log("Perlin result: " + sample);
 
         //Determine material index based on whether the perlin noise reached past 3 or 6
-        if (sample > 0.6f)
-        {
-            MaterialIndex = 2;
-        }
-        else if (sample > 0.3f)
+        if (sample >= 0.5f)
         {
             MaterialIndex = 1;
         }
+        //else if (sample > 0.3f)
+        //{
+        //    MaterialIndex = 1;
+        //}
 
         return MaterialIndex;
     }
 
-    void TileChanger(GameObject _tile)
+    void TileChanger(GameObject _tile, int _prevMaterialIndex)
     {
-        Material new_material = Instantiate(WorldMaterials[WorldTilePicker(_tile.transform.position)]);
+        int tilePick = WorldTilePicker(_tile.transform.position);
+        Material new_material = Instantiate(WorldMaterials[tilePick]);
+
+        //Setting the material index to the blended material should the previous one not match with current material
+        //if (tilePick != _prevMaterialIndex && (_prevMaterialIndex != -1 && _prevMaterialIndex != 2))
+        //{
+        //    new_material = WorldMaterials[2];
+        //}
 
         _tile.transform.GetChild(0).GetComponent<MeshRenderer>().material = new_material;
     }
@@ -305,5 +316,16 @@ public class WorldChunker : MonoBehaviour
 
             WorldChunks[_i].transform.position = new Vector3(Xpos, 0, Zpos);
         }
+    }
+
+    int GetMaterialIndex(Material _tileMaterial)
+    {
+        for (int i = 0; i < WorldMaterials.Count; i++)
+        {
+            if (WorldMaterials[i].mainTexture == _tileMaterial.mainTexture) return i;
+        }
+
+        Debug.LogWarning("Could not find tile material");
+        return -1;
     }
 }

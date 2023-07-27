@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3508da7ea16fd874881ebe5b955da4fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perlinScale: 3
+  perlinScale: 1
   WorldChunks:
   - {fileID: 0}
   - {fileID: 0}

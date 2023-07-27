@@ -454,7 +454,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1574782612325584316, guid: 18ae25bcde5393f46bc3aaefce50b345, type: 3}
       propertyPath: perlinScale
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1574782612325584316, guid: 18ae25bcde5393f46bc3aaefce50b345, type: 3}
       propertyPath: TileChangeDistance
