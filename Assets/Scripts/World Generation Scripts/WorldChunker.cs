@@ -80,6 +80,13 @@ public class WorldChunker : MonoBehaviour
 
                 TileChanger(WorldChunks[i], prevMaterial);
 
+                
+                //Check surrounding tiles to see which tiles need blending
+                for (int j = i - 3; j <= (i + 3); j += 2)
+                {
+                    Debug.Log("I: " + i + "\nJ: " + j);
+                }
+
                 prevMaterial = GetMaterialIndex(WorldChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material);
 
             }
@@ -113,7 +120,7 @@ public class WorldChunker : MonoBehaviour
         float XCoord = _tilepos.x / ChunkXSize * perlinScale + randPerlin.x;
         float ZCoord = _tilepos.z / ChunkZSize * perlinScale + randPerlin.y;
         float sample = Mathf.PerlinNoise(XCoord, ZCoord);
-        Debug.Log("Perlin result: " + sample);
+        //Debug.Log("Perlin result: " + sample);
 
         //Determine material index based on whether the perlin noise reached past 3 or 6
         if (sample >= 0.5f)
