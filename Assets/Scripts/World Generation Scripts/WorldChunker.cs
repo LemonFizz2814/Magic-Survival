@@ -73,22 +73,20 @@ public class WorldChunker : MonoBehaviour
                 }
             }
 
-            int prevMaterial = -1;
+            
             for (int i = 0; i < MaxNumberChunks; i++)
             {
                 ChunkPositioner(i);
 
-                TileChanger(WorldChunks[i], prevMaterial);
+                TileChanger(WorldChunks[i]);
 
                 
-                //Check surrounding tiles to see which tiles need blending
-                for (int j = i - 3; j <= (i + 3); j += 2)
-                {
-                    Debug.Log("I: " + i + "\nJ: " + j);
-                }
-
-                prevMaterial = GetMaterialIndex(WorldChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material);
-
+            }
+                
+            //Set up another for loop to add blended materials
+            for (int i = 0; i < MaxNumberChunks; i++)
+            {
+                TileBlender(i, GetMaterialIndex(WorldChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material));
             }
         }
     }
@@ -135,7 +133,7 @@ public class WorldChunker : MonoBehaviour
         return MaterialIndex;
     }
 
-    void TileChanger(GameObject _tile, int _prevMaterialIndex)
+    void TileChanger(GameObject _tile)
     {
         int tilePick = WorldTilePicker(_tile.transform.position);
         Material new_material = Instantiate(WorldMaterials[tilePick]);
@@ -147,6 +145,137 @@ public class WorldChunker : MonoBehaviour
         //}
 
         _tile.transform.GetChild(0).GetComponent<MeshRenderer>().material = new_material;
+    }
+
+    //Rotate blended tiles
+    void TileBlender(int _tilePos, int _tileMaterial)
+    {
+        //Dictionary<string, bool> diffMaterials = new Dictionary<string, bool>();
+        List<string> directions = new List<string>();
+
+        //Check surrounding tiles to see which tiles need blending
+        for (int i = _tilePos - 3; i <= (_tilePos + 3); i += 2)
+        {
+            //Skip this iteration if the material index is blended texture or material index is invalid
+            if ((i < 0 || i >= MaxNumberChunks) || 
+                GetMaterialIndex(WorldChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material) == -1 ||
+                GetMaterialIndex(WorldChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material) == 2) continue;
+
+            string tileDirection = "";
+            bool isDifferent = (GetMaterialIndex(WorldChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material) != _tileMaterial) ? true : false;
+
+            //If the material is the same then move on to the next tile
+            if (!isDifferent) continue;
+
+            //Top
+            if (i == (_tilePos - 3))
+            {
+                tileDirection = "top";
+            }
+
+            //Left
+            if (i == (_tilePos - 1))
+            {
+                tileDirection = "left";
+            }
+
+            //Right
+            if (i == (_tilePos + 1))
+            {
+                tileDirection = "right";
+            }
+
+            //Bottom
+            if (i == (_tilePos + 3))
+            {
+                tileDirection = "bottom";
+            }
+
+            //Add to list
+            if (tileDirection != "")
+            {
+                //diffMaterials.Add(tileDirection, isDifferent);
+                directions.Add(tileDirection);
+            }
+
+            //Debug.Log("I: " + i + "\nJ: " + j);
+        }
+
+        //Check if there are any directions for blended tiles
+        if (directions.Count == 0) return;
+
+        //Check if there are any valid adjacent directions
+        string initDirection = directions[0];
+        string adjacent = (directions.Count >= 2) ? directions[1] : "";
+        int rotation = 0;
+
+        /*
+         In theory, the initDirection string should never have "bottom" and the adjacent string
+         should never have "top" due to how the previous for loop checks for valid directions from the top 
+         down and because I am only accessing the first two elements in the directions list but this is just 
+         a precaution for tiles that could be in between two different biomes.
+         
+         e.g: if the tile pos is on the first row then "left" or "right" will be the first value on 
+         initDirection and "right" or "bottom" will be the first value in the adjacent value respectively.
+         
+         If the tile pos is on the second row then "top" will always be the first value on initDirection
+         and "left" or "right" will be in the adjacent value
+
+         Lastly, if the tile pos is on the third row then it should be the same as the second row.
+
+         Otherwise, if the initDirection and adjacent are at opposite directions ("top" and "bottom"
+         or "left" and "right") that means they're two different biomes and should be ignored
+
+         - Matthew
+         */
+        switch (initDirection)
+        {
+            case "left":
+                rotation = -90;
+                break;
+            case "right":
+                rotation = 90;
+                break;
+            case "bottom":
+                rotation = -180;
+                break;
+            default:
+                break;
+        }
+
+        if (adjacent != "")
+        {
+            int rotateAdjustment = 0;
+            switch (initDirection)
+            {
+                case "top":
+                //Again, initDirection will probably never be set to "bottom" but this is just a precaution
+                case "bottom":
+                    if (adjacent != "left" && adjacent != "right") break;
+
+                    rotateAdjustment = (adjacent == "left") ? -45 : 45;
+
+                    if (initDirection == "bottom") rotation = -180 - rotateAdjustment;
+                    else rotation += rotateAdjustment;
+                    break;
+                case "left":
+                case "right":
+                    //Adjacent will probably never be set to "top" but this is just a precaution
+                    if (adjacent != "top" && adjacent != "bottom") break;
+
+                    rotateAdjustment = (adjacent == "top") ? -45 : 45;
+
+                    if (initDirection == "left") rotation = -90 - rotateAdjustment;
+                    else rotation += rotateAdjustment;
+                    break;
+            }
+        }
+
+        //Get the material shader graph rotation value
+        Material blendMaterial = Instantiate(WorldMaterials[2]);
+        blendMaterial.SetFloat("Rotation", rotation);
+        //Set it onto the tile
+        WorldChunks[_tilePos].transform.GetChild(0).GetComponent<MeshRenderer>().material = blendMaterial;
     }
 
     void TileRotator(int _i, float _Xpos, float _Zpos)
