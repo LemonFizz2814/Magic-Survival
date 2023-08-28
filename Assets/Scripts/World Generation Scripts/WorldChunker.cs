@@ -86,6 +86,8 @@ public class WorldChunker : MonoBehaviour
             //Set up another for loop to add blended materials
             for (int i = 0; i < MaxNumberChunks; i++)
             {
+                Debug.Log("i: " + i + "\nMaterial: " + GetMaterialIndex(WorldChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material));
+
                 TileBlender(i, GetMaterialIndex(WorldChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material));
             }
         }
@@ -152,6 +154,7 @@ public class WorldChunker : MonoBehaviour
     {
         //Dictionary<string, bool> diffMaterials = new Dictionary<string, bool>();
         List<string> directions = new List<string>();
+        int otherMaterialIndex = 0;
 
         //Check surrounding tiles to see which tiles need blending
         for (int i = _tilePos - 3; i <= (_tilePos + 3); i += 2)
@@ -167,20 +170,24 @@ public class WorldChunker : MonoBehaviour
             //If the material is the same then move on to the next tile
             if (!isDifferent) continue;
 
+            //Check the row limits
+            int rowNum = _tilePos / 3;
+
             //Top
             if (i == (_tilePos - 3))
             {
                 tileDirection = "top";
+                
             }
 
             //Left
-            if (i == (_tilePos - 1))
+            if (i == (_tilePos - 1) && (i / 3) == rowNum)
             {
                 tileDirection = "left";
             }
 
             //Right
-            if (i == (_tilePos + 1))
+            if (i == (_tilePos + 1) && (i / 3) == rowNum)
             {
                 tileDirection = "right";
             }
@@ -196,6 +203,7 @@ public class WorldChunker : MonoBehaviour
             {
                 //diffMaterials.Add(tileDirection, isDifferent);
                 directions.Add(tileDirection);
+                otherMaterialIndex = i;
             }
 
             //Debug.Log("I: " + i + "\nJ: " + j);
@@ -243,6 +251,8 @@ public class WorldChunker : MonoBehaviour
                 break;
         }
 
+        bool isOpposite = false;
+
         if (adjacent != "")
         {
             int rotateAdjustment = 0;
@@ -251,7 +261,11 @@ public class WorldChunker : MonoBehaviour
                 case "top":
                 //Again, initDirection will probably never be set to "bottom" but this is just a precaution
                 case "bottom":
-                    if (adjacent != "left" && adjacent != "right") break;
+                    if (adjacent != "left" && adjacent != "right")
+                    {
+                        isOpposite = true;
+                        break;
+                    }
 
                     rotateAdjustment = (adjacent == "left") ? -45 : 45;
 
@@ -261,7 +275,11 @@ public class WorldChunker : MonoBehaviour
                 case "left":
                 case "right":
                     //Adjacent will probably never be set to "top" but this is just a precaution
-                    if (adjacent != "top" && adjacent != "bottom") break;
+                    if (adjacent != "top" && adjacent != "bottom")
+                    {
+                        isOpposite = true;
+                        break;
+                    }
 
                     rotateAdjustment = (adjacent == "top") ? -45 : 45;
 
@@ -271,10 +289,19 @@ public class WorldChunker : MonoBehaviour
             }
         }
 
+        //Do not blend if the two different tiles are at opposite directions
+        if (isOpposite) return;
+
         //Get the material shader graph rotation value
         Material blendMaterial = Instantiate(WorldMaterials[2]);
+        //Set rotation onto the tile
         blendMaterial.SetFloat("Rotation", rotation);
-        //Set it onto the tile
+        
+        //Set Texture onto tile
+        blendMaterial.SetTexture("Blend A", WorldMaterials[_tileMaterial].mainTexture);
+        //Find the other texture through initdirection
+        Texture otherTex = WorldChunks[otherMaterialIndex].transform.GetChild(0).GetComponent<MeshRenderer>().material.mainTexture;
+        blendMaterial.SetTexture("Blend B", otherTex);
         WorldChunks[_tilePos].transform.GetChild(0).GetComponent<MeshRenderer>().material = blendMaterial;
     }
 
