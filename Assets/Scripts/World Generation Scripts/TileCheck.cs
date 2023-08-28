@@ -26,8 +26,9 @@ public class TileCheck : MonoBehaviour
                 // Check if the hit object is the one you're interested in
                 if (hit.collider.gameObject == gameObject)
                 {
-                    Debug.Log("Object clicked: " + hit.collider.gameObject.name);
+                    //Debug.Log("Object clicked: " + hit.collider.gameObject.name);
                     // Perform actions for when the object is clicked
+                    chunkScript.CheckTiles();
                 }
             }
         }

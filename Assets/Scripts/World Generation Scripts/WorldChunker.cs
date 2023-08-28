@@ -10,7 +10,7 @@ public class WorldChunker : MonoBehaviour
     private float ChunkXSize;
     private float ChunkZSize;
     public float perlinScale = 1;
-    private Vector2 randPerlin;
+    public Vector2 randPerlin;
     private Vector3 InitPos;
 
     [Header("Tiles")]
@@ -26,8 +26,8 @@ public class WorldChunker : MonoBehaviour
     void Start()
     {
         //Set random perlin offset
-        randPerlin.x = Random.Range(0f, 99999f);
-        randPerlin.y = Random.Range(0f, 99999f);
+        //randPerlin.x = Random.Range(0f, 99999f);
+        //randPerlin.y = Random.Range(0f, 99999f);
 
         //Set Center Chunk
         CurrentChunk = WorldChunks[0];
@@ -84,12 +84,20 @@ public class WorldChunker : MonoBehaviour
             }
                 
             //Set up another for loop to add blended materials
-            for (int i = 0; i < MaxNumberChunks; i++)
-            {
-                Debug.Log("i: " + i + "\nMaterial: " + GetMaterialIndex(WorldChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material));
+            //for (int i = 0; i < MaxNumberChunks; i++)
+            //{
+            //    //Debug.Log("i: " + i + "\nMaterial: " + GetMaterialIndex(WorldChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material));
 
-                TileBlender(i, GetMaterialIndex(WorldChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material));
-            }
+            //    TileBlender(i, GetMaterialIndex(WorldChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material));
+            //}
+        }
+    }
+
+    public void CheckTiles()
+    {
+        for (int i = 0; i < MaxNumberChunks; i++)
+        {
+            Debug.Log("i: " + i + "\nMaterial: " + GetMaterialIndex(WorldChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material));
         }
     }
 
@@ -119,6 +127,8 @@ public class WorldChunker : MonoBehaviour
         //Vector3 playerPos = gameObject.transform.parent.transform.position;
         float XCoord = _tilepos.x / ChunkXSize * perlinScale + randPerlin.x;
         float ZCoord = _tilepos.z / ChunkZSize * perlinScale + randPerlin.y;
+        //float XCoord = _tilepos.x / ChunkXSize * perlinScale;
+        //float ZCoord = _tilepos.z / ChunkZSize * perlinScale;
         float sample = Mathf.PerlinNoise(XCoord, ZCoord);
         //Debug.Log("Perlin result: " + sample);
 
@@ -152,6 +162,7 @@ public class WorldChunker : MonoBehaviour
     //Rotate blended tiles
     void TileBlender(int _tilePos, int _tileMaterial)
     {
+        if (_tileMaterial == 2) return;
         //Dictionary<string, bool> diffMaterials = new Dictionary<string, bool>();
         List<string> directions = new List<string>();
         int otherMaterialIndex = 0;
@@ -210,11 +221,11 @@ public class WorldChunker : MonoBehaviour
         }
 
         //Check if there are any directions for blended tiles
-        if (directions.Count == 0) return;
+        if (directions.Count == 0 || directions.Count > 2) return;
 
         //Check if there are any valid adjacent directions
         string initDirection = directions[0];
-        string adjacent = (directions.Count >= 2) ? directions[1] : "";
+        string adjacent = (directions.Count == 2) ? directions[1] : "";
         int rotation = 0;
 
         /*
@@ -245,63 +256,63 @@ public class WorldChunker : MonoBehaviour
                 rotation = 90;
                 break;
             case "bottom":
-                rotation = -180;
+                rotation = 180;
                 break;
             default:
                 break;
         }
 
-        bool isOpposite = false;
+        //bool isOpposite = false;
 
-        if (adjacent != "")
-        {
-            int rotateAdjustment = 0;
-            switch (initDirection)
-            {
-                case "top":
-                //Again, initDirection will probably never be set to "bottom" but this is just a precaution
-                case "bottom":
-                    if (adjacent != "left" && adjacent != "right")
-                    {
-                        isOpposite = true;
-                        break;
-                    }
+        //if (adjacent != "")
+        //{
+        //    int rotateAdjustment = 0;
+        //    switch (initDirection)
+        //    {
+        //        case "top":
+        //        //Again, initDirection will probably never be set to "bottom" but this is just a precaution
+        //        case "bottom":
+        //            if (adjacent != "left" && adjacent != "right")
+        //            {
+        //                isOpposite = true;
+        //                break;
+        //            }
 
-                    rotateAdjustment = (adjacent == "left") ? -45 : 45;
+        //            rotateAdjustment = (adjacent == "left") ? -45 : 45;
 
-                    if (initDirection == "bottom") rotation = -180 - rotateAdjustment;
-                    else rotation += rotateAdjustment;
-                    break;
-                case "left":
-                case "right":
-                    //Adjacent will probably never be set to "top" but this is just a precaution
-                    if (adjacent != "top" && adjacent != "bottom")
-                    {
-                        isOpposite = true;
-                        break;
-                    }
+        //            if (initDirection == "bottom") rotation = 180 - rotateAdjustment;
+        //            else rotation += rotateAdjustment;
+        //            break;
+        //        case "left":
+        //        case "right":
+        //            //Adjacent will probably never be set to "top" but this is just a precaution
+        //            if (adjacent != "top" && adjacent != "bottom")
+        //            {
+        //                isOpposite = true;
+        //                break;
+        //            }
 
-                    rotateAdjustment = (adjacent == "top") ? -45 : 45;
+        //            rotateAdjustment = (adjacent == "top") ? -45 : 45;
 
-                    if (initDirection == "left") rotation = -90 - rotateAdjustment;
-                    else rotation += rotateAdjustment;
-                    break;
-            }
-        }
+        //            if (initDirection == "left") rotation = -90 - rotateAdjustment;
+        //            else rotation += rotateAdjustment;
+        //            break;
+        //    }
+        //}
 
-        //Do not blend if the two different tiles are at opposite directions
-        if (isOpposite) return;
+        ////Do not blend if the two different tiles are at opposite directions
+        //if (isOpposite) return;
 
         //Get the material shader graph rotation value
         Material blendMaterial = Instantiate(WorldMaterials[2]);
         //Set rotation onto the tile
         blendMaterial.SetFloat("Rotation", rotation);
-        
+
         //Set Texture onto tile
-        blendMaterial.SetTexture("Blend A", WorldMaterials[_tileMaterial].mainTexture);
+        blendMaterial.SetTexture("BlendA", WorldMaterials[_tileMaterial].mainTexture);
         //Find the other texture through initdirection
         Texture otherTex = WorldChunks[otherMaterialIndex].transform.GetChild(0).GetComponent<MeshRenderer>().material.mainTexture;
-        blendMaterial.SetTexture("Blend B", otherTex);
+        blendMaterial.SetTexture("BlendB", otherTex);
         WorldChunks[_tilePos].transform.GetChild(0).GetComponent<MeshRenderer>().material = blendMaterial;
     }
 
