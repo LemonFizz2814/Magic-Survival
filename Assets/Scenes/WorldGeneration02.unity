@@ -341,7 +341,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: MiddleCenter
       objectReference: {fileID: 0}
+    - target: {fileID: 5900049802331861412, guid: 46b64070c3b4ab3468375748ee6c4924, type: 3}
+      propertyPath: chunkScript
+      value: 
+      objectReference: {fileID: 1205768085}
+    - target: {fileID: 5900049802408969319, guid: 46b64070c3b4ab3468375748ee6c4924, type: 3}
+      propertyPath: chunkScript
+      value: 
+      objectReference: {fileID: 1205768085}
+    - target: {fileID: 5900049802537832213, guid: 46b64070c3b4ab3468375748ee6c4924, type: 3}
+      propertyPath: chunkScript
+      value: 
+      objectReference: {fileID: 1205768085}
+    - target: {fileID: 5900049802633045074, guid: 46b64070c3b4ab3468375748ee6c4924, type: 3}
+      propertyPath: chunkScript
+      value: 
+      objectReference: {fileID: 1205768085}
+    - target: {fileID: 5900049803370724167, guid: 46b64070c3b4ab3468375748ee6c4924, type: 3}
+      propertyPath: chunkScript
+      value: 
+      objectReference: {fileID: 1205768085}
     - target: {fileID: 5900049803528330073, guid: 46b64070c3b4ab3468375748ee6c4924, type: 3}
+      propertyPath: chunkScript
+      value: 
+      objectReference: {fileID: 1205768085}
+    - target: {fileID: 5900049803821663444, guid: 46b64070c3b4ab3468375748ee6c4924, type: 3}
+      propertyPath: chunkScript
+      value: 
+      objectReference: {fileID: 1205768085}
+    - target: {fileID: 5900049804069989976, guid: 46b64070c3b4ab3468375748ee6c4924, type: 3}
       propertyPath: chunkScript
       value: 
       objectReference: {fileID: 1205768085}

@@ -73,32 +73,99 @@ public class WorldChunker : MonoBehaviour
                 }
             }
 
-            
+
             for (int i = 0; i < MaxNumberChunks; i++)
             {
                 ChunkPositioner(i);
 
                 TileChanger(WorldChunks[i]);
 
-                
-            }
-                
-            //Set up another for loop to add blended materials
-            //for (int i = 0; i < MaxNumberChunks; i++)
-            //{
-            //    //Debug.Log("i: " + i + "\nMaterial: " + GetMaterialIndex(WorldChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material));
 
-            //    TileBlender(i, GetMaterialIndex(WorldChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material));
-            //}
+            }
+
+            //Set up another for loop to add blended materials
+            for (int i = 0; i < MaxNumberChunks; i++)
+            {
+                //Debug.Log("i: " + i + "\nMaterial: " + GetMaterialIndex(WorldChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material));
+
+                TileBlender(i, GetMaterialIndex(WorldChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material));
+            }
         }
     }
 
     public void CheckTiles()
     {
-        for (int i = 0; i < MaxNumberChunks; i++)
+        int tilePos = 0;
+        int _tileMaterial = GetMaterialIndex(WorldChunks[tilePos].transform.GetChild(0).GetComponent<MeshRenderer>().material);
+        List<string> directions = new List<string>();
+
+        for (int i = tilePos - 3; i <= (tilePos + 3); i += 2)
         {
-            Debug.Log("i: " + i + "\nMaterial: " + GetMaterialIndex(WorldChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material));
+            string tileDirection = "";
+
+            //Skip this iteration if the material index is blended texture or material index is invalid
+            if ((i < 0 || i >= MaxNumberChunks) ||
+                GetMaterialIndex(WorldChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material) == -1 ||
+                GetMaterialIndex(WorldChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material) == 2) continue;
+
+
+            bool isDifferent = (GetMaterialIndex(WorldChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material) != _tileMaterial) ? true : false;
+
+            //If the material is the same then move on to the next tile
+            if (!isDifferent)
+            {
+                Debug.Log("There are no blendable tiles");
+                continue;
+            }
+
+            //Check the row limits
+            int rowNum = tilePos / 3;
+
+            //Top
+            if (i == (tilePos - 3))
+            {
+                tileDirection = "top";
+
+            }
+
+            //Left
+            if (i == (tilePos - 1) && (i / 3) == rowNum)
+            {
+                tileDirection = "left";
+            }
+
+            //Right
+            if (i == (tilePos + 1) && (i / 3) == rowNum)
+            {
+                tileDirection = "right";
+            }
+
+            //Bottom
+            if (i == (tilePos + 3))
+            {
+                tileDirection = "bottom";
+            }
+
+            //Add to list
+            if (tileDirection != "")
+            {
+                //diffMaterials.Add(tileDirection, isDifferent);
+                directions.Add(tileDirection);
+            }
         }
+
+        if (directions.Count > 0)
+        {
+            string message = "Initial direction for first element in world array: " + directions[0] + 
+                ((directions.Count == 2) ? "\nAdjacent direction for first element in world array: " + directions[1] : "");
+
+            Debug.Log(message);
+        }
+        else
+        {
+            Debug.Log("No directions found");
+        }
+
     }
 
     int WorldTilePicker(Vector3 _tilepos)
@@ -160,6 +227,14 @@ public class WorldChunker : MonoBehaviour
     }
 
     //Rotate blended tiles
+    /*NOTE: THIS DOESN'T WORK WITH HOW THE TILE POSITIONER METHOD RIGHT NOW. At the moment, the world chunks array reorganises it's
+     elements when setting new positions. This is a problem because this function works under the assumption that the world chunks array is 
+     ordered from left to right, top to bottom without changing. That way, using some simple math on how 3 x 3 grids work
+     I simply deduct the current tile order by 3 and increase it by 2 to check all four directions from the current tile. But if the array
+     is being shifted around all the time, this method can't tell what's up or down.
+     
+         GOTTA TALK TO BEN ABOUT THIS
+         - Matthew*/
     void TileBlender(int _tilePos, int _tileMaterial)
     {
         if (_tileMaterial == 2) return;
@@ -171,7 +246,7 @@ public class WorldChunker : MonoBehaviour
         for (int i = _tilePos - 3; i <= (_tilePos + 3); i += 2)
         {
             //Skip this iteration if the material index is blended texture or material index is invalid
-            if ((i < 0 || i >= MaxNumberChunks) || 
+            if ((i < 0 || i >= MaxNumberChunks) ||
                 GetMaterialIndex(WorldChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material) == -1 ||
                 GetMaterialIndex(WorldChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material) == 2) continue;
 
@@ -188,7 +263,7 @@ public class WorldChunker : MonoBehaviour
             if (i == (_tilePos - 3))
             {
                 tileDirection = "top";
-                
+
             }
 
             //Left
