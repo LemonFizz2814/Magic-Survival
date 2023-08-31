@@ -28,7 +28,7 @@ public class TileCheck : MonoBehaviour
                 {
                     //Debug.Log("Object clicked: " + hit.collider.gameObject.name);
                     // Perform actions for when the object is clicked
-                    chunkScript.CheckTiles();
+                    chunkScript.CheckTiles(tileNum);
                     Debug.Log("Pressed");
                 }
             }

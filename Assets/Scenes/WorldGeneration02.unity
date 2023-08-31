@@ -342,17 +342,33 @@ PrefabInstance:
       value: MiddleCenter
       objectReference: {fileID: 0}
     - target: {fileID: 5900049802331861412, guid: 46b64070c3b4ab3468375748ee6c4924, type: 3}
+      propertyPath: tileNum
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5900049802331861412, guid: 46b64070c3b4ab3468375748ee6c4924, type: 3}
       propertyPath: chunkScript
       value: 
       objectReference: {fileID: 1205768085}
+    - target: {fileID: 5900049802408969319, guid: 46b64070c3b4ab3468375748ee6c4924, type: 3}
+      propertyPath: tileNum
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5900049802408969319, guid: 46b64070c3b4ab3468375748ee6c4924, type: 3}
       propertyPath: chunkScript
       value: 
       objectReference: {fileID: 1205768085}
     - target: {fileID: 5900049802537832213, guid: 46b64070c3b4ab3468375748ee6c4924, type: 3}
+      propertyPath: tileNum
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5900049802537832213, guid: 46b64070c3b4ab3468375748ee6c4924, type: 3}
       propertyPath: chunkScript
       value: 
       objectReference: {fileID: 1205768085}
+    - target: {fileID: 5900049802633045074, guid: 46b64070c3b4ab3468375748ee6c4924, type: 3}
+      propertyPath: tileNum
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5900049802633045074, guid: 46b64070c3b4ab3468375748ee6c4924, type: 3}
       propertyPath: chunkScript
       value: 
@@ -362,13 +378,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1205768085}
     - target: {fileID: 5900049803528330073, guid: 46b64070c3b4ab3468375748ee6c4924, type: 3}
+      propertyPath: tileNum
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5900049803528330073, guid: 46b64070c3b4ab3468375748ee6c4924, type: 3}
       propertyPath: chunkScript
       value: 
       objectReference: {fileID: 1205768085}
     - target: {fileID: 5900049803821663444, guid: 46b64070c3b4ab3468375748ee6c4924, type: 3}
+      propertyPath: tileNum
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5900049803821663444, guid: 46b64070c3b4ab3468375748ee6c4924, type: 3}
       propertyPath: chunkScript
       value: 
       objectReference: {fileID: 1205768085}
+    - target: {fileID: 5900049803923085053, guid: 46b64070c3b4ab3468375748ee6c4924, type: 3}
+      propertyPath: tileNum
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5900049804069989976, guid: 46b64070c3b4ab3468375748ee6c4924, type: 3}
+      propertyPath: tileNum
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5900049804069989976, guid: 46b64070c3b4ab3468375748ee6c4924, type: 3}
       propertyPath: chunkScript
       value: 
@@ -545,6 +577,10 @@ PrefabInstance:
       value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 1574782612325584316, guid: 18ae25bcde5393f46bc3aaefce50b345, type: 3}
+      propertyPath: OrderedChunks.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1574782612325584316, guid: 18ae25bcde5393f46bc3aaefce50b345, type: 3}
       propertyPath: WorldChunks.Array.data[0]
       value: 
       objectReference: {fileID: 1322649205}
@@ -584,6 +620,42 @@ PrefabInstance:
       propertyPath: WorldMaterials.Array.size
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1574782612325584316, guid: 18ae25bcde5393f46bc3aaefce50b345, type: 3}
+      propertyPath: OrderedChunks.Array.data[0]
+      value: 
+      objectReference: {fileID: 1533398671}
+    - target: {fileID: 1574782612325584316, guid: 18ae25bcde5393f46bc3aaefce50b345, type: 3}
+      propertyPath: OrderedChunks.Array.data[1]
+      value: 
+      objectReference: {fileID: 1949385739}
+    - target: {fileID: 1574782612325584316, guid: 18ae25bcde5393f46bc3aaefce50b345, type: 3}
+      propertyPath: OrderedChunks.Array.data[2]
+      value: 
+      objectReference: {fileID: 1059888319}
+    - target: {fileID: 1574782612325584316, guid: 18ae25bcde5393f46bc3aaefce50b345, type: 3}
+      propertyPath: OrderedChunks.Array.data[3]
+      value: 
+      objectReference: {fileID: 1333723683}
+    - target: {fileID: 1574782612325584316, guid: 18ae25bcde5393f46bc3aaefce50b345, type: 3}
+      propertyPath: OrderedChunks.Array.data[4]
+      value: 
+      objectReference: {fileID: 1322649205}
+    - target: {fileID: 1574782612325584316, guid: 18ae25bcde5393f46bc3aaefce50b345, type: 3}
+      propertyPath: OrderedChunks.Array.data[5]
+      value: 
+      objectReference: {fileID: 737915454}
+    - target: {fileID: 1574782612325584316, guid: 18ae25bcde5393f46bc3aaefce50b345, type: 3}
+      propertyPath: OrderedChunks.Array.data[6]
+      value: 
+      objectReference: {fileID: 1203168201}
+    - target: {fileID: 1574782612325584316, guid: 18ae25bcde5393f46bc3aaefce50b345, type: 3}
+      propertyPath: OrderedChunks.Array.data[7]
+      value: 
+      objectReference: {fileID: 1960264430}
+    - target: {fileID: 1574782612325584316, guid: 18ae25bcde5393f46bc3aaefce50b345, type: 3}
+      propertyPath: OrderedChunks.Array.data[8]
+      value: 
+      objectReference: {fileID: 153526205}
     - target: {fileID: 1574782612325584316, guid: 18ae25bcde5393f46bc3aaefce50b345, type: 3}
       propertyPath: WorldMaterials.Array.data[0]
       value: 
