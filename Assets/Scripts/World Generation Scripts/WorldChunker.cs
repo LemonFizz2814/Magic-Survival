@@ -81,6 +81,9 @@ public class WorldChunker : MonoBehaviour
 
                 TileChanger(WorldChunks[i]);
 
+                if (i < 4 && (i + 1) < MaxNumberChunks) OrderedChunks[i] = WorldChunks[i + 1];
+                else if (i == 4) OrderedChunks[i] = WorldChunks[0];
+                else OrderedChunks[i] = WorldChunks[i];
 
             }
 
@@ -89,9 +92,6 @@ public class WorldChunker : MonoBehaviour
             {
                 //Debug.Log("i: " + i + "\nMaterial: " + GetMaterialIndex(WorldChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material));
 
-                if (i < 4 && (i + 1) < MaxNumberChunks) OrderedChunks[i] = WorldChunks[i + 1];
-                else if (i == 4) OrderedChunks[i] = WorldChunks[0];
-                else OrderedChunks[i] = WorldChunks[i];
 
                 TileBlender(i, GetMaterialIndex(OrderedChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material));
             }
@@ -341,46 +341,46 @@ public class WorldChunker : MonoBehaviour
                 break;
         }
 
-        bool isOpposite = false;
+        //bool isOpposite = false;
 
-        if (adjacent != "")
-        {
-            int rotateAdjustment = 0;
-            switch (initDirection)
-            {
-                case "top":
-                //Again, initDirection will probably never be set to "bottom" but this is just a precaution
-                case "bottom":
-                    if (adjacent != "left" && adjacent != "right")
-                    {
-                        isOpposite = true;
-                        break;
-                    }
+        //if (adjacent != "")
+        //{
+        //    int rotateAdjustment = 0;
+        //    switch (initDirection)
+        //    {
+        //        case "top":
+        //        //Again, initDirection will probably never be set to "bottom" but this is just a precaution
+        //        case "bottom":
+        //            if (adjacent != "left" && adjacent != "right")
+        //            {
+        //                isOpposite = true;
+        //                break;
+        //            }
 
-                    rotateAdjustment = (adjacent == "left") ? -45 : 45;
+        //            rotateAdjustment = (adjacent == "left") ? -45 : 45;
 
-                    if (initDirection == "bottom") rotation = 180 - rotateAdjustment;
-                    else rotation += rotateAdjustment;
-                    break;
-                case "left":
-                case "right":
-                    //Adjacent will probably never be set to "top" but this is just a precaution
-                    if (adjacent != "top" && adjacent != "bottom")
-                    {
-                        isOpposite = true;
-                        break;
-                    }
+        //            if (initDirection == "bottom") rotation = 180 - rotateAdjustment;
+        //            else rotation += rotateAdjustment;
+        //            break;
+        //        case "left":
+        //        case "right":
+        //            //Adjacent will probably never be set to "top" but this is just a precaution
+        //            if (adjacent != "top" && adjacent != "bottom")
+        //            {
+        //                isOpposite = true;
+        //                break;
+        //            }
 
-                    rotateAdjustment = (adjacent == "top") ? -45 : 45;
+        //            rotateAdjustment = (adjacent == "top") ? -45 : 45;
 
-                    if (initDirection == "left") rotation = -90 - rotateAdjustment;
-                    else rotation += rotateAdjustment;
-                    break;
-            }
-        }
+        //            if (initDirection == "left") rotation = -90 - rotateAdjustment;
+        //            else rotation += rotateAdjustment;
+        //            break;
+        //    }
+        //}
 
-        //Do not blend if the two different tiles are at opposite directions
-        if (isOpposite) return;
+        ////Do not blend if the two different tiles are at opposite directions
+        //if (isOpposite) return;
 
         //Get the material shader graph rotation value
         Material blendMaterial = Instantiate(WorldMaterials[2]);
