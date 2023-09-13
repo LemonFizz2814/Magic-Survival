@@ -93,7 +93,7 @@ public class WorldChunker : MonoBehaviour
                 //Debug.Log("i: " + i + "\nMaterial: " + GetMaterialIndex(WorldChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material));
 
 
-                TileBlender(i, GetMaterialIndex(OrderedChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material));
+                TileBlender(i, WorldTilePicker(OrderedChunks[i].transform.position));
             }
         }
     }
@@ -231,14 +231,6 @@ public class WorldChunker : MonoBehaviour
     }
 
     //Rotate blended tiles
-    /*NOTE: THIS DOESN'T WORK WITH HOW THE TILE POSITIONER METHOD RIGHT NOW. At the moment, the world chunks array reorganises it's
-     elements when setting new positions. This is a problem because this function works under the assumption that the world chunks array is 
-     ordered from left to right, top to bottom without changing. That way, using some simple math on how 3 x 3 grids work
-     I simply deduct the current tile order by 3 and increase it by 2 to check all four directions from the current tile. But if the array
-     is being shifted around all the time, this method can't tell what's up or down.
-     
-         GOTTA TALK TO BEN ABOUT THIS
-         - Matthew*/
     void TileBlender(int _tilePos, int _tileMaterial)
     {
         if (_tileMaterial == 2) return;
@@ -250,16 +242,20 @@ public class WorldChunker : MonoBehaviour
         for (int i = _tilePos - 3; i <= (_tilePos + 3); i += 2)
         {
             //Skip this iteration if the material index is blended texture or material index is invalid
+            //if ((i < 0 || i >= MaxNumberChunks) ||
+            //    GetMaterialIndex(OrderedChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material) == -1 ||
+            //    GetMaterialIndex(OrderedChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material) == 2) continue;
             if ((i < 0 || i >= MaxNumberChunks) ||
-                GetMaterialIndex(OrderedChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material) == -1 ||
                 GetMaterialIndex(OrderedChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material) == 2) continue;
 
             string tileDirection = "";
-            bool isDifferent = (GetMaterialIndex(OrderedChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material) != _tileMaterial) ? true : false;
+
+            bool isDifferent = (WorldTilePicker(OrderedChunks[i].transform.position) != _tileMaterial) ? true : false;
 
             //If the material is the same then move on to the next tile
             if (!isDifferent) continue;
 
+            otherMaterialIndex = WorldTilePicker(OrderedChunks[i].transform.position);
             //Check the row limits
             int rowNum = _tilePos / 3;
 
@@ -293,7 +289,6 @@ public class WorldChunker : MonoBehaviour
             {
                 //diffMaterials.Add(tileDirection, isDifferent);
                 directions.Add(tileDirection);
-                otherMaterialIndex = i;
             }
 
             //Debug.Log("I: " + i + "\nJ: " + j);
@@ -390,8 +385,10 @@ public class WorldChunker : MonoBehaviour
         //Set Texture onto tile
         blendMaterial.SetTexture("BlendA", WorldMaterials[_tileMaterial].mainTexture);
         //Find the other texture through initdirection
-        Texture otherTex = OrderedChunks[otherMaterialIndex].transform.GetChild(0).GetComponent<MeshRenderer>().material.mainTexture;
+        Texture otherTex = WorldMaterials[otherMaterialIndex].mainTexture;
+        //Debug.Log("Other material index: " + otherMaterialIndex + "\nTex name: " + WorldMaterials[otherMaterialIndex].mainTexture.name);
         blendMaterial.SetTexture("BlendB", otherTex);
+
         OrderedChunks[_tilePos].transform.GetChild(0).GetComponent<MeshRenderer>().material = blendMaterial;
     }
 
