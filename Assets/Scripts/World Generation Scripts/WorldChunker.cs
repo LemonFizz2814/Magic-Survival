@@ -160,7 +160,7 @@ public class WorldChunker : MonoBehaviour
 
         if (directions.Count > 0)
         {
-            string message = "Tile No. " + _tileNum + "\nInitial direction for first element in world array: " + directions[0] + 
+            string message = "Tile No. " + _tileNum + "\nInitial direction for first element in world array: " + directions[0] +
                 ((directions.Count == 2) ? "\nAdjacent direction for first element in world array: " + directions[1] : "");
 
             Debug.Log(message);
@@ -235,8 +235,9 @@ public class WorldChunker : MonoBehaviour
     {
         if (_tileMaterial == 2) return;
         //Dictionary<string, bool> diffMaterials = new Dictionary<string, bool>();
-        List<string> directions = new List<string>();
+        List<string> unblendedTileArea = new List<string>();
         int otherMaterialIndex = 0;
+        int allDirections = 0;
 
         //Check surrounding tiles to see which tiles need blending
         for (int i = _tilePos - 3; i <= (_tilePos + 3); i += 2)
@@ -245,8 +246,7 @@ public class WorldChunker : MonoBehaviour
             //if ((i < 0 || i >= MaxNumberChunks) ||
             //    GetMaterialIndex(OrderedChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material) == -1 ||
             //    GetMaterialIndex(OrderedChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material) == 2) continue;
-            if ((i < 0 || i >= MaxNumberChunks) ||
-                GetMaterialIndex(OrderedChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material) == 2) continue;
+            if ((i < 0 || i >= MaxNumberChunks)) continue;
 
             string tileDirection = "";
 
@@ -254,52 +254,57 @@ public class WorldChunker : MonoBehaviour
 
             //If the material is the same then move on to the next tile
             if (!isDifferent) continue;
+            allDirections++;
 
             otherMaterialIndex = WorldTilePicker(OrderedChunks[i].transform.position);
             //Check the row limits
             int rowNum = _tilePos / 3;
 
-            //Top
-            if (i == (_tilePos - 3))
+            //MAKE IT SO THAT THE TILE ONLY BLENDS TOWARDS TILES THAT HAVE NOT BEEN BLENDED YET
+            if (GetMaterialIndex(OrderedChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material) != 2)
             {
-                tileDirection = "top";
+                //Top
+                if (i == (_tilePos - 3))
+                {
+                    tileDirection = "top";
 
-            }
+                }
 
-            //Left
-            if (i == (_tilePos - 1) && (i / 3) == rowNum)
-            {
-                tileDirection = "left";
-            }
+                //Left
+                if (i == (_tilePos - 1) && (i / 3) == rowNum)
+                {
+                    tileDirection = "left";
+                }
 
-            //Right
-            if (i == (_tilePos + 1) && (i / 3) == rowNum)
-            {
-                tileDirection = "right";
-            }
+                //Right
+                if (i == (_tilePos + 1) && (i / 3) == rowNum)
+                {
+                    tileDirection = "right";
+                }
 
-            //Bottom
-            if (i == (_tilePos + 3))
-            {
-                tileDirection = "bottom";
+                //Bottom
+                if (i == (_tilePos + 3))
+                {
+                    tileDirection = "bottom";
+                }
             }
 
             //Add to list
             if (tileDirection != "")
             {
                 //diffMaterials.Add(tileDirection, isDifferent);
-                directions.Add(tileDirection);
+                unblendedTileArea.Add(tileDirection);
             }
 
             //Debug.Log("I: " + i + "\nJ: " + j);
         }
 
         //Check if there are any directions for blended tiles
-        if (directions.Count == 0 || directions.Count > 2) return;
+        if (unblendedTileArea.Count == 0 || (unblendedTileArea.Count > 2 || allDirections > 2)) return;
 
         //Check if there are any valid adjacent directions
-        string initDirection = directions[0];
-        string adjacent = (directions.Count == 2) ? directions[1] : "";
+        string initDirection = unblendedTileArea[0];
+        string adjacent = (unblendedTileArea.Count == 2) ? unblendedTileArea[1] : "";
         int rotation = 0;
 
         /*
@@ -336,46 +341,46 @@ public class WorldChunker : MonoBehaviour
                 break;
         }
 
-        //bool isOpposite = false;
+        bool isOpposite = false;
 
-        //if (adjacent != "")
-        //{
-        //    int rotateAdjustment = 0;
-        //    switch (initDirection)
-        //    {
-        //        case "top":
-        //        //Again, initDirection will probably never be set to "bottom" but this is just a precaution
-        //        case "bottom":
-        //            if (adjacent != "left" && adjacent != "right")
-        //            {
-        //                isOpposite = true;
-        //                break;
-        //            }
+        if (adjacent != "")
+        {
+            int rotateAdjustment = 0;
+            switch (initDirection)
+            {
+                case "top":
+                //Again, initDirection will probably never be set to "bottom" but this is just a precaution
+                case "bottom":
+                    if (adjacent != "left" && adjacent != "right")
+                    {
+                        isOpposite = true;
+                        break;
+                    }
 
-        //            rotateAdjustment = (adjacent == "left") ? -45 : 45;
+                    //rotateAdjustment = (adjacent == "left") ? -45 : 45;
 
-        //            if (initDirection == "bottom") rotation = 180 - rotateAdjustment;
-        //            else rotation += rotateAdjustment;
-        //            break;
-        //        case "left":
-        //        case "right":
-        //            //Adjacent will probably never be set to "top" but this is just a precaution
-        //            if (adjacent != "top" && adjacent != "bottom")
-        //            {
-        //                isOpposite = true;
-        //                break;
-        //            }
+                    //if (initDirection == "bottom") rotation = 180 - rotateAdjustment;
+                    //else rotation += rotateAdjustment;
+                    break;
+                case "left":
+                case "right":
+                    //Adjacent will probably never be set to "top" but this is just a precaution
+                    if (adjacent != "top" && adjacent != "bottom")
+                    {
+                        isOpposite = true;
+                        break;
+                    }
 
-        //            rotateAdjustment = (adjacent == "top") ? -45 : 45;
+                    //rotateAdjustment = (adjacent == "top") ? -45 : 45;
 
-        //            if (initDirection == "left") rotation = -90 - rotateAdjustment;
-        //            else rotation += rotateAdjustment;
-        //            break;
-        //    }
-        //}
+                    //if (initDirection == "left") rotation = -90 - rotateAdjustment;
+                    //else rotation += rotateAdjustment;
+                    break;
+            }
+        }
 
-        ////Do not blend if the two different tiles are at opposite directions
-        //if (isOpposite) return;
+        //Do not blend if the two different tiles are at opposite directions
+        if (isOpposite) return;
 
         //Get the material shader graph rotation value
         Material blendMaterial = Instantiate(WorldMaterials[2]);
