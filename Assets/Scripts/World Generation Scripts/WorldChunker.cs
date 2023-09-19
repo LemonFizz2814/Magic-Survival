@@ -81,6 +81,7 @@ public class WorldChunker : MonoBehaviour
 
                 TileChanger(WorldChunks[i]);
 
+                //Organise the ordered chunks array so that tile blender will properly check the tiles from top-bottom and left-right
                 if (i < 4 && (i + 1) < MaxNumberChunks) OrderedChunks[i] = WorldChunks[i + 1];
                 else if (i == 4) OrderedChunks[i] = WorldChunks[0];
                 else OrderedChunks[i] = WorldChunks[i];
@@ -242,26 +243,48 @@ public class WorldChunker : MonoBehaviour
         //Check surrounding tiles to see which tiles need blending
         for (int i = _tilePos - 3; i <= (_tilePos + 3); i += 2)
         {
+            bool isBlended = false;
+            //Check the row limits
+            int rowNum = _tilePos / 3;
+
             //Skip this iteration if the material index is blended texture or material index is invalid
             //if ((i < 0 || i >= MaxNumberChunks) ||
             //    GetMaterialIndex(OrderedChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material) == -1 ||
             //    GetMaterialIndex(OrderedChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material) == 2) continue;
-            if ((i < 0 || i >= MaxNumberChunks)) continue;
 
+            //if ((i < 0 || i >= MaxNumberChunks))
+            if ((i < 0 || i >= MaxNumberChunks) && (i == (_tilePos - 3) || i == (_tilePos + 3)))
+            {
+                //bool isVertical = (i == (_tilePos - 1) || i == (_tilePos + 1)) ? false : true;
+                Vector3 predictTilePos = ChunkPrediction(i, true);
+                otherMaterialIndex = WorldTilePicker(predictTilePos);
+            }
+            //This is incredibly inefficient but fuck it. I dont know how to catch -1 while also recognising it as an invalid element
+            else if ((i == (_tilePos - 1) || i == _tilePos + 1) && (i / 3 != rowNum || i == -1))
+            {
+                Vector3 predictTilePos = ChunkPrediction(i, false);
+                otherMaterialIndex = WorldTilePicker(predictTilePos);
+            }
+            else
+            {
+                otherMaterialIndex = WorldTilePicker(OrderedChunks[i].transform.position);
+
+                if (GetMaterialIndex(OrderedChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material) == 2)
+                {
+                    isBlended = true;
+                }
+            }
             string tileDirection = "";
 
-            bool isDifferent = (WorldTilePicker(OrderedChunks[i].transform.position) != _tileMaterial) ? true : false;
+            bool isDifferent = (otherMaterialIndex != _tileMaterial) ? true : false;
 
             //If the material is the same then move on to the next tile
             if (!isDifferent) continue;
             allDirections++;
 
-            otherMaterialIndex = WorldTilePicker(OrderedChunks[i].transform.position);
-            //Check the row limits
-            int rowNum = _tilePos / 3;
 
             //MAKE IT SO THAT THE TILE ONLY BLENDS TOWARDS TILES THAT HAVE NOT BEEN BLENDED YET
-            if (GetMaterialIndex(OrderedChunks[i].transform.GetChild(0).GetComponent<MeshRenderer>().material) != 2)
+            if (!isBlended)
             {
                 //Top
                 if (i == (_tilePos - 3))
@@ -271,14 +294,16 @@ public class WorldChunker : MonoBehaviour
                 }
 
                 //Left
-                if (i == (_tilePos - 1) && (i / 3) == rowNum)
+                //if (i == (_tilePos - 1) && (i / 3) == rowNum)
+                if (i == (_tilePos - 1))
                 {
                     tileDirection = "left";
                 }
 
                 //Right
-                if (i == (_tilePos + 1) && (i / 3) == rowNum)
-                {
+                //if (i == (_tilePos + 1) && (i / 3) == rowNum)
+                if (i == (_tilePos + 1))
+                    {
                     tileDirection = "right";
                 }
 
@@ -571,6 +596,79 @@ public class WorldChunker : MonoBehaviour
 
             WorldChunks[_i].transform.position = new Vector3(Xpos, 0, Zpos);
         }
+    }
+
+    //Predict the position of the tile for the tile blender method
+    Vector3 ChunkPrediction(int _pos, bool _isVertical)
+    {
+        float xPos = WorldChunks[0].transform.position.x;
+        float zPos = WorldChunks[0].transform.position.z;
+        int colShifts = 0;
+
+        //Check if it's a verticality check
+        if (_isVertical)
+        {
+            //Check if the tile to predict is above or below the 3 x 3 grid
+            if (_pos < 0)
+            {
+                zPos += ((WorldChunks[0].transform.localScale.z * ChunkZSize) * 2);
+            }
+            //If pos is set above max chunks, that means the tile to predict is below 3 x 3 tile grid
+            else if (_pos >= MaxNumberChunks)
+            {
+                zPos -= ((WorldChunks[0].transform.localScale.z * ChunkZSize) * 2);
+            }
+
+            //Check if it's topx2 left or bottom x2 left
+            if (_pos == -3 || _pos == 9)
+            {
+                colShifts = -1;
+            }
+            else if (_pos == 3 || _pos == 11)
+            {
+                colShifts = 1;
+            }
+            xPos += ((WorldChunks[0].transform.localScale.x * ChunkXSize) * colShifts);
+
+        }
+        else
+        {
+            int rowCheck = 0;
+            switch (_pos)
+            {
+                //If the pos parameter falls into any of these, that means the tile column is not in the same row  
+                //(See tile blender as I have a check to determine if the value is within the same row)
+                case -1:
+                case 2:
+                case 5:
+                    //Left Side
+                    colShifts = 2;
+                    xPos -= ((WorldChunks[0].transform.localScale.x * ChunkXSize) * colShifts);
+
+                    if (_pos == -1 || _pos == 5)
+                    {
+                        rowCheck = (_pos == -1) ? 1 : -1;
+                        zPos += ((WorldChunks[0].transform.localScale.z * ChunkZSize) * rowCheck);
+                    }
+                    break;
+                case 3:
+                case 6:
+                case 9:
+                    //Right Side
+                    colShifts = 2;
+                    xPos += ((WorldChunks[0].transform.localScale.x * ChunkXSize) * colShifts);
+
+                    if (_pos == 3 || _pos == 9)
+                    {
+                        rowCheck = (_pos == 3) ? 1 : -1;
+                        zPos += ((WorldChunks[0].transform.localScale.z * ChunkZSize) * rowCheck);
+                    }
+                    break;
+            }
+
+        }
+
+        return new Vector3(xPos, 0, zPos);
     }
 
     int GetMaterialIndex(Material _tileMaterial)
